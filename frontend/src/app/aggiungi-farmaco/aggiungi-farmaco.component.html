@@ -1,0 +1,82 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Aggiungi farmaco</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Aggiungi farmaco</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <p>
+      <ngb-alert [dismissible]="false">
+        Attenzione: prima di inserire un nuovo farmaco nel sistema, verifica che esso non sii già presente nella <a href="farmaci-registrati">lista dei farmaci</a> per evitare eventuali duplicati.
+      </ngb-alert>
+      <ngb-alert class="alert-default-{{color}}" [dismissible]="false" *ngIf="message !== undefined">
+        {{message}}
+      </ngb-alert>
+    </p>
+    <form [formGroup]="drugForm">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-blue">
+            <div class="card-header">
+              <h3 class="card-title">Dati del nuovo farmaco</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="form-group col-lg-6">
+                  <label for="nominativo">Nominativo</label>
+                  <input id="nominativo" name="nominativo" type="text" required="required" formControlName="nominativo" class="form-control">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="tipologia">Tipologia</label>
+                  <input id="tipologia" name="tipologia" type="text" required="required" formControlName="tipologia" class="form-control">
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-6">
+                  <label for="codice">Codice</label>
+                  <input id="codice" name="codice" type="text" required="required" formControlName="codice" class="form-control">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="somministrazione">Modalità di somministrazione</label>
+                  <input id="somministrazione" name="somministrazione" type="text" formControlName="somministrazione" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <label for="libretto">Libretto illustrativo</label>
+                  <textarea id="libretto" name="libretto" formControlName="libretto" placeholder="Riporta qui il libretto illustrativo del farmaco." required="required" class="form-control"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <a href="/aggiungi-farmaco" class="btn btn-danger">Svuota</a>
+          <input type="submit" value="Aggiungi farmaco" (click)="nuovoFarmaco()" class="btn btn-success float-right">
+        </div>
+      </div>
+    </form>
+  </section>
+  <!-- /.content -->
+</div>

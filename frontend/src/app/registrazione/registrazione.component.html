@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-body register-card-body">
+    <p class="login-box-msg">Register a new membership</p>
+
+    <ngb-alert class="alert-default-{{color}}" [dismissible]="false" *ngIf="message !== undefined">
+      {{message}}
+    </ngb-alert>
+
+    <form [formGroup]="registerForm">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" formControlName="nome" placeholder="Nome" required="required">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fas fa-user"></span>
+          </div>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" formControlName="cognome" placeholder="Cognome" required="required">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fas fa-user"></span>
+          </div>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input type="email" class="form-control" formControlName="email" placeholder="Email" required="required">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fas fa-envelope"></span>
+          </div>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input type="date" class="form-control" formControlName="nascita" placeholder="Data di nascita" required="required">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fas fa-envelope"></span>
+          </div>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input type="password" class="form-control" formControlName="password" placeholder="Password" required="required">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fas fa-lock"></span>
+          </div>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <select class="form-select" aria-label="Default select example" formControlName="ruolo" required="required">
+          <option value="" disabled selected>Seleziona paziente</option>
+          <option value="MEDICO">Sono un medico</option>
+          <option value="INFERMIERE">Sono un infermiere</option>
+        </select>
+      </div>
+      <!-- /.col -->
+      <div class="col-12">
+        <button (click)="registra()" class="btn btn-primary btn-block">Reegistrati</button>
+      </div>
+      <!-- /.col -->
+    </form>
+
+    <a href="/login" class="text-center">I already have a membership</a>
+  </div>
+  <!-- /.form-box -->
+</div><!-- /.card -->

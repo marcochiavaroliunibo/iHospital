@@ -1,0 +1,75 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Lista pazienti</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Lista pazienti</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <table id="table" class="table table-bordered table-striped display nowrap">
+                <thead>
+                <tr>
+                  <th>NOME</th>
+                  <th>COGNOME</th>
+                  <th>DATA DI NASCITA</th>
+                  <th>LUOGO DI NASCITA</th>
+                  <th>REPARTO</th>
+                  <th>MOTIVO RICOVERO</th>
+                  <th>DATA RICOVERO</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <tr *ngFor="let item of patients">
+                  <td>{{item.nome}}</td>
+                  <td>{{item.cognome}}</td>
+                  <td>{{formatDate(item.data_nascita)}}</td>
+                  <td>{{item.luogo_nascita}}</td>
+                  <td>{{item.reparto}}</td>
+                  <td>{{item.motivo_ricovero}}</td>
+                  <td>{{formatDateTime(item.orario_ricovero)}}</td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <a type="button" (click)="openProfile(item._id)" class="btn btn-info"><i class="fas fa-pen"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>NOME</th>
+                  <th>COGNOME</th>
+                  <th>DATA DI NASCITA</th>
+                  <th>LUOGO DI NASCITA</th>
+                  <th>REPARTO</th>
+                  <th>MOTIVO RICOVERO</th>
+                  <th>DATA RICOVERO</th>
+                  <th></th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

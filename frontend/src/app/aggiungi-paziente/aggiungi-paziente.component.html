@@ -1,0 +1,89 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Aggiungi paziente</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Aggiungi paziente</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <p>
+      <ngb-alert class="alert-default-{{color}}" [dismissible]="false" *ngIf="message !== undefined">
+        {{message}}
+      </ngb-alert>
+    </p>
+    <form [formGroup]="patientForm">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-blue">
+            <div class="card-header">
+              <h3 class="card-title">Dati del nuovo paziente</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="form-group col-lg-6">
+                  <label for="nome">Nome</label>
+                  <input id="nome" name="nome" type="text" required="required" formControlName="nome" class="form-control">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="cognome">Cognome</label>
+                  <input id="cognome" name="cognome" type="text" required="required" formControlName="cognome" class="form-control">
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-6">
+                  <label for="data_nascita">Data di nascita</label>
+                  <input id="data_nascita" name="data_nascita" type="date" required="required" formControlName="data_nascita" class="form-control">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="luogo_nascita">Luogo di nascita</label>
+                  <input id="luogo_nascita" name="luogo_nascita" type="text" formControlName="luogo_nascita" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-6">
+                  <label for="reparto">Reparto ricovero</label>
+                  <input id="reparto" name="reparto" type="text" required="required" formControlName="reparto" class="form-control">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="motivo_ricovero">Motivo ricovero</label>
+                  <input id="motivo_ricovero" name="motivo_ricovero" type="text" required="required" formControlName="motivo_ricovero" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <label for="cartella_clinica">Cartella clinica</label>
+                  <textarea id="cartella_clinica" name="cartella_clinica" formControlName="cartella_clinica" placeholder="Riporta qui i motivi del ricovero, ed eventuali informazioni sullo stato del paziente." required="required" class="form-control"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <a href="/aggiungi-paziente" class="btn btn-danger">Svuota</a>
+          <input type="submit" value="Aggiungi paziente" (click)="nuovoPaziente()" class="btn btn-success float-right">
+        </div>
+      </div>
+    </form>
+  </section>
+  <!-- /.content -->
+</div>
+

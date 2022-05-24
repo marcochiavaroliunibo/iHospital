@@ -1,0 +1,381 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Profilo paziente</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="pazienti_in_cura.html">Pazienti in cura</a></li>
+            <li class="breadcrumb-item active">Profilo paziente</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <ngb-alert class="alert-default-{{color}}" [dismissible]="false" *ngIf="message !== undefined">
+        {{message}}
+      </ngb-alert>
+      <div class="row">
+        <div class="col-md-3">
+          <!-- Profile Image -->
+          <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+              <h3 class="profile-username text-center">{{patient.nome}} {{patient.cognome}}</h3>
+              <p class="text-muted text-center">Ricoverato in {{patient.reparto}}</p>
+              <a href="valori-vitali/{{_id}}" class="btn btn-info btn-block"><b>Registrazioni valori vitali</b></a>
+              <a href="#" class="btn btn-info btn-block"><b>Area segnalazioni</b></a>
+              <a *ngIf="statePatient()" (click)="quitPatient()" class="btn btn-danger btn-block"><b>Dimetti paziente</b></a>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="card card-body">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+              <li [ngbNavItem]="1">
+                <a ngbNavLink>Anagrafica</a>
+                <ng-template ngbNavContent>
+                  <form [formGroup]="profileForm">
+                    <div class="row">
+                      <div class="form-group col-lg-6">
+                        <label for="nome">Nome</label>
+                        <input id="nome" name="nome" type="text" class="form-control" formControlName="nome" required="required">
+                      </div>
+                      <div class="form-group col-lg-6">
+                        <label for="cognome">Cognome</label>
+                        <input id="cognome" name="cognome" type="text" class="form-control" formControlName="cognome" required="required">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-lg-6">
+                        <label for="data_nascita">Data di nascita</label>
+                        <input id="data_nascita" name="data_nascita" type="date" class="form-control" formControlName="data_nascita" required="required">
+                      </div>
+                      <div class="form-group col-lg-6">
+                        <label for="luogo_nascita">Luogo di nascita</label>
+                        <input id="luogo_nascita" name="luogo_nascita" type="text" class="form-control" formControlName="luogo_nascita" required="required">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-lg-4">
+                        <label for="reparto">Reparto</label>
+                        <input id="reparto" name="reparto" type="text" class="form-control" formControlName="reparto" required="required">
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label for="orario_ricovero">Data arrivo in struttura</label>
+                        <input id="orario_ricovero" name="orario_ricovero" type="date" class="form-control" formControlName="orario_ricovero" required="required">
+                      </div>
+                      <div class="form-group col-lg-4">
+                        <label for="orario_dimissioni">Data dimissioni (se già decisa)</label>
+                        <input id="orario_dimissioni" name="orario_dimissioni" type="date" class="form-control" formControlName="orario_dimissioni">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-lg-12">
+                        <label for="cartella_clinica">Cartella clinica</label>
+                        <textarea id="cartella_clinica" name="cartella_clinica" formControlName="cartella_clinica" class="form-control" form required="required"></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <button (click)="resetUpdate()" class="btn btn-danger">Annulla modifiche</button>
+                        <button type="submit" (click)="updatePatient()" class="btn btn-success float-right">Modifica anagrafica</button>
+                      </div>
+                    </div>
+                  </form>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2">
+                <a ngbNavLink>Farmaci</a>
+                <ng-template ngbNavContent>
+                  <table id="lista_farmaci" class="table table-bordered table-striped display nowrap">
+                    <thead>
+                    <tr>
+                      <th>NOMINATIVO</th>
+                      <th>TIPOLOGIA</th>
+                      <th>CODICE</th>
+                      <th>SOMMINISTRAZIONE</th>
+                      <th>DATA INIZIO</th>
+                      <th>DURATA</th>
+                      <th>DOSI GIORNALIERE</th>
+                      <th>NOTE</th>
+                      <th>CANCELLA</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of prescriptions">
+                      <td>{{item.drug.nominativo}}</td>
+                      <td>{{item.drug.tipologia}}</td>
+                      <td>{{item.drug.codice}}</td>
+                      <td>{{item.drug.somministrazione}}</td>
+                      <td>{{formatDate(item.dataPrescription.data_inizio)}}</td>
+                      <td>{{item.dataPrescription.durata}} giorni</td>
+                      <td>{{item.dataPrescription.dosi_giornaliere}} dosi</td>
+                      <td>
+                        <div class="btn-group btn-group-sm">
+                          <a type="button" role="button" (click)="open('modalNotePrescription', item.dataPrescription._id)" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="btn-group btn-group-sm">
+                          <a type="button" role="button" (click)="deletePrescription(item.drug._id)" class="btn btn-warning">ELIMINA</a>
+                        </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                      <th>NOMINATIVO</th>
+                      <th>TIPOLOGIA</th>
+                      <th>CODICE</th>
+                      <th>SOMMINISTRAZIONE</th>
+                      <th>DATA INIZIO</th>
+                      <th>DURATA</th>
+                      <th>DOSI GIORNALIERE</th>
+                      <th>NOTE</th>
+                      <th>CANCELLA</th>
+                    </tr>
+                    </tfoot>
+                  </table>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-blue collapsed-card">
+                        <div class="card-header">
+                          <h3 class="card-title">Prescrivi nuovo farmaco</h3>
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                              <i class="fas fa-minus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <ngb-alert class="alert-default-info" [dismissible]="false">
+                            Se non trovi il farmaco, aggiungilo al sistema tramite <a href="/farmaci-registrati">questa pagina</a>
+                          </ngb-alert>
+                          <form [formGroup]="newPrescriptionForm">
+                            <div class="row">
+                              <div class="from-group col-6">
+                                <label for="farmaco">Scegli il farmaco</label>
+                                <select class="form-select" aria-label="Default select example" id="farmaco" name="farmaco" formControlName="farmaco">
+                                  <option value="" disabled selected>Seleziona farmaco</option>
+                                  <option *ngFor="let item of drugs" value="{{item._id}}">{{item.nominativo}} - {{item.somministrazione}}</option>
+                                </select>
+                              </div>
+                              <div class="form-group col-6">
+                                <label for="data_inizio">Data inizio somministrazione</label>
+                                <input id="data_inizio" class="form-control" name="data_inizio" formControlName="data_inizio" type="date"/>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-6">
+                                <label for="durata">Durata (giorni)</label>
+                                <input id="durata" name="durata" formControlName="durata" class="form-control" type="number" min="1"/>
+                              </div>
+                              <div class="form-group col-6">
+                                <label for="dosi_giornaliere">Dosi giornaliere</label>
+                                <input id="dosi_giornaliere" name="dosi_giornaliere" formControlName="dosi_giornaliere" class="form-control" type="number" min="1"/>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="from-group col-12">
+                                <label for="note">Note eventuali</label>
+                                <textarea id="note" name="note" formControlName="note" placeholder="Riportare eventuali note per infermieri e collaboratori" required="required" class="form-control"></textarea>
+                              </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                              <div class="form-group col-12">
+                                <button (click)="newPrescription()" type="submit" class="btn btn-success float-right">Prescrivi nuovo farmaco</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="3">
+                <a ngbNavLink>Sala Operatoria</a>
+                <ng-template ngbNavContent>
+                  <table id="lista_operazioni" class="table table-bordered table-striped display nowrap">
+                    <thead>
+                    <tr>
+                      <th>DATA E ORA</th>
+                      <th>DURATA</th>
+                      <th>TITOLO</th>
+                      <th>STATO</th>
+                      <th>LIVELLO ATTENZIONE</th>
+                      <th>NOTE</th>
+                      <th>VERBALE</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of operations">
+                      <td>{{formatDateTime(item.data_ora)}}</td>
+                      <td>{{item.durata}} ore</td>
+                      <td>{{item.titolo}}</td>
+                      <td>
+                        <span [ngSwitch]="item.stato">
+                          <span *ngSwitchCase="'DA SVOLGERE'" class="badge badge-warning">{{item.stato}}</span>
+                          <span *ngSwitchCase="'ANNULLATA'" class="badge badge-danger">{{item.stato}}</span>
+                          <span *ngSwitchCase="'SVOLTA'" class="badge badge-success">{{item.stato}}</span>
+                        </span>
+                      </td>
+                      <td>
+                        <span [ngSwitch]="item.rischio">
+                          <span *ngSwitchCase="'ALTO'" class="badge badge-danger">{{item.rischio}}</span>
+                          <span *ngSwitchCase="'MEDIO ALTO'" class="badge badge-danger">{{item.rischio}}</span>
+                          <span *ngSwitchCase="'MEDIO'" class="badge badge-warning">{{item.rischio}}</span>
+                          <span *ngSwitchCase="'MEDIO BASSO'" class="badge badge-warning">{{item.rischio}}</span>
+                          <span *ngSwitchCase="'BASSO'" class="badge badge-info">{{item.rischio}}</span>
+                        </span>
+                      </td>
+                      <td>
+                        <div class="btn-group btn-group-sm">
+                          <button type="button" data-bs-target="#note" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-edit"></i></button>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="btn-group btn-group-sm">
+                          <button type="button" data-bs-target="#verbale" data-bs-toggle="modal" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                      <th>DATA E ORA</th>
+                      <th>DURATA</th>
+                      <th>TITOLO</th>
+                      <th>STATO</th>
+                      <th>LIVELLO ATTENZIONE</th>
+                      <th>NOTE</th>
+                      <th>VERBALE</th>
+                    </tr>
+                    </tfoot>
+                  </table>
+                  <div class="row">
+                    <div class="col-12">
+                      <button href="aggiungi-operazione" class="btn btn-success float-right">Registra nuova operazione</button>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="4">
+                <a ngbNavLink>Segalazioni</a>
+                <ng-template ngbNavContent>
+                  <div class="card direct-chat direct-chat-primary">
+                    <!-- Body -->
+                    <div id="bodyId" class="card-body">
+                      <div class="direct-chat-messages" style="height: 100%">
+                        <!-- Messaggio inviato -->
+                        <div class="direct-chat-msg right">
+                          <div class="direct-chat-infos clearfix">
+                            <span class="direct-chat-name float-right">Dott. Mario Rossi</span>
+                            <span class="direct-chat-timestamp float-left">10/05/2022 15:09</span>
+                          </div>
+                          <img class="direct-chat-img" src="../../dist/img/user2-160x160.jpg" alt="message user image">
+                          <div class="direct-chat-text">
+                            Operazioni conclusa con successo.
+                          </div>
+                        </div>
+                        <!-- Messaggio ricevuto -->
+                        <div class="direct-chat-msg">
+                          <div class="direct-chat-infos clearfix">
+                            <span class="direct-chat-name float-left">Dott.ssa Claudia Somma</span>
+                            <span class="direct-chat-timestamp float-right">10/05/2022 18:54</span>
+                          </div>
+                          <img class="direct-chat-img" src="../../dist/img/user6-128x128.jpg" alt="message user image">
+                          <!-- /.direct-chat-img -->
+                          <div class="direct-chat-text">
+                            Perfetto, continuiamo a controllare i valori vitali.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Footer -->
+                    <div class="card-footer">
+                      <form action="#" method="post">
+                        <div class="input-group">
+                          <textarea name="testo" rows="1" placeholder="Scrivi un messaggio..." required="required" class="form-control"></textarea>
+                          <span class="input-group-append">
+                                <button type="submit" class="btn btn-primary">Invia</button>
+                            </span>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="5">
+                <a ngbNavLink>Medici di riferimento</a>
+                <ng-template ngbNavContent>
+                  <table id="lista_medici" class="table table-bordered table-striped display nowrap">
+                    <thead>
+                    <tr>
+                      <th>NOME</th>
+                      <th>COGNOME</th>
+                      <th>EMAIL</th>
+                      <th>DATA DI NASCITA</th>
+                      <th>CANCELLA INCARICO</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of medic_assignments">
+                      <td>{{item.nome}}</td>
+                      <td>{{item.cognome}}</td>
+                      <td>{{item.email}}</td>
+                      <td>{{formatDate(item.data_nascita)}}</td>
+                      <td>
+                        <div class="btn-group btn-group-sm">
+                          <button type="button" data-bs-target="#dettagli" (click)="deleteAssignment(item._id)" data-bs-toggle="modal" class="btn btn-danger">CANCELLA</button>
+                        </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                      <th>NOME</th>
+                      <th>COGNOME</th>
+                      <th>EMAIL</th>
+                      <th>DATA DI NASCITA</th>
+                      <th>CANCELLA INCARICO</th>
+                    </tr>
+                    </tfoot>
+                  </table>
+                  <form [formGroup]="newMedicAssignmentForm">
+                  <div class="row">
+                    <div class="col-6">
+                      <input id="email_nuovo_medico" name="email_nuovo_medico" type="email" formControlName="email_nuovo_medico" class="form-control" placeholder="Email del medico da asseganre"  required="required"/>
+                    </div>
+                    <div class="col-6">
+                    <button type="submit" class="btn btn-success float-right" (click)="newMedicAssignment()">Assegna un nuovo medico</button>
+                    </div>
+                  </div>
+                  </form>
+                </ng-template>
+              </li>
+
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>

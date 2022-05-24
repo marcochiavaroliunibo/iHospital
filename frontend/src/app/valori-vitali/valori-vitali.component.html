@@ -1,0 +1,170 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Analisi di {{patient.nome}} {{patient.cognome}}</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="">Home</a></li>
+            <li class="breadcrumb-item"><a href="profilo-paziente/{{idPatient}}">{{patient.nome}} {{patient.cognome}}</a></li>
+            <li class="breadcrumb-item active">Registrazioni valori vitali</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <div class="container-fluid">
+      <ngb-alert class="alert-default-danger" [dismissible]="false" *ngIf="message !== undefined">
+        {{message}}
+      </ngb-alert>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-body">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+              <li [ngbNavItem]="1">
+                <a ngbNavLink>Registrazioni valori vitali</a>
+                <ng-template ngbNavContent>
+                  <ngb-alert class="alert-default-danger" [dismissible]="false" *ngIf="vitalValues.length === 0">
+                    Nessuna registrazione presente, <a (click)="switchPage()"> <b>carica</b></a> i primi valori del paziente.
+                  </ngb-alert>
+                  <div class="timeline" *ngFor="let item of vitalValues">
+                    <div class="time-label">
+                      <span class="bg-blue">{{formatDate(item.orario_visita)}}</span>
+                    </div>
+                    <div>
+                      <i class="fas fa-envelope bg-blue"></i>
+                      <div class="timeline-item">
+                        <span class="time"><i class="fas fa-clock"></i> {{formatTime(item.orario_visita)}}</span>
+                        <h3 class="timeline-header">Dati inseriti da {{item.id_operatore}}</h3>
+                        <div class="timeline-body">
+                          <div class="row">
+                            <div class="col-lg-2 col-2">
+                              <div class="small-box bg-info">
+                                <div class="inner">
+                                  <h4>{{item.hr}}</h4>
+                                  <h4>Frequenza cardiaca</h4>
+                                </div>
+                                <div class="icon">
+                                  <i class="ion ion-bag"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 col-2">
+                              <div class="small-box bg-success">
+                                <div class="inner">
+                                  <h4>{{item.press_min}}</h4>
+                                  <h4>Pressione minima</h4>
+                                </div>
+                                <div class="icon">
+                                  <i class="ion ion-stats-bars"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 col-2">
+
+                              <div class="small-box bg-warning">
+                                <div class="inner">
+                                  <h4>{{item.press_max}}</h4>
+                                  <h4>Pressione massima</h4>
+                                </div>
+                                <div class="icon">
+                                  <i class="ion ion-person-add"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 col-2">
+                              <div class="small-box bg-danger">
+                                <div class="inner">
+                                  <h4>{{item.saturazione}}</h4>
+                                  <h4>Livello saturazione</h4>
+                                </div>
+                                <div class="icon">
+                                  <i class="ion ion-pie-graph"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 col-2">
+
+                              <div class="small-box bg-warning">
+                                <div class="inner">
+                                  <h4>{{item.freq_respriratoria}}</h4>
+                                  <h4>Frequenza respiratoria</h4>
+                                </div>
+                                <div class="icon">
+                                  <i class="ion ion-person-add"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 col-2">
+                              <div class="small-box bg-danger">
+                                <div class="inner">
+                                  <h4>{{item.livello_dolore}}</h4>
+                                  <h4>Livello dolore soggettivo</h4>
+                                </div>
+                                <div class="icon">
+                                  <i class="ion ion-pie-graph"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="timeline-footer">
+                          <a (click)="deleteValue(item._id)" class="btn btn-danger btn-sm">Elimina</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2">
+                <a ngbNavLink>Aggiungi nuova registrazione</a>
+                <ng-template ngbNavContent>
+                  <!-- Form di aggiunta nuova registrazione -->
+                  <form [formGroup]="newValueForm">
+                    <div class="row">
+                      <div class="from-group col-4">
+                        <label for="hr">Frequenza cardiaca</label>
+                        <input id="hr" class="form-control" name="hr" formControlName="hr" type="number"/>
+                      </div>
+                      <div class="form-group col-4">
+                        <label for="press_min">Pressione minima</label>
+                        <input id="press_min" class="form-control" name="press_min" formControlName="press_min" type="number"/>
+                      </div>
+                      <div class="form-group col-4">
+                        <label for="press_max">Pressione massima</label>
+                        <input id="press_max" class="form-control" name="press_max" formControlName="press_max" type="number"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="from-group col-4">
+                        <label for="saturazione">Livello di saturazione</label>
+                        <input id="saturazione" class="form-control" name="saturazione" formControlName="saturazione" type="number"/>
+                      </div>
+                      <div class="form-group col-4">
+                        <label for="freq_respriratoria">Frequenza respiratoria</label>
+                        <input id="freq_respriratoria" class="form-control" name="freq_respriratoria" formControlName="freq_respriratoria" type="number"/>
+                      </div>
+                      <div class="form-group col-4">
+                        <label for="livello_dolore">Livello di dolore</label>
+                        <input id="livello_dolore" class="form-control" name="livello_dolore" formControlName="livello_dolore" type="number"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-12">
+                        <button (click)="newValue()" type="submit" class="btn btn-success float-right">Aggiungi registrazione</button>
+                      </div>
+                    </div>
+                  </form>
+                </ng-template>
+              </li>
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

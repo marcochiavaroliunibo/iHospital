@@ -1,0 +1,92 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Aggiungi operazione</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Aggiungi operazione</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <p>
+      <ngb-alert class="alert-default-{{color}}" [dismissible]="false" *ngIf="message !== undefined">
+        {{message}}
+      </ngb-alert>
+    </p>
+    <form [formGroup]="operationForm">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-blue">
+            <div class="card-header">
+              <h3 class="card-title">Dati dell'operazione</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="form-group col-lg-6">
+                  <label for="id_paziente">Nominativo paziente</label>
+                  <select class="form-select" aria-label="Default select example" id="id_paziente" name="id_paziente" formControlName="id_paziente" required="required">
+                    <option value="" disabled selected>Seleziona paziente</option>
+                    <option *ngFor="let item of patients" value="{{item._id}}">{{item.nome}} {{item.cognome}} - {{formatDate(item.data_nascita)}}</option>
+                  </select>
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="titolo">Nome intervento</label>
+                  <input id="titolo" name="titolo" type="text" required="required" formControlName="titolo" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-4">
+                  <label for="data_ora">Data e ora dell'intervento</label>
+                  <input id="data_ora" name="data_ora" type="datetime-local" required="required" formControlName="data_ora" class="form-control">
+                </div>
+                <div class="form-group col-lg-4">
+                  <label for="durata">Ore in sala operatoria (indicativamente)</label>
+                  <input id="durata" name="durata" type="number" min="1" max="24" required="required" formControlName="durata" class="form-control">
+                </div>
+                <div class="form-group col-lg-4">
+                  <label for="rischio">Livello del rischio/attenzione</label>
+                  <select class="form-select" aria-label="Default select example" id="rischio" name="rischio" formControlName="rischio" required="required">
+                    <option value="" disabled selected>Seleziona livello</option>
+                    <option value="BASSO">Basso</option>
+                    <option value="MEDIO BASSO">Medio basso</option>
+                    <option value="MEDIO">Medio</option>
+                    <option value="MEDIO ALTO">Medio alto</option>
+                    <option value="ALTO">Alto</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <label for="descrizione">Descrizione dettagliata dell'operazione</label>
+                  <textarea id="descrizione" name="descrizione" formControlName="descrizione" placeholder="Riporta qui i dettagli dell'operazione, i dettagli da conoscere ed eventuali possibili problematiche da conoscere prima dell'intervento." required="required" class="form-control"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <a href="#" class="btn btn-danger">Svuota</a>
+          <input type="submit" value="Programma operazione" (click)="newOperation()" class="btn btn-success float-right">
+        </div>
+      </div>
+    </form>
+  </section>
+  <!-- /.content -->
+</div>
