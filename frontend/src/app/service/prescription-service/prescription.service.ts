@@ -24,4 +24,11 @@ export class PrescriptionService {
     return this._http.delete('http://127.0.0.1:3000/prescriptions/delete/'+id_paziente+'/'+id_medicina);
   }
 
+  updateNote(id: string | null, note: string | null): Observable<any> {
+    return this._http.put('http://127.0.0.1:3000/prescriptions/update/' + id + '/' + note, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-type', 'application/json')
+    });
+  }
+
 }

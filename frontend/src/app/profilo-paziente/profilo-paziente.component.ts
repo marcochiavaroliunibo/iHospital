@@ -1,4 +1,4 @@
-import {Component, Input, Type} from '@angular/core';
+import {Component, Type} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {PatientService} from "../service/patient-service/patient.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -9,7 +9,10 @@ import {UserService} from "../service/user-service/user.service";
 import {DrugService} from "../service/drug-service/drug.service";
 import {PrescriptionService} from "../service/prescription-service/prescription.service";
 import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {identity} from "rxjs";
+
+let idNote: string | null;
+let note: string | null;
+let _id : string | null;
 
 @Component({
   selector: 'app-profilo-paziente',
@@ -18,10 +21,8 @@ import {identity} from "rxjs";
 })
 export class ProfiloPazienteComponent {
 
-  _id : string | null;
-
   patient: any; operations: any; medic_assignments: any; drugs: any; prescriptions: any;
-  active = 1;
+  active = 1; id : any;
 
   profileForm: FormGroup = new FormGroup({
     nome: new FormControl(null, Validators.required),
@@ -51,14 +52,15 @@ export class ProfiloPazienteComponent {
   constructor(public route: ActivatedRoute, private _user:UserService, private _patient:PatientService,
               private _operation:OperationService, private _medicAssignment:MedicAssignmentService, private _drug:DrugService,
               private _prescription:PrescriptionService, private _router:Router, private _modalService:NgbModal) {
-    this._id = this.route.snapshot.paramMap.get('id');
+    _id = this.route.snapshot.paramMap.get('id');
+    this.id = _id;
+    //this.route.queryParams.subscribe(params => {if (params['active'] === '2') this.active = 2});
     this._drug.allDrugs().subscribe(res => { this.drugs = res.data; },error => {});
-    this._patient.findById(this._id)
+    this._patient.findById(_id)
       .subscribe(
         res => {
           this.patient = res.data;
           this.setValueForm();
-          // todo: Farmaci del paziente
           this.setDrugs();
           this.setOperations();
           //if (localStorage.getItem("role") === "DIRETTORE") // todo: poi deve essere decommentato
@@ -83,13 +85,13 @@ export class ProfiloPazienteComponent {
   }
 
   // Farmaci del paziente
-  private setDrugs() {
+  setDrugs() {
     // todo: join
     var prescriptions: {
       drug: any;
       dataPrescription: any;
     }[] = [];
-    this._prescription.findByIdPatient(this._id).subscribe(
+    this._prescription.findByIdPatient(_id).subscribe(
       res => {
         for (let i: number = 0; i < res.data.length; i++) {
           // prendo il farmaco
@@ -108,9 +110,9 @@ export class ProfiloPazienteComponent {
   }
 
   // Operazioni del paziente
-  private setOperations() {
-    if (this._id != null) {
-      this._operation.operationsPatient(this._id)
+  setOperations() {
+    if (_id != null) {
+      this._operation.operationsPatient(_id)
         .subscribe(
           res => {this.operations = res.data},
           error => { }
@@ -119,9 +121,9 @@ export class ProfiloPazienteComponent {
   }
 
   // Medici assegnati al paziente
-  private setMedicAssignment() {
+  setMedicAssignment() {
     var medics: any[] =[];
-    this._medicAssignment.findByIdPatient(this._id).subscribe(
+    this._medicAssignment.findByIdPatient(_id).subscribe(
       res => {
         for (let i: number = 0; i < res.data.length; i++) {
           // prendo il medico
@@ -136,7 +138,7 @@ export class ProfiloPazienteComponent {
     )
   }
 
-  private setChat() { }
+  setChat() { }
 
   // Formattazione delle date
   formatDateTime(data_nascita: any) {
@@ -166,13 +168,13 @@ export class ProfiloPazienteComponent {
             this.message = "Nessun medico registrato con questa email"; this.color = "danger";
             return;
           }
-          this._medicAssignment.findById(this._id, res.data._id)
+          this._medicAssignment.findById(_id, res.data._id)
             .subscribe(
               res2 => {
                 if (res2.data !== null) {
                   this.message = "Medico già registrato su questo paziente"; this.color = "info";
                 }else{
-                  this._medicAssignment.newMedicAssignment(this._id ,res.data._id)
+                  this._medicAssignment.newMedicAssignment(_id ,res.data._id)
                     .subscribe(
                       data => {
                         this.message = "Medico aggiunto al paziente"; this.color = "success";
@@ -191,7 +193,7 @@ export class ProfiloPazienteComponent {
   }
 
   deleteAssignment(id_medico: any) {
-    this._medicAssignment.delete(this._id, id_medico).subscribe(
+    this._medicAssignment.delete(_id, id_medico).subscribe(
       res => { window.location.reload(); },
       error => { console.log(error) }
     )
@@ -203,7 +205,7 @@ export class ProfiloPazienteComponent {
       this.color = "danger";
       return;
     }
-    this._patient.updatePatient(this._id, JSON.stringify(this.profileForm.value))
+    this._patient.updatePatient(_id, JSON.stringify(this.profileForm.value))
       .subscribe(
         data => {this.message = data.message; this.color = "success"; },
         error => {this.message = error.error.message; this.color = "danger"}
@@ -218,7 +220,7 @@ export class ProfiloPazienteComponent {
       this.color = "danger";
       return;
     }
-    this.newPrescriptionForm.get('id_paziente')?.setValue(this._id);
+    this.newPrescriptionForm.get('id_paziente')?.setValue(_id);
     this._prescription.newPrescription(JSON.stringify(this.newPrescriptionForm.value))
       .subscribe(
         data => {this.message = data.message; this.color = "success"},
@@ -235,14 +237,23 @@ export class ProfiloPazienteComponent {
   }
 
   quitPatient() {
-    this._patient.quitPatient(this._id).subscribe(
+    this._patient.quitPatient(_id).subscribe(
       res => { window.location.reload(); },
       error => { console.log(error) }
     )
   }
 
+  goToOperation(_id: any) {
+    /* todo apro la pagina dell'operazione
+    devo poter modificare i dati
+    devo poter compilare il verbale se l'operazione si è conclusa
+    devo avere l'area "LIVE" se l'operazione è in corso
+     */
+
+  }
+
   deletePrescription(id_drug: string | null) {
-    this._prescription.delete(this._id, id_drug).subscribe(
+    this._prescription.delete(_id, id_drug).subscribe(
       res => { this.message = "Prescrizione eliminata con successo"; this.color = "success" },
       err => { this.message = err; this.color = "danger" },
     )
@@ -250,11 +261,11 @@ export class ProfiloPazienteComponent {
 
   // Modals
   private MODALS:  {[name: string]: Type<any>} = {modalNotePrescription: NgbdModalNotePrescription};
-  open(modal: string, id: string | null) {
+  open(modal: string, id: string | null, nota: string | null) {
     //if (modal === 'modalNotePrescription')
-      // @ts-ignore
-      const modalRef = this._modalService.open((this.MODALS[modal]));
-      modalRef.componentInstance.id = id;
+    idNote = id;
+    note = nota;
+    this._modalService.open((this.MODALS[modal]));
   }
 
 }
@@ -264,18 +275,27 @@ export class ProfiloPazienteComponent {
   templateUrl: '../modals/modal-note-prescription.html',
 })
 export class NgbdModalNotePrescription {
-  @Input() public id: any;  // todo not pass value
+
   noteForm: FormGroup = new FormGroup({
     note: new FormControl(null),
   });
 
-  constructor(public modal: NgbActiveModal, private _user:UserService, private _router:Router) {
-    this.noteForm.get('note')?.setValue(this.id);
-    //console.log(this.id)
+  message: any = undefined;
+
+  constructor(public modal: NgbActiveModal, private _prescription:PrescriptionService, private _router:Router) {
+    this.noteForm.get('note')?.setValue(note);
   }
 
   save() {
-    console.log(this.noteForm.value)
+    if (this.noteForm.value.note === "") this.noteForm.get('note')?.setValue('Nessun nota da inserire.');
+    this._prescription.updateNote(idNote, this.noteForm.value.note).subscribe(
+        res => {
+          this.modal.dismiss();
+          window.location.reload();
+          //this._router.navigate(['/profilo-paziente/' + _id], {queryParams: {active: 2}})
+        },
+        err => { this.message = err.message; }
+    )
   }
 
 }

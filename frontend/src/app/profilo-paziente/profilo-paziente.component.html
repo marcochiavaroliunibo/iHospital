@@ -30,7 +30,7 @@
             <div class="card-body box-profile">
               <h3 class="profile-username text-center">{{patient.nome}} {{patient.cognome}}</h3>
               <p class="text-muted text-center">Ricoverato in {{patient.reparto}}</p>
-              <a href="valori-vitali/{{_id}}" class="btn btn-info btn-block"><b>Registrazioni valori vitali</b></a>
+              <a href="valori-vitali/{{id}}" class="btn btn-info btn-block"><b>Registrazioni valori vitali</b></a>
               <a href="#" class="btn btn-info btn-block"><b>Area segnalazioni</b></a>
               <a *ngIf="statePatient()" (click)="quitPatient()" class="btn btn-danger btn-block"><b>Dimetti paziente</b></a>
             </div>
@@ -123,7 +123,7 @@
                       <td>{{item.dataPrescription.dosi_giornaliere}} dosi</td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                          <a type="button" role="button" (click)="open('modalNotePrescription', item.dataPrescription._id)" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                          <a type="button" role="button" (click)="open('modalNotePrescription', item.dataPrescription._id, item.dataPrescription.note)" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-edit"></i></a>
                         </div>
                       </td>
                       <td>
@@ -216,8 +216,7 @@
                       <th>TITOLO</th>
                       <th>STATO</th>
                       <th>LIVELLO ATTENZIONE</th>
-                      <th>NOTE</th>
-                      <th>VERBALE</th>
+                      <th>DETTAGLI</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -243,12 +242,7 @@
                       </td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                          <button type="button" data-bs-target="#note" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-edit"></i></button>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="btn-group btn-group-sm">
-                          <button type="button" data-bs-target="#verbale" data-bs-toggle="modal" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                          <button type="button" (click)="goToOperation(item._id)" class="btn btn-info"><i class="fas fa-edit"></i></button>
                         </div>
                       </td>
                     </tr>
@@ -260,8 +254,7 @@
                       <th>TITOLO</th>
                       <th>STATO</th>
                       <th>LIVELLO ATTENZIONE</th>
-                      <th>NOTE</th>
-                      <th>VERBALE</th>
+                      <th>DETTAGLI</th>
                     </tr>
                     </tfoot>
                   </table>

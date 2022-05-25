@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import {AppComponent, NgbdModaLogout} from './app.component';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { FullCalendarModule } from '@fullcalendar/angular';
 import { HomeComponent } from './home/home.component';
 import { PazientiInCuraComponent } from './pazienti-in-cura/pazienti-in-cura.component';
 import { FarmaciRegistratiComponent } from './farmaci-registrati/farmaci-registrati.component';
@@ -53,7 +52,6 @@ import {VitalValueService} from "./service/vital-value-service/vital-value.servi
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FullCalendarModule
   ],
   providers: [
     UserService,
