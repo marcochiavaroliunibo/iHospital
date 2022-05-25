@@ -23,7 +23,19 @@ export class OperationService {
     });
   }
 
-  operationsPatient(id_paziente: string | null): Observable<any> {
-    return this._http.get('http://127.0.0.1:3000/operations/'+id_paziente);
+  findByPatient(id_paziente: string | null): Observable<any> {
+    return this._http.get('http://127.0.0.1:3000/operations/find-by-patient/'+id_paziente);
   }
+
+  updateOperation(id: string | null, body: any): Observable<any> {
+    return this._http.put('http://127.0.0.1:3000/operations/update/' + id, body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-type', 'application/json')
+    });
+  }
+
+  findById(id: string | null): Observable<any> {
+    return this._http.get('http://127.0.0.1:3000/operations/'+id);
+  }
+
 }

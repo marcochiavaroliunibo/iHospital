@@ -48,7 +48,6 @@ export class ValoriVitaliComponent {
 
   message: any = undefined;
   newValue() {
-    console.log(this.vitalValues)
     if (!this.newValueForm.valid) {
       this.message = "Compilare correttamente tutti i campi";
       return;

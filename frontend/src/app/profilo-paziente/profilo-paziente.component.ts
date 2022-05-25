@@ -112,7 +112,7 @@ export class ProfiloPazienteComponent {
   // Operazioni del paziente
   setOperations() {
     if (_id != null) {
-      this._operation.operationsPatient(_id)
+      this._operation.findByPatient(_id)
         .subscribe(
           res => {this.operations = res.data},
           error => { }
@@ -241,15 +241,6 @@ export class ProfiloPazienteComponent {
       res => { window.location.reload(); },
       error => { console.log(error) }
     )
-  }
-
-  goToOperation(_id: any) {
-    /* todo apro la pagina dell'operazione
-    devo poter modificare i dati
-    devo poter compilare il verbale se l'operazione si è conclusa
-    devo avere l'area "LIVE" se l'operazione è in corso
-     */
-
   }
 
   deletePrescription(id_drug: string | null) {

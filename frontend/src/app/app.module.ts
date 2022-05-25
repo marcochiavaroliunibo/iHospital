@@ -25,6 +25,7 @@ import {OperationService} from "./service/operation-service/operation.service";
 import {PatientService} from "./service/patient-service/patient.service";
 import {PrescriptionService} from "./service/prescription-service/prescription.service";
 import {VitalValueService} from "./service/vital-value-service/vital-value.service";
+import { DettagliOperazioneComponent } from './dettagli-operazione/dettagli-operazione.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {VitalValueService} from "./service/vital-value-service/vital-value.servi
     FAQComponent,
     ValoriVitaliComponent,
     NgbdModalNotePrescription,
+    DettagliOperazioneComponent,
   ],
   imports: [
     BrowserModule,

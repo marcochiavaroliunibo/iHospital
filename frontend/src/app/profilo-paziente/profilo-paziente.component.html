@@ -108,8 +108,7 @@
                       <th>DATA INIZIO</th>
                       <th>DURATA</th>
                       <th>DOSI GIORNALIERE</th>
-                      <th>NOTE</th>
-                      <th>CANCELLA</th>
+                      <th>AZIONI</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -125,10 +124,8 @@
                         <div class="btn-group btn-group-sm">
                           <a type="button" role="button" (click)="open('modalNotePrescription', item.dataPrescription._id, item.dataPrescription.note)" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-edit"></i></a>
                         </div>
-                      </td>
-                      <td>
                         <div class="btn-group btn-group-sm">
-                          <a type="button" role="button" (click)="deletePrescription(item.drug._id)" class="btn btn-warning">ELIMINA</a>
+                          <a type="button" role="button" (click)="deletePrescription(item.drug._id)" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </div>
                       </td>
                     </tr>
@@ -142,8 +139,7 @@
                       <th>DATA INIZIO</th>
                       <th>DURATA</th>
                       <th>DOSI GIORNALIERE</th>
-                      <th>NOTE</th>
-                      <th>CANCELLA</th>
+                      <th>AZIONI</th>
                     </tr>
                     </tfoot>
                   </table>
@@ -242,7 +238,7 @@
                       </td>
                       <td>
                         <div class="btn-group btn-group-sm">
-                          <button type="button" (click)="goToOperation(item._id)" class="btn btn-info"><i class="fas fa-edit"></i></button>
+                          <a type="button" href="dettagli-operazione/{{item._id}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
                         </div>
                       </td>
                     </tr>

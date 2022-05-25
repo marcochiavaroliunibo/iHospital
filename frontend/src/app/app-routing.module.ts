@@ -16,6 +16,7 @@ import {InfermiereGuard} from "./role-guard/InfermiereGuard";
 import {DirettoreGuard} from "./role-guard/DirettoreGuard";
 import {FAQComponent} from "./faq/faq.component";
 import {ValoriVitaliComponent} from "./valori-vitali/valori-vitali.component";
+import {DettagliOperazioneComponent} from "./dettagli-operazione/dettagli-operazione.component";
 
 // canActive mi indica quale tipo di profilo può accedere ad ogni pagina,
 // svolge quindi il ruolo di GUARDIA per l'accesso alle varie pagine.
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'aggiungi-paziente', component: AggiungiPazienteComponent, canActivate: [DirettoreGuard]},
   { path: 'lista-pazienti', component: ListaPazientiComponent, canActivate: [DirettoreGuard]},
   { path: 'FAQ', component: FAQComponent},
-  { path: 'valori-vitali/:id', component: ValoriVitaliComponent}
+  { path: 'valori-vitali/:id', component: ValoriVitaliComponent},
+  { path: 'dettagli-operazione/:id', component: DettagliOperazioneComponent, canActivate: [MedicoGuard]}
 ];
 
 @NgModule({

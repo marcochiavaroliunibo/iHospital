@@ -7,8 +7,8 @@ var schema = new Schema({
     data_ora: {type: Date, require:true},
     durata: {type: Number, require:true},
     rischio: {type: String, require:true},
-    stato: {type: String, require:true},
     descrizione: {type: String, require:true},
+    verbale: {type: String, require: false}
 });
 
 module.exports = mongoose.model('Operation', schema);

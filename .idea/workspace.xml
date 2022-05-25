@@ -4,16 +4,15 @@
     <list default="true" id="2580a360-60e2-4c79-a6ff-f01c1544a8dc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/1dc65b1754967c777e1352e18a16c6780ed61284/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/1dc65b1754967c777e1352e18a16c6780ed61284/index.pack.old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/calendario-operazioni/calendario-operazioni.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/calendario-operazioni/calendario-operazioni.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/calendario-operazioni/calendario-operazioni.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/calendario-operazioni/calendario-operazioni.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modals/modal-note-prescription.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modals/modal-note-prescription.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/prescription-service/prescription.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/prescription-service/prescription.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/prescriptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/prescriptions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/operation-service/operation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/operation-service/operation.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/operation.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/operation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/operations.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/operations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/pazients.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/pazients.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +46,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1653473198199</updated>
-      <workItem from="1653473199482" duration="5169000" />
+      <workItem from="1653473199482" duration="13441000" />
     </task>
     <servers />
   </component>
