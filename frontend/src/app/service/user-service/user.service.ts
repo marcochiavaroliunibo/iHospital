@@ -41,4 +41,11 @@ export class UserService {
     return this._http.get('http://127.0.0.1:3000/users/find-id/'+id);
   }
 
+  updatePassword(id: string | null, body: any): Observable<any> {
+    return this._http.put('http://127.0.0.1:3000/users/update-pwd/' + id, body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-type', 'application/json')
+    });
+  }
+
 }

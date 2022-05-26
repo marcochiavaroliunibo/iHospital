@@ -44,15 +44,23 @@ export class AppComponent implements OnInit {
         res => {
           if (res.success) {
             this.data = res.data;
-            localStorage.setItem("role", this.data.ruolo);
           }
-        }, error => this._router.navigate(['/login'])
+        }, error => {
+            if (this._router.url !== "/registrati") this._router.navigate(['/login'])
+          }
       )
   }
 
   // non apre il modale ma fa diretto logout
   open(name: string) {
     this._modalService.open((this.MODALS[name]));
+  }
+
+  checkUser() {
+    if (!!localStorage.getItem("role"))
+      return localStorage.getItem("role");
+    else
+      return false;
   }
 
 }

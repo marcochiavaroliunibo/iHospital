@@ -67,7 +67,7 @@ router.get('/find-email/:email',  (req, res) => {
 
 router.get('/find-id/:id',  (req, res) => {
         const id = req.params.id;
-        User.findOne({_id:id}).exec()
+        User.findById(id).exec()
             .then((result) => {
                 res.status(200).json({success: true, data: result});
             }).catch((err) => {
@@ -75,6 +75,21 @@ router.get('/find-id/:id',  (req, res) => {
         });
     }
 );
+
+router.put('/update-pwd/:id', (req, res) => {
+    User.findOneAndUpdate({_id: req.params.id}, {
+            $set : {
+                password: User.hashPassword(req.body.pwd)
+            }
+        },
+        {
+            new: true
+        },
+        function (err, updatePatient) {
+            if (err) return res.status(500).json({success: false, messagge: "errore update"});
+            else return res.status(200).json({success: true, message: "Aggiornamento dati completato"})
+        })
+});
 
 module.exports = router;
 

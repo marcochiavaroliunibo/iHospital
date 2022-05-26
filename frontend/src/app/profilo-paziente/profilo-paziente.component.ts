@@ -22,7 +22,7 @@ let _id : string | null;
 export class ProfiloPazienteComponent {
 
   patient: any; operations: any; medic_assignments: any; drugs: any; prescriptions: any;
-  active = 1; id : any;
+  active = 1; id : any; role : any;
 
   profileForm: FormGroup = new FormGroup({
     nome: new FormControl(null, Validators.required),
@@ -53,6 +53,7 @@ export class ProfiloPazienteComponent {
               private _operation:OperationService, private _medicAssignment:MedicAssignmentService, private _drug:DrugService,
               private _prescription:PrescriptionService, private _router:Router, private _modalService:NgbModal) {
     _id = this.route.snapshot.paramMap.get('id');
+    this.role = localStorage.getItem('role');
     this.id = _id;
     //this.route.queryParams.subscribe(params => {if (params['active'] === '2') this.active = 2});
     this._drug.allDrugs().subscribe(res => { this.drugs = res.data; },error => {});
@@ -82,6 +83,18 @@ export class ProfiloPazienteComponent {
     this.profileForm.get('cartella_clinica')?.setValue(this.patient.cartella_clinica);
     if (this.patient.orario_dimissioni !== undefined)
       this.profileForm.get('orario_dimissioni')?.setValue(this.formatDateForm(this.patient.orario_dimissioni));
+
+    if (this.role == 'INFERMIERE') {
+      this.profileForm.get('nome')?.disable();
+      this.profileForm.get('cognome')?.disable();
+      this.profileForm.get('data_nascita')?.disable();
+      this.profileForm.get('luogo_nascita')?.disable();
+      this.profileForm.get('reparto')?.disable();
+      this.profileForm.get('orario_ricovero')?.disable();
+      this.profileForm.get('cartella_clinica')?.disable();
+      this.profileForm.get('orario_dimissioni')?.disable();
+    }
+
   }
 
   // Farmaci del paziente
@@ -164,8 +177,8 @@ export class ProfiloPazienteComponent {
     this._user.findByEmail(this.newMedicAssignmentForm.value.email_nuovo_medico)
       .subscribe(
         res => {
-          if (res.data === null || res.data.ruolo !== "MEDICO") {
-            this.message = "Nessun medico registrato con questa email"; this.color = "danger";
+          if (res.data === null || res.data.ruolo === "DIRETTORE") {
+            this.message = "Nessun medico o infermiere registrato con questa email"; this.color = "danger";
             return;
           }
           this._medicAssignment.findById(_id, res.data._id)

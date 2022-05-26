@@ -26,6 +26,9 @@ import {PatientService} from "./service/patient-service/patient.service";
 import {PrescriptionService} from "./service/prescription-service/prescription.service";
 import {VitalValueService} from "./service/vital-value-service/vital-value.service";
 import { DettagliOperazioneComponent } from './dettagli-operazione/dettagli-operazione.component';
+import { SegnalazioniComponent } from './segnalazioni/segnalazioni.component';
+import { AreaRiservataComponent } from './area-riservata/area-riservata.component';
+import {PazienteInCuraGuard} from "./role-guard/PazienteInCuraGuard";
 
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import { DettagliOperazioneComponent } from './dettagli-operazione/dettagli-oper
     ValoriVitaliComponent,
     NgbdModalNotePrescription,
     DettagliOperazioneComponent,
+    SegnalazioniComponent,
+    AreaRiservataComponent,
   ],
   imports: [
     BrowserModule,

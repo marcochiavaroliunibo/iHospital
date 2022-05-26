@@ -4,15 +4,20 @@
     <list default="true" id="2580a360-60e2-4c79-a6ff-f01c1544a8dc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/1dc65b1754967c777e1352e18a16c6780ed61284/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/1dc65b1754967c777e1352e18a16c6780ed61284/index.pack.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/dettagli-operazione/dettagli-operazione.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/dettagli-operazione/dettagli-operazione.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/operation-service/operation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/operation-service/operation.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/operation.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/operation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/operations.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/operations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/pazients.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/pazients.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/user-service/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/user-service/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +39,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src/app/role-guard" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/app/role-guard" />
+      <recent name="$PROJECT_DIR$/server/routes" />
+      <recent name="$PROJECT_DIR$/server/models" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -47,10 +61,24 @@
       <option name="presentableId" value="Default" />
       <updated>1653473198199</updated>
       <workItem from="1653473199482" duration="13441000" />
+      <workItem from="1653525550765" duration="3337000" />
+      <workItem from="1653531388429" duration="2551000" />
+      <workItem from="1653563964414" duration="7371000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

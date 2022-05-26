@@ -32,7 +32,7 @@
               <p class="text-muted text-center">Ricoverato in {{patient.reparto}}</p>
               <a href="valori-vitali/{{id}}" class="btn btn-info btn-block"><b>Registrazioni valori vitali</b></a>
               <a href="#" class="btn btn-info btn-block"><b>Area segnalazioni</b></a>
-              <a *ngIf="statePatient()" (click)="quitPatient()" class="btn btn-danger btn-block"><b>Dimetti paziente</b></a>
+              <a *ngIf="statePatient() && role==='MEDICO'" (click)="quitPatient()" class="btn btn-danger btn-block"><b>Dimetti paziente</b></a>
             </div>
             <!-- /.card-body -->
           </div>
@@ -87,7 +87,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-12">
+                      <div class="col-12" *ngIf="role !== 'INFERMIERE'">
                         <button (click)="resetUpdate()" class="btn btn-danger">Annulla modifiche</button>
                         <button type="submit" (click)="updatePatient()" class="btn btn-success float-right">Modifica anagrafica</button>
                       </div>
@@ -124,7 +124,10 @@
                         <div class="btn-group btn-group-sm">
                           <a type="button" role="button" (click)="open('modalNotePrescription', item.dataPrescription._id, item.dataPrescription.note)" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-edit"></i></a>
                         </div>
-                        <div class="btn-group btn-group-sm">
+                        <div class="btn-group btn-group-sm" *ngIf="role === 'INFERMIERE'">
+                          <a type="button" role="button"  class="btn btn-warning"><i class="fas fa-syringe"></i></a>
+                        </div>
+                        <div class="btn-group btn-group-sm" *ngIf="role === 'MEDICO'">
                           <a type="button" role="button" (click)="deletePrescription(item.drug._id)" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </div>
                       </td>
@@ -143,7 +146,7 @@
                     </tr>
                     </tfoot>
                   </table>
-                  <div class="row">
+                  <div class="row" *ngIf="role === 'MEDICO'">
                     <div class="col-md-12">
                       <div class="card card-blue collapsed-card">
                         <div class="card-header">
@@ -308,7 +311,7 @@
                 </ng-template>
               </li>
               <li [ngbNavItem]="5">
-                <a ngbNavLink>Medici di riferimento</a>
+                <a ngbNavLink>Operatori di riferimento</a>
                 <ng-template ngbNavContent>
                   <table id="lista_medici" class="table table-bordered table-striped display nowrap">
                     <thead>
@@ -317,7 +320,8 @@
                       <th>COGNOME</th>
                       <th>EMAIL</th>
                       <th>DATA DI NASCITA</th>
-                      <th>CANCELLA INCARICO</th>
+                      <th>RUOLO</th>
+                      <th *ngIf="role === 'DIRETTORE'">CANCELLA INCARICO</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -326,7 +330,8 @@
                       <td>{{item.cognome}}</td>
                       <td>{{item.email}}</td>
                       <td>{{formatDate(item.data_nascita)}}</td>
-                      <td>
+                      <td>{{item.ruolo}}</td>
+                      <td *ngIf="role === 'DIRETTORE'">
                         <div class="btn-group btn-group-sm">
                           <button type="button" data-bs-target="#dettagli" (click)="deleteAssignment(item._id)" data-bs-toggle="modal" class="btn btn-danger">CANCELLA</button>
                         </div>
@@ -339,11 +344,12 @@
                       <th>COGNOME</th>
                       <th>EMAIL</th>
                       <th>DATA DI NASCITA</th>
-                      <th>CANCELLA INCARICO</th>
+                      <th>RUOLO</th>
+                      <th *ngIf="role === 'DIRETTORE'">CANCELLA INCARICO</th>
                     </tr>
                     </tfoot>
                   </table>
-                  <form [formGroup]="newMedicAssignmentForm">
+                  <form [formGroup]="newMedicAssignmentForm" *ngIf="role === 'DIRETTORE'">
                   <div class="row">
                     <div class="col-6">
                       <input id="email_nuovo_medico" name="email_nuovo_medico" type="email" formControlName="email_nuovo_medico" class="form-control" placeholder="Email del medico da asseganre"  required="required"/>
@@ -353,6 +359,9 @@
                     </div>
                   </div>
                   </form>
+                  <ngb-alert class="alert-default-info" [dismissible]="false" *ngIf="role !== 'DIRETTORE'">
+                    Gli operatori incaricati vengono selezionati, e possono essere modificati, esclusivamente dal direttore ospedaliero.
+                  </ngb-alert>
                 </ng-template>
               </li>
 

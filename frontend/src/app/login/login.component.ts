@@ -35,7 +35,15 @@ export class LoginComponent {
         res => {
           localStorage.setItem('token', res.token);
           localStorage.setItem('id', res.user._id);
-          this._router.navigate(['/']);
+          this._user.userLogged()
+              .subscribe(
+                  res => {
+                    if (res.success) {
+                      localStorage.setItem("role", res.data.ruolo);
+                      this._router.navigate(['/']);
+                    }
+                  }, error => this._router.navigate(['/login'])
+              )
           },
         error => this.message = error.error.message
       );
