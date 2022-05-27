@@ -20,6 +20,7 @@ import {SegnalazioniComponent} from "./segnalazioni/segnalazioni.component";
 import {AreaRiservataComponent} from "./area-riservata/area-riservata.component";
 import {PazienteInCuraGuard} from "./role-guard/PazienteInCuraGuard";
 import {MedicoOrInfermiereGuard} from "./role-guard/MedicoOrInfermiereGuard";
+import {SomministrazioneFarmacoComponent} from "./somministrazione-farmaco/somministrazione-farmaco.component";
 
 // canActive mi indica quale tipo di profilo può accedere ad ogni pagina,
 // svolge quindi il ruolo di GUARDIA per l'accesso alle varie pagine.
@@ -39,7 +40,8 @@ const routes: Routes = [
   { path: 'valori-vitali/:id', component: ValoriVitaliComponent, canActivate: [PazienteInCuraGuard]},
   { path: 'dettagli-operazione/:id', component: DettagliOperazioneComponent, canActivate: [PazienteInCuraGuard]},
   { path: 'segnalazioni/:id', component: SegnalazioniComponent, canActivate: [PazienteInCuraGuard]},
-  { path: 'area-riservata', component: AreaRiservataComponent}
+  { path: 'area-riservata', component: AreaRiservataComponent},
+  { path: 'somministrazione-farmaco/:id', component: SomministrazioneFarmacoComponent, canActivate: [PazienteInCuraGuard]}
 ];
 
 @NgModule({

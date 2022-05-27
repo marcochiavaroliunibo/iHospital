@@ -36,7 +36,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let item of patients">
+                <tr *ngFor="let item of patients | paginate: {itemsPerPage: 10, currentPage: p}">
                   <td>{{item.nome}}</td>
                   <td>{{item.cognome}}</td>
                   <td>{{formatDate(item.data_nascita)}}</td>
@@ -51,18 +51,7 @@
                   </td>
                 </tr>
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>NOME</th>
-                  <th>COGNOME</th>
-                  <th>DATA DI NASCITA</th>
-                  <th>LUOGO DI NASCITA</th>
-                  <th>REPARTO</th>
-                  <th>MOTIVO DEL RICOVERO</th>
-                  <th>DATA ARRIVO</th>
-                  <th></th>
-                </tr>
-                </tfoot>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
               </table>
             </div>
           </div>

@@ -9,8 +9,8 @@ export class UserService {
 
   constructor(private _http:HttpClient) { }
 
-  login(data: any): Observable<any> {
-    return this._http.post('http://127.0.0.1:3000/users/login', data, {
+  login(body: any): Observable<any> {
+    return this._http.post('http://127.0.0.1:3000/users/login', body, {
       withCredentials: true,
       headers: new HttpHeaders().append('Content-type', 'application/json')
     });

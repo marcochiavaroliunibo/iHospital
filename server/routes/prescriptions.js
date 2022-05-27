@@ -1,15 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var Prescription = require('../models/prescription');
-const Patient = require("../models/patient");
-const {now} = require("mongoose");
 
 router.post('/new', async function (req, res) {
     var prescription = new Prescription({
         id_medicina: req.body.farmaco,
         id_paziente: req.body.id_paziente,
         data_inizio: req.body.data_inizio,
-        durata: req.body.durata,
+        data_fine: req.body.data_fine,
         dosi_giornaliere: req.body.dosi_giornaliere,
         note: req.body.note,
     });
@@ -58,6 +56,16 @@ router.put('/update/:id/:note', (req, res) => {
             if (err) return res.status(500).json({success: false, messagge: "errore update"});
             else return res.status(200).json({success: true, message: "Aggiornamento dati completato"})
         })
+});
+
+router.get('/find-by-id/:id',  (req, res) => {
+    const id = req.params.id;
+    Prescription.findById(id).exec()
+        .then((result) => {
+            res.status(200).json({success: true, data: result});
+        }).catch((err) => {
+        return res.status(404).json({success: false, message: "E' stato riscontrato un errore di servizio"});
+    });
 });
 
 module.exports = router;

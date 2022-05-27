@@ -1,0 +1,88 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Somministrazione farmaco</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="">Home</a></li>
+                        <li class="breadcrumb-item"><a href="profilo-paziente/{{patient._id}}">{{patient.nome}} {{patient.cognome}}</a></li>
+                        <li class="breadcrumb-item active">Somministrazione farmaco</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <ngb-alert class="alert-default-{{color}}" [dismissible]="false" *ngIf="message !== undefined">
+                {{message}}
+            </ngb-alert>
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <h3 class="profile-username text-center">{{patient.nome}} {{patient.cognome}}</h3>
+                            <p class="text-muted text-center"><b>{{drug.nominativo}} - {{drug.tipologia}}</b></p>
+                            <p class="text-muted text-center"><b>Data inizio: </b><span class="float-right badge bg-success">{{formatDate(prescription.data_inizio)}}</span></p>
+                            <p class="text-muted text-center"><b>Data fine: </b><span class="float-right badge bg-danger">{{formatDate(prescription.data_fine)}}</span></p>
+                            <p class="text-muted text-center"><b>Stato farmaco: </b><span class="float-right badge bg-primary">{{stato}}</span></p>
+                            <p class="text-muted text-center"><b>Dosi giornaliere: </b><span class="float-right badge bg-warning">{{oggi}} su {{prescription.dosi_giornaliere}}</span></p>
+                            <hr/>
+                            <a class="btn btn-success btn-block" *ngIf="stato==='IN CORSO' && oggi!==prescription.dosi_giornaliere" (click)="newAdministration()"><b>SOMMINISTRA DOSE</b></a>
+                            <ngb-alert *ngIf="stato!='IN CORSO' || oggi===prescription.dosi_giornaliere" class="alert-default-info" [dismissible]="false">
+                                Oggi non ci sono dosi da somministare
+                            </ngb-alert>
+                            <hr/>
+                            <a href="profilo-paziente/{{patient._id}}" class="btn btn-info btn-block"><b>Visualizza profilo</b></a>
+                            <a href="valori-vitali/{{patient._id}}" class="btn btn-info btn-block"><b>Registrazioni valori vitali</b></a>
+                            <a href="#" class="btn btn-info btn-block"><b>Area segnalazioni</b></a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="card card-body">
+                        <table id="table" class="table table-bordered table-striped display nowrap">
+                                <thead>
+                                <tr>
+                                    <th>DATA SOMMINISTRAZIONE</th>
+                                    <th>ORA</th>
+                                    <th>INFERMIERE</th>
+                                    <th>EMAIL INFERMIERE</th>
+                                    <th>NOTE</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let item of administrations | paginate: {itemsPerPage: 10, currentPage: p}">
+                                    <td>{{formatDate(item.data.data_ora)}}</td>
+                                    <td>{{formatTime(item.data.data_ora)}}</td>
+                                    <td>{{item.inf.nome}} {{item.inf.cognome}}</td>
+                                    <td>{{item.inf.email}}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <a type="button" role="button" (click)="open('modalNoteAdministration', item.data._id, item.data.note)" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-pen"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            </table>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

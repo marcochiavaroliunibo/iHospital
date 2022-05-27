@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
-var passport = require('passport');
 var bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const checkAuth = require('../middleware/check-auth');
-const Patient = require("../models/patient");
 
 router.post('/login', function (req, res, next) {
     User.find({email: req.body.email}).exec()

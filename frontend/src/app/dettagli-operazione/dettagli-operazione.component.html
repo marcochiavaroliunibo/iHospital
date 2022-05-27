@@ -85,7 +85,7 @@
                                                 <textarea id="verbale" name="verbale" formControlName="verbale" class="form-control"></textarea>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" *ngIf="role === 'MEDICO'">
                                             <div class="col-12">
                                                 <button (click)="resetUpdate()" class="btn btn-danger">Annulla modifiche</button>
                                                 <button type="submit" (click)="updateOperation()" class="btn btn-success float-right">Modifica operazione</button>

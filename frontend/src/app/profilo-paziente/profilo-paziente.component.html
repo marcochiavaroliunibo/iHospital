@@ -8,8 +8,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="pazienti_in_cura.html">Pazienti in cura</a></li>
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/pazienti-in-cura">Pazienti in cura</a></li>
             <li class="breadcrumb-item active">Profilo paziente</li>
           </ol>
         </div>
@@ -106,26 +106,26 @@
                       <th>CODICE</th>
                       <th>SOMMINISTRAZIONE</th>
                       <th>DATA INIZIO</th>
-                      <th>DURATA</th>
+                      <th>DATA FINE</th>
                       <th>DOSI GIORNALIERE</th>
                       <th>AZIONI</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let item of prescriptions">
+                    <tr *ngFor="let item of prescriptions | paginate: {itemsPerPage: 5, currentPage: p1}">
                       <td>{{item.drug.nominativo}}</td>
                       <td>{{item.drug.tipologia}}</td>
                       <td>{{item.drug.codice}}</td>
                       <td>{{item.drug.somministrazione}}</td>
                       <td>{{formatDate(item.dataPrescription.data_inizio)}}</td>
-                      <td>{{item.dataPrescription.durata}} giorni</td>
+                      <td>{{formatDate(item.dataPrescription.data_fine)}}</td>
                       <td>{{item.dataPrescription.dosi_giornaliere}} dosi</td>
                       <td>
                         <div class="btn-group btn-group-sm">
                           <a type="button" role="button" (click)="open('modalNotePrescription', item.dataPrescription._id, item.dataPrescription.note)" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-edit"></i></a>
                         </div>
                         <div class="btn-group btn-group-sm" *ngIf="role === 'INFERMIERE'">
-                          <a type="button" role="button"  class="btn btn-warning"><i class="fas fa-syringe"></i></a>
+                          <a type="button" href="somministrazione-farmaco/{{item.dataPrescription._id}}" class="btn btn-warning"><i class="fas fa-syringe"></i></a>
                         </div>
                         <div class="btn-group btn-group-sm" *ngIf="role === 'MEDICO'">
                           <a type="button" role="button" (click)="deletePrescription(item.drug._id)" class="btn btn-danger"><i class="fas fa-trash"></i></a>
@@ -133,18 +133,7 @@
                       </td>
                     </tr>
                     </tbody>
-                    <tfoot>
-                    <tr>
-                      <th>NOMINATIVO</th>
-                      <th>TIPOLOGIA</th>
-                      <th>CODICE</th>
-                      <th>SOMMINISTRAZIONE</th>
-                      <th>DATA INIZIO</th>
-                      <th>DURATA</th>
-                      <th>DOSI GIORNALIERE</th>
-                      <th>AZIONI</th>
-                    </tr>
-                    </tfoot>
+                    <pagination-controls (pageChange)="p1 = $event"></pagination-controls>
                   </table>
                   <div class="row" *ngIf="role === 'MEDICO'">
                     <div class="col-md-12">
@@ -177,8 +166,8 @@
                             </div>
                             <div class="row">
                               <div class="form-group col-6">
-                                <label for="durata">Durata (giorni)</label>
-                                <input id="durata" name="durata" formControlName="durata" class="form-control" type="number" min="1"/>
+                                <label for="data_fine">Data fine somministrazione</label>
+                                <input id="data_fine" name="data_fine" formControlName="data_fine" class="form-control" type="date" min="1"/>
                               </div>
                               <div class="form-group col-6">
                                 <label for="dosi_giornaliere">Dosi giornaliere</label>
@@ -219,7 +208,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let item of operations">
+                    <tr *ngFor="let item of operations | paginate: {itemsPerPage: 5, currentPage: p2}">
                       <td>{{formatDateTime(item.data_ora)}}</td>
                       <td>{{item.durata}} ore</td>
                       <td>{{item.titolo}}</td>
@@ -246,18 +235,9 @@
                       </td>
                     </tr>
                     </tbody>
-                    <tfoot>
-                    <tr>
-                      <th>DATA E ORA</th>
-                      <th>DURATA</th>
-                      <th>TITOLO</th>
-                      <th>STATO</th>
-                      <th>LIVELLO ATTENZIONE</th>
-                      <th>DETTAGLI</th>
-                    </tr>
-                    </tfoot>
+                    <pagination-controls (pageChange)="p2 = $event"></pagination-controls>
                   </table>
-                  <div class="row">
+                  <div class="row" *ngIf="role === 'MEDICO'">
                     <div class="col-12">
                       <button href="aggiungi-operazione" class="btn btn-success float-right">Registra nuova operazione</button>
                     </div>
@@ -325,7 +305,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let item of medic_assignments">
+                    <tr *ngFor="let item of medic_assignments | paginate: {itemsPerPage: 5, currentPage: p3}">
                       <td>{{item.nome}}</td>
                       <td>{{item.cognome}}</td>
                       <td>{{item.email}}</td>
@@ -338,16 +318,7 @@
                       </td>
                     </tr>
                     </tbody>
-                    <tfoot>
-                    <tr>
-                      <th>NOME</th>
-                      <th>COGNOME</th>
-                      <th>EMAIL</th>
-                      <th>DATA DI NASCITA</th>
-                      <th>RUOLO</th>
-                      <th *ngIf="role === 'DIRETTORE'">CANCELLA INCARICO</th>
-                    </tr>
-                    </tfoot>
+                    <pagination-controls (pageChange)="p3 = $event"></pagination-controls>
                   </table>
                   <form [formGroup]="newMedicAssignmentForm" *ngIf="role === 'DIRETTORE'">
                   <div class="row">

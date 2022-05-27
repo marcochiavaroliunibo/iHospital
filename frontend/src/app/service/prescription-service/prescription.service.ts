@@ -31,4 +31,8 @@ export class PrescriptionService {
     });
   }
 
+  findById(id: string | null): Observable<any> {
+    return this._http.get('http://127.0.0.1:3000/prescriptions/find-by-id/'+id);
+  }
+
 }

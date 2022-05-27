@@ -12,6 +12,7 @@ import {DatePipe} from "@angular/common";
 export class PazientiInCuraComponent {
 
   patients: any;
+  p: number = 1;
 
   constructor(private _patient:PatientService, private _medicAssignment:MedicAssignmentService, private _router:Router) {
     var patients: any[] =[];

@@ -29,6 +29,8 @@ import { DettagliOperazioneComponent } from './dettagli-operazione/dettagli-oper
 import { SegnalazioniComponent } from './segnalazioni/segnalazioni.component';
 import { AreaRiservataComponent } from './area-riservata/area-riservata.component';
 import {PazienteInCuraGuard} from "./role-guard/PazienteInCuraGuard";
+import {NgbdModalNoteAdministration, SomministrazioneFarmacoComponent } from './somministrazione-farmaco/somministrazione-farmaco.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -48,9 +50,11 @@ import {PazienteInCuraGuard} from "./role-guard/PazienteInCuraGuard";
     FAQComponent,
     ValoriVitaliComponent,
     NgbdModalNotePrescription,
+    NgbdModalNoteAdministration,
     DettagliOperazioneComponent,
     SegnalazioniComponent,
     AreaRiservataComponent,
+    SomministrazioneFarmacoComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +63,7 @@ import {PazienteInCuraGuard} from "./role-guard/PazienteInCuraGuard";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     UserService,

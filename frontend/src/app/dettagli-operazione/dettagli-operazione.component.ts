@@ -27,6 +27,7 @@ export class DettagliOperazioneComponent {
       descrizione: new FormControl(null),
       verbale: new FormControl(null),
   });
+  role = localStorage.getItem('role');
 
   constructor(private route:ActivatedRoute, private _patient:PatientService, private _operation:OperationService) {
     this.idOperation = this.route.snapshot.paramMap.get('id');
@@ -82,6 +83,14 @@ export class DettagliOperazioneComponent {
           }else {
               this.stato = "COMPLETATA";
           }
+      }
+      if (this.role !== "MEDICO") {
+          this.dataForm.get('titolo')?.disable();
+          this.dataForm.get('data_ora')?.disable();
+          this.dataForm.get('durata')?.disable();
+          this.dataForm.get('rischio')?.disable();
+          this.dataForm.get('descrizione')?.disable();
+          this.dataForm.get('verbale')?.disable();
       }
   }
 

@@ -23,6 +23,7 @@ export class ProfiloPazienteComponent {
 
   patient: any; operations: any; medic_assignments: any; drugs: any; prescriptions: any;
   active = 1; id : any; role : any;
+  p1: number = 1; p2: number = 1; p3: number = 1;
 
   profileForm: FormGroup = new FormGroup({
     nome: new FormControl(null, Validators.required),
@@ -40,7 +41,7 @@ export class ProfiloPazienteComponent {
   newPrescriptionForm: FormGroup = new FormGroup({
     farmaco: new FormControl(null, Validators.required),
     data_inizio: new FormControl(null, Validators.required),
-    durata: new FormControl(null, Validators.required),
+    data_fine: new FormControl(null, Validators.required),
     dosi_giornaliere: new FormControl(null, Validators.required),
     note: new FormControl(null),
     id_paziente: new FormControl(null),
@@ -266,7 +267,6 @@ export class ProfiloPazienteComponent {
   // Modals
   private MODALS:  {[name: string]: Type<any>} = {modalNotePrescription: NgbdModalNotePrescription};
   open(modal: string, id: string | null, nota: string | null) {
-    //if (modal === 'modalNotePrescription')
     idNote = id;
     note = nota;
     this._modalService.open((this.MODALS[modal]));
