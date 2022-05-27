@@ -22,7 +22,7 @@ router.post('/new/:id/:inf', async function (req, res) {
 router.get('/find-by-interval/:id/:start',  (req, res) => {
     const start = req.params.start;
     const id = req.params.id;
-    Administration.find({id_prescrizione: id, data_ora: {$gte: start}}).exec()
+    Administration.find({id_prescrizione: id, data_ora: {$gte: start}}).sort({data_ora: -1}).exec()
             .then((result) => {
                 res.status(200).json({success: true, data: result});
             }).catch((err) => {

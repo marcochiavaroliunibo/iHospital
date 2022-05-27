@@ -27,7 +27,7 @@ export class ValoriVitaliComponent {
     livello_dolore: new FormControl(null, Validators.required),
   });
 
-  constructor(private route:ActivatedRoute,  private _vitalValue: VitalValueService, private _patient:PatientService) {
+  constructor(private route:ActivatedRoute,  private _vitalValue: VitalValueService, private _patient:PatientService, private _user:UserService) {
     this.idPatient = this.route.snapshot.paramMap.get('id');
     this._patient.findById(this.idPatient)
       .subscribe(
@@ -37,13 +37,8 @@ export class ValoriVitaliComponent {
         err => {}
       );
     this.myId = localStorage.getItem("id");
-    this._vitalValue.findByIdPatient(this.idPatient)
-      .subscribe(
-        res => {
-          this.vitalValues = res.data
-        },
-        err => {}
-      );
+    this.setVitalValue();
+
   }
 
   message: any = undefined;
@@ -77,5 +72,29 @@ export class ValoriVitaliComponent {
 
   switchPage() {
     this.active = 2;
+  }
+
+  private setVitalValue() {
+    var vitalValues: {
+      data: any;
+      oper: any;
+    }[] = [];
+    this._vitalValue.findByIdPatient(this.idPatient)
+        .subscribe(
+            res => {
+              for (let i: number = 0; i < res.data.length; i++) {
+                // prendo l'infermiere che lo ha somministrato
+                this._user.findById(res.data[i].id_operatore).subscribe(
+                    res2 => {
+                      vitalValues.push({data: res.data[i], oper: res2.data});
+                    },
+                    error => {
+                    }
+                )
+              }
+              this.vitalValues = vitalValues;
+            },
+            err => {}
+        );
   }
 }

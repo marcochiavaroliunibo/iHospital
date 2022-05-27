@@ -45,19 +45,19 @@
                   </ngb-alert>
                   <div class="timeline" *ngFor="let item of vitalValues">
                     <div class="time-label">
-                      <span class="bg-blue">{{formatDate(item.orario_visita)}}</span>
+                      <span class="bg-blue">{{formatDate(item.data.orario_visita)}}</span>
                     </div>
                     <div>
                       <i class="fas fa-envelope bg-blue"></i>
                       <div class="timeline-item">
-                        <span class="time"><i class="fas fa-clock"></i> {{formatTime(item.orario_visita)}}</span>
-                        <h3 class="timeline-header">Dati inseriti da {{item.id_operatore}}</h3>
+                        <span class="time"><i class="fas fa-clock"></i> {{formatTime(item.data.orario_visita)}}</span>
+                        <h3 class="timeline-header">Dati inseriti da {{item.oper.nome}} {{item.oper.cognome}}</h3>
                         <div class="timeline-body">
                           <div class="row">
                             <div class="col-lg-2 col-2">
                               <div class="small-box bg-info">
                                 <div class="inner">
-                                  <h4>{{item.hr}}</h4>
+                                  <h4>{{item.data.hr}}</h4>
                                   <h4>Frequenza cardiaca</h4>
                                 </div>
                                 <div class="icon">
@@ -68,7 +68,7 @@
                             <div class="col-lg-2 col-2">
                               <div class="small-box bg-success">
                                 <div class="inner">
-                                  <h4>{{item.press_min}}</h4>
+                                  <h4>{{item.data.press_min}}</h4>
                                   <h4>Pressione minima</h4>
                                 </div>
                                 <div class="icon">
@@ -80,7 +80,7 @@
 
                               <div class="small-box bg-warning">
                                 <div class="inner">
-                                  <h4>{{item.press_max}}</h4>
+                                  <h4>{{item.data.press_max}}</h4>
                                   <h4>Pressione massima</h4>
                                 </div>
                                 <div class="icon">
@@ -91,7 +91,7 @@
                             <div class="col-lg-2 col-2">
                               <div class="small-box bg-danger">
                                 <div class="inner">
-                                  <h4>{{item.saturazione}}</h4>
+                                  <h4>{{item.data.saturazione}}</h4>
                                   <h4>Livello saturazione</h4>
                                 </div>
                                 <div class="icon">
@@ -103,7 +103,7 @@
 
                               <div class="small-box bg-warning">
                                 <div class="inner">
-                                  <h4>{{item.freq_respriratoria}}</h4>
+                                  <h4>{{item.data.freq_respriratoria}}</h4>
                                   <h4>Frequenza respiratoria</h4>
                                 </div>
                                 <div class="icon">
@@ -114,7 +114,7 @@
                             <div class="col-lg-2 col-2">
                               <div class="small-box bg-danger">
                                 <div class="inner">
-                                  <h4>{{item.livello_dolore}}</h4>
+                                  <h4>{{item.data.livello_dolore}}</h4>
                                   <h4>Livello dolore soggettivo</h4>
                                 </div>
                                 <div class="icon">
@@ -124,8 +124,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="timeline-footer">
-                          <a (click)="deleteValue(item._id)" class="btn btn-danger btn-sm">Elimina</a>
+                        <div class="timeline-footer" *ngIf="myId === item.oper._id">
+                          <a (click)="deleteValue(item.data._id)" class="btn btn-danger btn-sm">Elimina</a>
                         </div>
                       </div>
                     </div>
