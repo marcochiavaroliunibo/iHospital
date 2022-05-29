@@ -23,6 +23,8 @@ import {MedicoOrInfermiereGuard} from "./role-guard/MedicoOrInfermiereGuard";
 import {SomministrazioneFarmacoComponent} from "./somministrazione-farmaco/somministrazione-farmaco.component";
 import {PazientiDimessiComponent} from "./pazienti-dimessi/pazienti-dimessi.component";
 import {ListaDimessiComponent} from "./lista-dimessi/lista-dimessi.component";
+import {ListaMediciComponent} from "./lista-medici/lista-medici.component";
+import {ListaInfermieriComponent} from "./lista-infermieri/lista-infermieri.component";
 
 // canActive mi indica quale tipo di profilo può accedere ad ogni pagina,
 // svolge quindi il ruolo di GUARDIA per l'accesso alle varie pagine.
@@ -32,6 +34,8 @@ const routes: Routes = [
   { path: 'aggiungi-operazione', component: AggiungiOperazioneComponent, canActivate: [MedicoGuard] },
   { path: 'calendario-operazioni', component: CalendarioOperazioniComponent, canActivate: [MedicoGuard] },
   { path: 'farmaci-registrati', component: FarmaciRegistratiComponent, canActivate: [MedicoGuard] },
+  { path: 'lista-medici', component: ListaMediciComponent, canActivate: [DirettoreGuard]},
+  { path: 'lista-infermieri', component: ListaInfermieriComponent, canActivate: [DirettoreGuard]},
   { path: 'pazienti-in-cura', component: PazientiInCuraComponent, canActivate: [MedicoOrInfermiereGuard] },
   { path: 'pazienti-dimessi', component: PazientiDimessiComponent, canActivate: [MedicoOrInfermiereGuard] },
   { path: 'profilo-paziente/:id', component: ProfiloPazienteComponent, canActivate: [PazienteInCuraGuard] },

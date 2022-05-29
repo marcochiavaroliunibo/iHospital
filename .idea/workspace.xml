@@ -7,31 +7,11 @@
       <change beforePath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/calendario-operazioni/calendario-operazioni.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/calendario-operazioni/calendario-operazioni.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/calendario-operazioni/calendario-operazioni.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/calendario-operazioni/calendario-operazioni.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/farmaci-registrati/farmaci-registrati.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/farmaci-registrati/farmaci-registrati.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/farmaci-registrati/farmaci-registrati.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/farmaci-registrati/farmaci-registrati.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/home/home.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/lista-pazienti/lista-pazienti.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/lista-pazienti/lista-pazienti.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/lista-pazienti/lista-pazienti.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/lista-pazienti/lista-pazienti.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/pazienti-in-cura/pazienti-in-cura.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/pazienti-in-cura/pazienti-in-cura.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/registrazione/registrazione.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/registrazione/registrazione.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/role-guard/PazienteInCuraGuard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/role-guard/PazienteInCuraGuard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/administration-service/administration.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/administration-service/administration.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/drug-service/drug.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/drug-service/drug.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/patient-service/patient.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/patient-service/patient.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/user-service/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/user-service/user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/somministrazione-farmaco/somministrazione-farmaco.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/somministrazione-farmaco/somministrazione-farmaco.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/aministrations.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/aministrations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/drugs.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/drugs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/somministrazione-farmaco/somministrazione-farmaco.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/somministrazione-farmaco/somministrazione-farmaco.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/pazients.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/pazients.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +79,7 @@
       <workItem from="1653742802857" duration="496000" />
       <workItem from="1653748260197" duration="1218000" />
       <workItem from="1653779804527" duration="8216000" />
-      <workItem from="1653828687660" duration="4351000" />
+      <workItem from="1653828687660" duration="7628000" />
     </task>
     <servers />
   </component>

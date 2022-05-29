@@ -32,6 +32,8 @@ import {NgbdModalNoteAdministration, SomministrazioneFarmacoComponent } from './
 import {NgxPaginationModule} from "ngx-pagination";
 import { PazientiDimessiComponent } from './pazienti-dimessi/pazienti-dimessi.component';
 import { ListaDimessiComponent } from './lista-dimessi/lista-dimessi.component';
+import { ListaMediciComponent } from './lista-medici/lista-medici.component';
+import { ListaInfermieriComponent } from './lista-infermieri/lista-infermieri.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { ListaDimessiComponent } from './lista-dimessi/lista-dimessi.component';
     AreaRiservataComponent,
     SomministrazioneFarmacoComponent,
     ListaDimessiComponent,
+    ListaMediciComponent,
+    ListaInfermieriComponent,
   ],
   imports: [
     BrowserModule,

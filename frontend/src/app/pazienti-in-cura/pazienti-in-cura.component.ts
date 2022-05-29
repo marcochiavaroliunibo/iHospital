@@ -24,8 +24,9 @@ export class PazientiInCuraComponent {
           // prendo il paziente
           this._patient.findById(res.data[i].id_paziente).subscribe(
               res => {
+                console.log(res.data.orario_dimissioni)
                 // @ts-ignore
-                if(res.data.orario_dimissioni === undefined || this.formatDateDB(res.data.orario_dimissioni) > this.formatDateDB(new Date()))
+                if(res.data.orario_dimissioni === undefined || res.data.orario_dimissioni === null || this.formatDateDB(res.data.orario_dimissioni) > this.formatDateDB(new Date()))
                   patients.push(res.data)
               },
             error => { }

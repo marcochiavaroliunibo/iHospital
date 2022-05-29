@@ -14,7 +14,7 @@ export class ListaPazientiComponent implements OnInit {
   p: number = 1;
 
   constructor(private _patient:PatientService, private _router:Router) {
-    this._patient.allPatients().subscribe(
+    this._patient.currentPatients().subscribe(
       res => this.patients = res.data,
       error => console.log(error)
     )

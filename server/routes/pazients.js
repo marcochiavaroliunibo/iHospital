@@ -33,7 +33,7 @@ router.get('/all', (req, res) => {
 
 // todo questo non funziona
 router.get('/current', (req, res) => {
-    Patient.find({orario_dimissioni: {$gte: now()}}).exec()
+    Patient.find({ $or: [ {orario_dimissioni: {$gte: now()} }, {orario_dimissioni: undefined} ]}).exec()
         .then((result) => {
             res.status(200).json({success: true, data: result});
         }).catch((err) => {

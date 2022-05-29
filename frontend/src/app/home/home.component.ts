@@ -68,9 +68,9 @@ export class HomeComponent implements OnInit {
 
     // todo 2/4
     private setHomeDirettore() {
-        this.blocks.push({title: "Medici iscritti", value: 10, link: "lista-medici"});
-        this.blocks.push({title: "Infermieri iscritti", value: 20, link: "lista-infermieri"});
-        this.blocks.push({title: "Pazienti in cura", value: 180, link: "lista-pazienti"});
+        this.blocks.push({title: "Medici iscritti", value: 0, link: "lista-medici"});
+        this.blocks.push({title: "Infermieri iscritti", value: 0, link: "lista-infermieri"});
+        this.blocks.push({title: "Pazienti in cura", value: 0, link: "lista-pazienti"});
         this.blocks.push({title: "???", value: 180, link: ""});
         this._user.findByRole("MEDICO")
             .subscribe(
@@ -84,7 +84,6 @@ export class HomeComponent implements OnInit {
                 err => {
                 }
             )
-        // todo non funziona
         this._patient.currentPatients()
             .subscribe(
                 res => this.blocks[2].value = res.data.length,

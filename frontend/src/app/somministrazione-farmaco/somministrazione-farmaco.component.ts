@@ -76,7 +76,6 @@ export class SomministrazioneFarmacoComponent implements OnInit {
     }
 
     newAdministration() {
-
         let start = this.formatDateDB(new Date())
         this._administration.findByInterval(this.prescription._id, start)
             .subscribe(
@@ -100,9 +99,8 @@ export class SomministrazioneFarmacoComponent implements OnInit {
                 err => {
                 }
             )
-
-        /**/
     }
+
     private setStatePrescription() {
         let start = this.prescription.data_inizio;
         let end = this.prescription.data_fine;
@@ -117,6 +115,7 @@ export class SomministrazioneFarmacoComponent implements OnInit {
                 return "IN CORSO";
         }
     }
+
     private setAdministrations() {
         var administrations: {
             data: any;
