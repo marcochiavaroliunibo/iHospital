@@ -5,7 +5,7 @@ import {AppComponent, NgbdModaLogout} from './app.component';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { PazientiInCuraComponent } from './pazienti-in-cura/pazienti-in-cura.component';
-import { FarmaciRegistratiComponent } from './farmaci-registrati/farmaci-registrati.component';
+import { FarmaciRegistratiComponent, NgbdModalDrug } from './farmaci-registrati/farmaci-registrati.component';
 import { AggiungiFarmacoComponent } from './aggiungi-farmaco/aggiungi-farmaco.component';
 import { AggiungiOperazioneComponent } from './aggiungi-operazione/aggiungi-operazione.component';
 import { CalendarioOperazioniComponent } from './calendario-operazioni/calendario-operazioni.component';
@@ -28,15 +28,17 @@ import {VitalValueService} from "./service/vital-value-service/vital-value.servi
 import { DettagliOperazioneComponent } from './dettagli-operazione/dettagli-operazione.component';
 import { SegnalazioniComponent } from './segnalazioni/segnalazioni.component';
 import { AreaRiservataComponent } from './area-riservata/area-riservata.component';
-import {PazienteInCuraGuard} from "./role-guard/PazienteInCuraGuard";
 import {NgbdModalNoteAdministration, SomministrazioneFarmacoComponent } from './somministrazione-farmaco/somministrazione-farmaco.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import { PazientiDimessiComponent } from './pazienti-dimessi/pazienti-dimessi.component';
+import { ListaDimessiComponent } from './lista-dimessi/lista-dimessi.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PazientiInCuraComponent,
+    PazientiDimessiComponent,
     FarmaciRegistratiComponent,
     AggiungiFarmacoComponent,
     AggiungiOperazioneComponent,
@@ -51,10 +53,12 @@ import {NgxPaginationModule} from "ngx-pagination";
     ValoriVitaliComponent,
     NgbdModalNotePrescription,
     NgbdModalNoteAdministration,
+    NgbdModalDrug,
     DettagliOperazioneComponent,
     SegnalazioniComponent,
     AreaRiservataComponent,
     SomministrazioneFarmacoComponent,
+    ListaDimessiComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [
     UserService,

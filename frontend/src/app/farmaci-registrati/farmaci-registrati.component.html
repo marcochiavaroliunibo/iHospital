@@ -33,27 +33,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let item of drugs">
+                <tr *ngFor="let item of drugs | paginate: {itemsPerPage: 10, currentPage: p}">
                   <td>{{item.nominativo}}</td>
                   <td>{{item.tipologia}}</td>
                   <td>{{item.codice}}</td>
                   <td>{{item.somministrazione}}</td>
                   <td>
                     <div class="btn-group btn-group-sm">
-                      <button type="button" data-bs-target="#libretto" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-edit"></i></button>
+                      <a role="button" type="button" (click)="open('modalDrug', item._id, item.nominativo, item.libretto)" data-bs-toggle="modal" class="btn btn-info"><i class="fas fa-edit"></i></a>
                     </div>
                   </td>
                 </tr>
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>NOMINATIVO</th>
-                  <th>TIPOLOGIA</th>
-                  <th>CODICE</th>
-                  <th>SOMMINISTRAZIONE</th>
-                  <th>LIBRETTO ILLUSTRATIVO</th>
-                </tr>
-                </tfoot>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
               </table>
             </div>
           </div>

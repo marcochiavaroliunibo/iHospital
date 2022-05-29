@@ -20,24 +20,20 @@ export class PazienteInCuraGuard implements CanActivate {
     }else{
       let id = localStorage.getItem('id');
       let patient =  par.paramMap.get('id');
-      return true;
       // todo non funziona
-      return this._assignment.findById(patient, id)
+        this._assignment.findById(patient, id)
           .subscribe(
               res => {
-                  return true;
-                if (res.data._id !== undefined) {
-                  return true;
-                } else{
-//                  this._router.navigate(["/"]);
-                  return true;
+                if (res.data !== null) {
+                }else{
+                  this._router.navigate(["/pazienti-in-cura"]);
                 }
               },
               err => {
-               // this._router.navigate(["/"]);
-                return true;
+                this._router.navigate(["/pazienti-in-cura"]);
               }
           )
+        return true;
     }
   }
 

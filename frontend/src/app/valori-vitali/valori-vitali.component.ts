@@ -18,6 +18,7 @@ export class ValoriVitaliComponent {
   myId: string | null;
   vitalValues: any;
   active = 1;
+  ricoverato: boolean = false;
   newValueForm: FormGroup = new FormGroup({
     hr: new FormControl(null, Validators.required),
     press_min: new FormControl(null, Validators.required),
@@ -33,12 +34,12 @@ export class ValoriVitaliComponent {
       .subscribe(
         res => {
           this.patient = res.data
+          this.setStatePatient()
         },
         err => {}
       );
     this.myId = localStorage.getItem("id");
     this.setVitalValue();
-
   }
 
   message: any = undefined;
@@ -54,9 +55,19 @@ export class ValoriVitaliComponent {
       );
   }
 
+  setStatePatient() {
+    // @ts-ignore
+    if (this.patient.orario_dimissioni === null || this.formatDateForm(this.patient.orario_dimissioni) > this.formatDateForm(new Date())) this.ricoverato = true;
+    else this.ricoverato = false;
+  }
+
   formatDate(data: any) {
     const datepipe: DatePipe = new DatePipe('en-US');
-    return datepipe.transform(data, 'dd MMM yyy');
+    return datepipe.transform(data, 'dd MMM yyyy');
+  }
+  formatDate2(data: any) {
+    const datepipe: DatePipe = new DatePipe('en-US');
+    return datepipe.transform(data, 'dd/MM/yyyy');
   }
   formatTime(data: any) {
     const datepipe: DatePipe = new DatePipe('en-US');

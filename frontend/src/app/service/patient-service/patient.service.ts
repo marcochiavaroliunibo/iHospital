@@ -16,8 +16,22 @@ export class PatientService {
     });
   }
 
-  allPatients() {
+  allPatients(): Observable<any> {
     return this._http.get('http://127.0.0.1:3000/patients/all', {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-type', 'application/json')
+    });
+  }
+
+  currentPatients(): Observable<any> {
+    return this._http.get('http://127.0.0.1:3000/patients/current', {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-type', 'application/json')
+    });
+  }
+
+  dismissPatients(): Observable<any> {
+    return this._http.get('http://127.0.0.1:3000/patients/dismiss', {
       observe: 'body',
       headers: new HttpHeaders().append('Content-type', 'application/json')
     });

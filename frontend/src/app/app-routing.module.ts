@@ -21,6 +21,8 @@ import {AreaRiservataComponent} from "./area-riservata/area-riservata.component"
 import {PazienteInCuraGuard} from "./role-guard/PazienteInCuraGuard";
 import {MedicoOrInfermiereGuard} from "./role-guard/MedicoOrInfermiereGuard";
 import {SomministrazioneFarmacoComponent} from "./somministrazione-farmaco/somministrazione-farmaco.component";
+import {PazientiDimessiComponent} from "./pazienti-dimessi/pazienti-dimessi.component";
+import {ListaDimessiComponent} from "./lista-dimessi/lista-dimessi.component";
 
 // canActive mi indica quale tipo di profilo può accedere ad ogni pagina,
 // svolge quindi il ruolo di GUARDIA per l'accesso alle varie pagine.
@@ -31,17 +33,19 @@ const routes: Routes = [
   { path: 'calendario-operazioni', component: CalendarioOperazioniComponent, canActivate: [MedicoGuard] },
   { path: 'farmaci-registrati', component: FarmaciRegistratiComponent, canActivate: [MedicoGuard] },
   { path: 'pazienti-in-cura', component: PazientiInCuraComponent, canActivate: [MedicoOrInfermiereGuard] },
+  { path: 'pazienti-dimessi', component: PazientiDimessiComponent, canActivate: [MedicoOrInfermiereGuard] },
   { path: 'profilo-paziente/:id', component: ProfiloPazienteComponent, canActivate: [PazienteInCuraGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'registrati', component: RegistrazioneComponent},
   { path: 'aggiungi-paziente', component: AggiungiPazienteComponent, canActivate: [DirettoreGuard]},
   { path: 'lista-pazienti', component: ListaPazientiComponent, canActivate: [DirettoreGuard]},
+  { path: 'lista-dimessi', component: ListaDimessiComponent, canActivate: [DirettoreGuard]},
   { path: 'FAQ', component: FAQComponent},
   { path: 'valori-vitali/:id', component: ValoriVitaliComponent, canActivate: [PazienteInCuraGuard]},
-  { path: 'dettagli-operazione/:id', component: DettagliOperazioneComponent, canActivate: [PazienteInCuraGuard]},
+  { path: 'dettagli-operazione/:id', component: DettagliOperazioneComponent, canActivate: []},
   { path: 'segnalazioni/:id', component: SegnalazioniComponent, canActivate: [PazienteInCuraGuard]},
   { path: 'area-riservata', component: AreaRiservataComponent},
-  { path: 'somministrazione-farmaco/:id', component: SomministrazioneFarmacoComponent, canActivate: [PazienteInCuraGuard]}
+  { path: 'somministrazione-farmaco/:id', component: SomministrazioneFarmacoComponent, canActivate: []}
 ];
 
 @NgModule({

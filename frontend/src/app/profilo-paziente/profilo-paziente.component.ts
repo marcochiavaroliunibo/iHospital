@@ -24,6 +24,7 @@ export class ProfiloPazienteComponent {
   patient: any; operations: any; medic_assignments: any; drugs: any; prescriptions: any;
   active = 1; id : any; role : any;
   p1: number = 1; p2: number = 1; p3: number = 1;
+  ricoverato: boolean = false;
 
   profileForm: FormGroup = new FormGroup({
     nome: new FormControl(null, Validators.required),
@@ -82,9 +83,10 @@ export class ProfiloPazienteComponent {
     this.profileForm.get('reparto')?.setValue(this.patient.reparto);
     this.profileForm.get('orario_ricovero')?.setValue(this.formatDateForm(this.patient.orario_ricovero));
     this.profileForm.get('cartella_clinica')?.setValue(this.patient.cartella_clinica);
-    if (this.patient.orario_dimissioni !== undefined)
+    if (this.patient.orario_dimissioni !== undefined) {
       this.profileForm.get('orario_dimissioni')?.setValue(this.formatDateForm(this.patient.orario_dimissioni));
-
+    }
+    // L'infermiere non può modificare i dati della tabella
     if (this.role == 'INFERMIERE') {
       this.profileForm.get('nome')?.disable();
       this.profileForm.get('cognome')?.disable();
@@ -95,7 +97,14 @@ export class ProfiloPazienteComponent {
       this.profileForm.get('cartella_clinica')?.disable();
       this.profileForm.get('orario_dimissioni')?.disable();
     }
+    // setto ricovero o dimissione paziente
+    this.setStatePatient();
+  }
 
+  setStatePatient() {
+    // @ts-ignore
+    if (this.profileForm.value.orario_dimissioni === null || this.formatDateForm(this.profileForm.value.orario_dimissioni) > this.formatDateForm(new Date())) this.ricoverato = true;
+    else this.ricoverato = false;
   }
 
   // Farmaci del paziente
@@ -221,7 +230,7 @@ export class ProfiloPazienteComponent {
     }
     this._patient.updatePatient(_id, JSON.stringify(this.profileForm.value))
       .subscribe(
-        data => {this.message = data.message; this.color = "success"; },
+        data => {this.message = data.message; this.color = "success"; this.setStatePatient() },
         error => {this.message = error.error.message; this.color = "danger"}
       );
   }
@@ -240,14 +249,6 @@ export class ProfiloPazienteComponent {
         data => {this.message = data.message; this.color = "success"},
         error => {this.message = error.error.message; this.color = "danger"}
       );
-  }
-
-  // Stato del paziente (ricoverato o dimesso)
-  statePatient() {
-    const date = new Date();
-    // todo non funziona confronto con data corrente
-    return true;
-    return this.patient.orario_dimissioni !== null && this.patient.orario_dimissioni > date;
   }
 
   quitPatient() {

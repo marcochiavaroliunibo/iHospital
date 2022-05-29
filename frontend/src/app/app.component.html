@@ -8,8 +8,19 @@
           <li class="nav-item" *ngIf="!checkUser()"><a routerLink="registrati" class="nav-link">Registrati</a></li>
           <li class="nav-item" *ngIf="!checkUser()"><a routerLink="login" class="nav-link">Login</a></li>
           <li class="nav-item" *ngIf="checkUser() === 'DIRETTORE'"><a routerLink="aggiungi-paziente" class="nav-link">Nuovo paziente</a></li>
-          <li class="nav-item" *ngIf="checkUser() === 'DIRETTORE'"><a routerLink="lista-pazienti" class="nav-link">Lista pazienti</a></li>
-          <li class="nav-item" *ngIf="checkUser() === 'MEDICO' || checkUser() === 'INFERMIERE'"><a routerLink="pazienti-in-cura" class="nav-link">Pazienti in cura</a></li>
+          <li class="nav-item" ngbDropdown *ngIf="checkUser() === 'DIRETTORE'">
+            <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown" role="button">Lista pazienti</a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown" class="dropdown-menu">
+              <a ngbDropdownItem routerLink="lista-pazienti" >Profili ricoverati</a>
+              <a ngbDropdownItem routerLink="lista-dimessi">Profili dimessi</a>
+            </div>
+          </li>          <li class="nav-item" ngbDropdown *ngIf="checkUser() === 'MEDICO' || checkUser() === 'INFERMIERE'">
+            <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown0" role="button">Pazienti assegnati</a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown0" class="dropdown-menu">
+              <a ngbDropdownItem routerLink="pazienti-in-cura" >Profili ricoverati</a>
+              <a ngbDropdownItem routerLink="pazienti-dimessi">Profili dimessi</a>
+            </div>
+          </li>
           <li class="nav-item" ngbDropdown *ngIf="checkUser() === 'MEDICO' || checkUser() === 'DIRETTORE'">
             <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button">Farmacia</a>
             <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">

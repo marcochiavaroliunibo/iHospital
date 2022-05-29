@@ -27,4 +27,11 @@ export class DrugService {
     });
   }
 
+  updateDesc(id: string | null, desc: any): Observable<any> {
+    return this._http.put('http://127.0.0.1:3000/drugs/update-desc/' + id + '/' +  desc, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-type', 'application/json')
+    });
+  }
+
 }

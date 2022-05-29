@@ -24,6 +24,10 @@ export class AdministrationService {
     return this._http.get('http://127.0.0.1:3000/administrations/find-by-prescription/'+id);
   }
 
+  findByNurse(id: string | null): Observable<any> {
+    return this._http.get('http://127.0.0.1:3000/administrations/find-by-nurse/'+id);
+  }
+
   updateNote(id: string | null, note: string | null): Observable<any> {
     return this._http.put('http://127.0.0.1:3000/administrations/update/' + id + '/' + note, {
       observe: 'body',

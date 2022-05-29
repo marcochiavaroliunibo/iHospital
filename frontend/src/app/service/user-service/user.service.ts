@@ -37,6 +37,10 @@ export class UserService {
     return this._http.get('http://127.0.0.1:3000/users/find-email/'+email);
   }
 
+  findByRole(role: string | null): Observable<any> {
+    return this._http.get('http://127.0.0.1:3000/users/find-role/'+role);
+  }
+
   findById(id: string | null): Observable<any> {
     return this._http.get('http://127.0.0.1:3000/users/find-id/'+id);
   }

@@ -28,12 +28,21 @@ router.get('/find-by-interval/:id/:start',  (req, res) => {
             }).catch((err) => {
             return res.status(404).json({success: false, message: "E' stato riscontrato un errore di servizio"});
         });
-    }
-);
+});
 
 router.get('/find-by-prescription/:id',  (req, res) => {
     const id = req.params.id;
     Administration.find({id_prescrizione: id}).exec()
+        .then((result) => {
+            res.status(200).json({success: true, data: result});
+        }).catch((err) => {
+        return res.status(404).json({success: false, message: "E' stato riscontrato un errore di servizio"});
+    });
+});
+
+router.get('/find-by-nurse/:id',  (req, res) => {
+    const id = req.params.id;
+    Administration.find({id_infermiere: id}).exec()
         .then((result) => {
             res.status(200).json({success: true, data: result});
         }).catch((err) => {
@@ -55,5 +64,7 @@ router.put('/update/:id/:note', (req, res) => {
             else return res.status(200).json({success: true, message: "Aggiornamento dati completato"})
         })
 });
+
+
 
 module.exports = router;

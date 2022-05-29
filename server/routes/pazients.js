@@ -23,10 +23,31 @@ router.post('/new-patient', async function (req, res) {
 });
 
 router.get('/all', (req, res) => {
-    Patient.find((err, docs) => {
-        if(!err) res.send(docs);
-        else return res.status(500).json(err);
-    });
+    Patient.find().exec()
+        .then((result) => {
+            res.status(200).json({success: true, data: result});
+        }).catch((err) => {
+            return res.status(404).json({success: false, message: "E' stato riscontrato un errore di servizio"});
+        })
+});
+
+// todo questo non funziona
+router.get('/current', (req, res) => {
+    Patient.find({orario_dimissioni: {$gte: now()}}).exec()
+        .then((result) => {
+            res.status(200).json({success: true, data: result});
+        }).catch((err) => {
+        return res.status(404).json({success: false, message: "E' stato riscontrato un errore di servizio"});
+    })
+});
+
+router.get('/dismiss', (req, res) => {
+    Patient.find({orario_dimissioni: {$lte: now()}}).exec()
+        .then((result) => {
+            res.status(200).json({success: true, data: result});
+        }).catch((err) => {
+        return res.status(404).json({success: false, message: "E' stato riscontrato un errore di servizio"});
+    })
 });
 
 router.get('/:id',  (req, res) => {

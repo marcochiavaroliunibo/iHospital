@@ -5,11 +5,11 @@ import {MedicAssignmentService} from "../service/medic-assignment-service/medic-
 import {DatePipe} from "@angular/common";
 
 @Component({
-  selector: 'app-pazienti-in-cura',
-  templateUrl: './pazienti-in-cura.component.html',
-  styleUrls: ['./pazienti-in-cura.component.css']
+  selector: 'app-pazienti-dimessi',
+  templateUrl: './pazienti-dimessi.component.html',
+  styleUrls: ['./pazienti-dimessi.component.css']
 })
-export class PazientiInCuraComponent {
+export class PazientiDimessiComponent {
 
   patients: any;
   p: number = 1;
@@ -19,21 +19,21 @@ export class PazientiInCuraComponent {
     let id = localStorage.getItem('id');
 
     this._medicAssignment.findByIdMedic(id).subscribe(
-      res => {
-        for (let i: number = 0; i < res.data.length; i++) {
-          // prendo il paziente
-          this._patient.findById(res.data[i].id_paziente).subscribe(
-              res => {
-                // @ts-ignore
-                if(res.data.orario_dimissioni === undefined || this.formatDateDB(res.data.orario_dimissioni) > this.formatDateDB(new Date()))
-                  patients.push(res.data)
-              },
-            error => { }
-          )
-        }
-        this.patients = patients;
-      },
-      error => { }
+        res => {
+          for (let i: number = 0; i < res.data.length; i++) {
+            // prendo il paziente
+            this._patient.findById(res.data[i].id_paziente).subscribe(
+                res => {
+                  // @ts-ignore
+                  if(res.data.orario_dimissioni !== undefined && this.formatDateDB(res.data.orario_dimissioni) <= this.formatDateDB(new Date()))
+                    patients.push(res.data)
+                },
+                error => { }
+            )
+          }
+          this.patients = patients;
+        },
+        error => { }
     )
 
   }
@@ -50,5 +50,4 @@ export class PazientiInCuraComponent {
     const datepipe: DatePipe = new DatePipe('en-US');
     return datepipe.transform(orario_ricovero, 'dd/MM/YYYY hh:mm');
   }
-
 }

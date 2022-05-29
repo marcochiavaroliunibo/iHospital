@@ -63,6 +63,17 @@ router.get('/find-email/:email',  (req, res) => {
     }
 );
 
+router.get('/find-role/:role',  (req, res) => {
+        const role = req.params.role;
+        User.find({ruolo: role}).exec()
+            .then((result) => {
+                res.status(200).json({success: true, data: result});
+            }).catch((err) => {
+            return res.status(404).json({success: false, message: "E' stato riscontrato un errore di servizio"});
+        });
+    }
+);
+
 router.get('/find-id/:id',  (req, res) => {
         const id = req.params.id;
         User.findById(id).exec()

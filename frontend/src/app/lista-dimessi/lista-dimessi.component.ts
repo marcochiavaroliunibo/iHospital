@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {PatientService} from "../service/patient-service/patient.service";
 import {Router} from "@angular/router";
-import { DatePipe } from '@angular/common';
+import {DatePipe} from "@angular/common";
 
 @Component({
-  selector: 'app-lista-pazienti',
-  templateUrl: './lista-pazienti.component.html',
-  styleUrls: ['./lista-pazienti.component.css']
+  selector: 'app-lista-dimessi',
+  templateUrl: './lista-dimessi.component.html',
+  styleUrls: ['./lista-dimessi.component.css']
 })
-export class ListaPazientiComponent implements OnInit {
+export class ListaDimessiComponent implements OnInit {
 
   patients: any;
   p: number = 1;
-
   constructor(private _patient:PatientService, private _router:Router) {
-    this._patient.allPatients().subscribe(
-      res => this.patients = res.data,
-      error => console.log(error)
+    this._patient.dismissPatients().subscribe(
+        res => this.patients = res.data,
+        error => console.log(error)
     )
   }
 
