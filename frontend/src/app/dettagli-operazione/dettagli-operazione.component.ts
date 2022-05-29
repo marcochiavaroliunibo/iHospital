@@ -67,14 +67,14 @@ export class DettagliOperazioneComponent {
       this.dataForm.get('durata')?.setValue(this.operation.durata);
       this.dataForm.get('rischio')?.setValue(this.operation.rischio);
       this.dataForm.get('descrizione')?.setValue(this.operation.descrizione);
-      if (this.operation.verbale !== undefined)
-        this.dataForm.get('verbale')?.setValue(this.operation.verbale);
-      if (this.dataForm.value.verbale !== "") this.dataForm.get('data_ora')?.disable();
+      if (this.operation.verbale !== undefined && this.operation.verbale !== null) {
+          this.dataForm.get('verbale')?.setValue(this.operation.verbale);
+          if (this.dataForm.value.verbale !== "") this.dataForm.get('data_ora')?.disable();
+      }
       // @ts-ignore
       if (this.formatDateForm(this.operation.data_ora) > this.formatDateForm(new Date())) {
           this.stato = "DA SVOLGERE";
           this.dataForm.get('verbale')?.disable();
-          this.dataForm.get('verbale')?.setValue('Operazione non ancora svolta.');
       }else {
           // @ts-ignore
           if (this.formatDateForm(this.operation.data_ora) === this.formatDateForm(new Date())) {

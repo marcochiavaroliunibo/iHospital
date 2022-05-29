@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Vitalvalue = require('../models/vital-value');
 const {now} = require("mongoose");
-const MedicAssignment = require("../models/medic-assignment");
 
 router.post('/new/:my_id/:id_patient', async function (req, res) {
     var vitalvalue = new Vitalvalue({

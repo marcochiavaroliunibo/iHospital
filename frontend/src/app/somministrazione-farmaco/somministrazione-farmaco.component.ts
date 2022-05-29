@@ -28,7 +28,6 @@ export class SomministrazioneFarmacoComponent implements OnInit {
     color: string = "success";
     stato: any;
     oggi: any;
-    TIMESTAMP: number = 1000 * 60 * 60 * 24;
     p: number = 1;
 
     constructor(private route: ActivatedRoute, private _patient: PatientService, private _drug: DrugService, private _prescription: PrescriptionService,
