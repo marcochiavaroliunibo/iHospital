@@ -11,7 +11,7 @@ export class UserService {
 
   login(body: any): Observable<any> {
     return this._http.post('http://127.0.0.1:3000/users/login', body, {
-      withCredentials: true,
+     // withCredentials: true,
       headers: new HttpHeaders().append('Content-type', 'application/json')
     });
   }
@@ -28,7 +28,7 @@ export class UserService {
       'Authorization': "Bearer " + localStorage.getItem('token')
     }
     return this._http.get('http://127.0.0.1:3000/users/user-logged', {
-      withCredentials: true,
+      //withCredentials: true,
       headers: headers
     });
   }

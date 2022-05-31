@@ -2,6 +2,8 @@ import {Component, Type, OnInit} from '@angular/core';
 import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UserService} from "./service/user-service/user.service";
 import {Router} from "@angular/router";
+import {ValueChart} from "./value-chart";
+import {ValueStatusService} from "./service/chart-service/value-status.service";
 
 // Modale logout
 @Component({

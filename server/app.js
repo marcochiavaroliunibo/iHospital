@@ -32,6 +32,16 @@ mongoose.connect('mongodb://localhost/iHospital', (err) => {
     console.log("connected mongodb!")
 })
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+app.get('/api/value-chart', (req, res) => {
+  res.send(val.valChart);
+});
+
 // passport & session
 var passport = require('passport');
 var session = require('express-session');
@@ -52,6 +62,25 @@ app.use(session({
 require('./config/passport-config');
 app.use(passport.initialize());
 app.use(passport.session());
+
+// socket
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const val = require('./valueChart');
+const port = 4000;
+
+setInterval(function () {
+  val.updateValueChart();
+  io.sockets.emit('chart', val.valChart[0]);
+}, 1000);
+
+io.on('connection', function (socket) {
+  console.log('a user connected');
+});
+
+http.listen(port, () => {
+  console.log(`Listening on *:${port}`);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

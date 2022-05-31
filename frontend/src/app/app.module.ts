@@ -34,6 +34,7 @@ import { PazientiDimessiComponent } from './pazienti-dimessi/pazienti-dimessi.co
 import { ListaDimessiComponent } from './lista-dimessi/lista-dimessi.component';
 import { ListaMediciComponent } from './lista-medici/lista-medici.component';
 import { ListaInfermieriComponent } from './lista-infermieri/lista-infermieri.component';
+import { ChartValueComponent } from './chart-value/chart-value.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ListaInfermieriComponent } from './lista-infermieri/lista-infermieri.co
     ListaDimessiComponent,
     ListaMediciComponent,
     ListaInfermieriComponent,
+    ChartValueComponent,
   ],
   imports: [
     BrowserModule,

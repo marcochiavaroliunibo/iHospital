@@ -200,7 +200,7 @@ export class ProfiloPazienteComponent {
                   this._medicAssignment.newMedicAssignment(_id ,res.data._id)
                     .subscribe(
                       data => {
-                        this.message = "Medico aggiunto al paziente"; this.color = "success";
+                        this.message = "Operatore aggiunto al paziente"; this.color = "success";
                         },
                       err => { this.message = "Si è verificato un errore generico del server"; this.color = "danger" }
                     );
