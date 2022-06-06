@@ -41,7 +41,7 @@
                   <label for="id_paziente">Nominativo paziente</label>
                   <select class="form-select" aria-label="Default select example" id="id_paziente" name="id_paziente" formControlName="id_paziente" required="required">
                     <option value="" disabled selected>Seleziona paziente</option>
-                    <option *ngFor="let item of patients" value="{{item._id}}">{{item.nome}} {{item.cognome}} - {{formatDate(item.data_nascita)}}</option>
+                    <option *ngFor="let item of patients" value="{{item.data._id}}">{{item.data.nome}} {{item.data.cognome}} - {{formatDate(item.data.data_nascita)}}</option>
                   </select>
                 </div>
                 <div class="form-group col-lg-6">

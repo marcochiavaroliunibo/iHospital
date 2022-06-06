@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Profilo paziente</h1>
+                    <h1>Segnalazioni {{patient.nome}} {{patient.cognome}}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="pazienti_in_cura.html">Pazienti in cura</a></li>
+                        <li class="breadcrumb-item"><a href="profilo-paziente/{{id}}">{{patient.nome}} {{patient.cognome}}</a></li>
                         <li class="breadcrumb-item active">Profilo paziente</li>
                     </ol>
                 </div>
@@ -22,11 +22,10 @@
                 <!-- Profile Image -->
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
-                        <h3 class="profile-username text-center"></h3>
-                        <p class="text-muted text-center">Ricoverato in </p>
-                        <a href="valori-vitali/" class="btn btn-info btn-block"><b>Registrazioni valori vitali</b></a>
-                        <a href="#" class="btn btn-info btn-block"><b>Area segnalazioni</b></a>
-                        <a  class="btn btn-danger btn-block"><b>Dimetti paziente</b></a>
+                        <h3 class="profile-username text-center">{{patient.nome}} {{patient.cognome}}</h3>
+                        <p class="text-muted text-center">Live chat</p>
+                        <a href="profilo-paziente/{{id}}" class="btn btn-info btn-block"><b>Visualizza profilo</b></a>
+                        <a href="valori-vitali/{{id}}" class="btn btn-info btn-block"><b>Registrazioni valori vitali</b></a>
                     </div>
                     <!-- /.card-body -->
                 </div>

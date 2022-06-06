@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2580a360-60e2-4c79-a6ff-f01c1544a8dc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/1dc65b1754967c777e1352e18a16c6780ed61284/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/1dc65b1754967c777e1352e18a16c6780ed61284/index.pack.old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/f318a63e9277203d62afbb8486e107ff86a1e870/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/f318a63e9277203d62afbb8486e107ff86a1e870/index.pack.old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/dettagli-operazione/dettagli-operazione.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/dettagli-operazione/dettagli-operazione.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/dettagli-operazione/dettagli-operazione.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/dettagli-operazione/dettagli-operazione.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/user-service/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/user-service/user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/polyfills.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/aggiungi-operazione/aggiungi-operazione.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/aggiungi-operazione/aggiungi-operazione.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/aggiungi-operazione/aggiungi-operazione.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/aggiungi-operazione/aggiungi-operazione.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/segnalazioni/segnalazioni.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/segnalazioni/segnalazioni.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/segnalazioni/segnalazioni.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/segnalazioni/segnalazioni.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/valori-vitali/valori-vitali.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +137,9 @@
       <workItem from="1653779804527" duration="8216000" />
       <workItem from="1653828687660" duration="18254000" />
       <workItem from="1653913785593" duration="9769000" />
-      <workItem from="1653988942288" duration="3016000" />
+      <workItem from="1653988942288" duration="3284000" />
+      <workItem from="1654090408884" duration="875000" />
+      <workItem from="1654462046277" duration="3342000" />
     </task>
     <servers />
   </component>

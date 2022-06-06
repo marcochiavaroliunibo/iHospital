@@ -107,7 +107,7 @@ export class HomeComponent implements OnInit {
                     this._patient.findById(res.data[i].id_paziente).subscribe(
                         res => {
                             // @ts-ignore
-                            if (res.data.orario_dimissioni === undefined || this.formatDateDB(res.data.orario_dimissioni) > this.formatDateDB(new Date()))
+                            if (res.data.orario_dimissioni === undefined || res.data.orario_dimissioni === null || this.formatDateDB(res.data.orario_dimissioni) > this.formatDateDB(new Date()))
                                 this.blocks[0].value = ++valC;
                             else
                                 this.blocks[1].value = ++valD;
@@ -161,7 +161,7 @@ export class HomeComponent implements OnInit {
                     this._patient.findById(res.data[i].id_paziente).subscribe(
                         res => {
                             // @ts-ignore
-                            if (res.data.orario_dimissioni === undefined || this.formatDateDB(res.data.orario_dimissioni) > this.formatDateDB(new Date()))
+                            if (res.data.orario_dimissioni === undefined || res.data.orario_dimissioni === null || this.formatDateDB(res.data.orario_dimissioni) > this.formatDateDB(new Date()))
                                 this.blocks[0].value = ++valC;
                         },
                         error => {
