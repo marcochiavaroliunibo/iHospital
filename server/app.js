@@ -13,6 +13,7 @@ var medicAssignmentRouter = require('./routes/medic-assignments')
 var prescription = require('./routes/prescriptions')
 var vitalValues = require('./routes/vital-values')
 var administrations = require('./routes/aministrations')
+var messages = require('./routes/messages')
 
 var app = express();
 app.use(cookieParser());
@@ -103,8 +104,8 @@ app.use('/operations', operationsRouter);
 app.use('/medic-assignments', medicAssignmentRouter);
 app.use('/prescriptions', prescription);
 app.use('/vital-values', vitalValues);
-app.use('/administrations', administrations)
-
+app.use('/administrations', administrations);
+app.use('/messages', messages);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

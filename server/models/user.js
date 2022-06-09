@@ -16,8 +16,8 @@ schema.statics.hashPassword = function hashPassword(password) {
     return bcrypt.hashSync(password, 10);
 }
 
-schema.methods.verifyPassword = function (password) {
-    return bcrypt.compareSync(password, this.password);
+schema.statics.verifyPassword = function (password, newPwd) {
+    return bcrypt.compareSync(password, newPwd);
 }
 
 schema.methods.generateJwt = function () {

@@ -27,7 +27,7 @@
             <div class="card-body box-profile">
               <h3 class="profile-username text-center">{{patient.nome}} {{patient.cognome}}</h3>
               <p class="text-muted text-center" *ngIf="ricoverato">Ricoverato in {{patient.reparto}}</p>
-              <p class="text-muted text-center" *ngIf="!ricoverato">Dimesso il {{formatDate2(patient.orario_dimissioni)}}</p>
+              <p class="text-muted text-center" *ngIf="!ricoverato">Report analisi effettuate</p>
               <a href="profilo-paziente/{{patient._id}}" class="btn btn-info btn-block"><b>Visualizzo profilo</b></a>
               <a href="segnalazioni/{{patient._id}}" class="btn btn-info btn-block"><b>Area segnalazioni</b></a>
             </div>
@@ -54,79 +54,15 @@
                         <span class="time"><i class="fas fa-clock"></i> {{formatTime(item.data.orario_visita)}}</span>
                         <h3 class="timeline-header">Dati inseriti da {{item.oper.nome}} {{item.oper.cognome}}</h3>
                         <div class="timeline-body">
-                          <div class="row">
-                            <div class="col-lg-2 col-2">
-                              <div class="small-box bg-info">
-                                <div class="inner">
-                                  <h4>{{item.data.hr}}</h4>
-                                  <h4>Frequenza cardiaca</h4>
-                                </div>
-                                <div class="icon">
-                                  <i class="ion ion-bag"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-2 col-2">
-                              <div class="small-box bg-success">
-                                <div class="inner">
-                                  <h4>{{item.data.press_min}}</h4>
-                                  <h4>Pressione minima</h4>
-                                </div>
-                                <div class="icon">
-                                  <i class="ion ion-stats-bars"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-2 col-2">
-
-                              <div class="small-box bg-warning">
-                                <div class="inner">
-                                  <h4>{{item.data.press_max}}</h4>
-                                  <h4>Pressione massima</h4>
-                                </div>
-                                <div class="icon">
-                                  <i class="ion ion-person-add"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-2 col-2">
-                              <div class="small-box bg-danger">
-                                <div class="inner">
-                                  <h4>{{item.data.saturazione}}</h4>
-                                  <h4>Livello saturazione</h4>
-                                </div>
-                                <div class="icon">
-                                  <i class="ion ion-pie-graph"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-2 col-2">
-
-                              <div class="small-box bg-warning">
-                                <div class="inner">
-                                  <h4>{{item.data.freq_respriratoria}}</h4>
-                                  <h4>Frequenza respiratoria</h4>
-                                </div>
-                                <div class="icon">
-                                  <i class="ion ion-person-add"></i>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-lg-2 col-2">
-                              <div class="small-box bg-danger">
-                                <div class="inner">
-                                  <h4>{{item.data.livello_dolore}}</h4>
-                                  <h4>Livello dolore soggettivo</h4>
-                                </div>
-                                <div class="icon">
-                                  <i class="ion ion-pie-graph"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          <span class="badge bg-red">FREQUENZA CARDIACA </span><b> {{item.data.hr}}</b><i> bpm</i><br/>
+                          <span class="badge bg-blue">PRESSIONE MINIMA </span><b> {{item.data.press_min}}</b><i> mmHg</i><br/>
+                          <span class="badge bg-warning">PRESSIONE MASSIMA </span><b> {{item.data.press_max}}</b><i> mmHg</i><br/>
+                          <span class="badge bg-green">FREQUENZA RESPIRATORIA </span><b> {{item.data.freq_respriratoria}}</b><i> rpm</i><br/>
+                          <span class="badge bg-fuchsia">SATURAZIONE </span><b> {{item.data.saturazione}}</b><i> %</i><br/>
+                          <span class="badge bg-orange">LIVELLO DOLORE </span><b> {{item.data.livello_dolore}}</b><i> su 10</i>
                         </div>
                         <div class="timeline-footer" *ngIf="myId === item.oper._id">
-                          <a (click)="deleteValue(item.data._id)" class="btn btn-danger btn-sm">Elimina</a>
+                          <a (click)="deleteValue(item.data._id)" class="btn btn-danger btn-sm">Elimina registrazione</a>
                         </div>
                       </div>
                     </div>

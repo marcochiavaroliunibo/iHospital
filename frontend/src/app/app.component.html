@@ -43,6 +43,7 @@
               <a ngbDropdownItem routerLink="aggiungi-operazione">Aggiungi operazione</a>
             </div>
           </li>
+          <li class="nav-item" *ngIf="checkUser() === 'INFERMIERE'"><a routerLink="calendario-operazioni" class="nav-link">Calendario operazioni</a></li>
           <li class="nav-item" *ngIf="checkUser()"><a routerLink="FAQ" class="nav-link">FAQ</a></li>
         </ul>
       </div>

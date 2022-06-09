@@ -66,12 +66,11 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    // todo 2/4
     private setHomeDirettore() {
         this.blocks.push({title: "Medici iscritti", value: 0, link: "lista-medici"});
         this.blocks.push({title: "Infermieri iscritti", value: 0, link: "lista-infermieri"});
         this.blocks.push({title: "Pazienti in cura", value: 0, link: "lista-pazienti"});
-        this.blocks.push({title: "???", value: 180, link: ""});
+        this.blocks.push({title: "Pazienti dimessi", value: 0, link: "lista-dimessi"});
         this._user.findByRole("MEDICO")
             .subscribe(
                 res => this.blocks[0].value = res.data.length,
@@ -84,10 +83,26 @@ export class HomeComponent implements OnInit {
                 err => {
                 }
             )
-        this._patient.currentPatients()
-            .subscribe(
-                res => this.blocks[2].value = res.data.length,
-            )
+        let valC = 0;
+        let valD = 0;
+        this._patient.allPatients().subscribe(
+            res => {
+                for (let i: number = 0; i < res.data.length; i++) {
+                    // prendo il paziente
+                    this._patient.findById(res.data[i]._id).subscribe(
+                        res => {
+                            // @ts-ignore
+                            if (res.data.orario_dimissioni === undefined || res.data.orario_dimissioni === null || this.formatDateDB(res.data.orario_dimissioni) > this.formatDateDB(new Date()))
+                                this.blocks[2].value = ++valC;
+                            else
+                                this.blocks[3].value = ++valD;
+                        },
+                        error => {
+                        }
+                    )
+                }
+            }
+        )
         this.text = this.TEXT_DIR;
     }
 
@@ -96,7 +111,7 @@ export class HomeComponent implements OnInit {
         this.blocks.push({title: "Pazienti in cura", value: 0, link: "pazienti-in-cura"});
         this.blocks.push({title: "Pazienti dimessi", value: 0, link: "pazienti-dimessi"});
         this.blocks.push({title: "Operazioni programmate", value: 0, link: "calendario-operazioni"});
-        this.blocks.push({title: "???", value: 10, link: ""});
+        this.blocks.push({title: "???", value: 0, link: ""});
         // Calcolo pazienti (in cura (C) e dimessi (D))
         let valC = 0;
         let valD = 0;
@@ -116,7 +131,6 @@ export class HomeComponent implements OnInit {
                         }
                     )
                 }
-
             },
             error => {
             }
@@ -146,14 +160,14 @@ export class HomeComponent implements OnInit {
         this.text = this.TEXT_MED;
     }
 
-    // todo 2/4
     private setHomeInfermiere() {
         this.blocks.push({title: "Pazienti in cura", value: 0, link: "pazienti-in-cura"});
-        this.blocks.push({title: "Farmaci somministrati", value: 0, link: "pazienti-dimessi"});
-        this.blocks.push({title: "???", value: 10, link: ""});
-        this.blocks.push({title: "???", value: 10, link: ""});
-        // Calcolo pazienti in cura
+        this.blocks.push({title: "Pazienti dimessi", value: 0, link: "pazienti-dimessi"});
+        this.blocks.push({title: "Operazioni programmate", value: 0, link: "calendario-operazioni"});
+        this.blocks.push({title: "Farmaci somministrati", value: 0, link: "pazienti-in-cura"});
+        // Calcolo pazienti (in cura (C) e dimessi (D))
         let valC = 0;
+        let valD = 0;
         this._medicAssignment.findByIdMedic(localStorage.getItem('id')).subscribe(
             res => {
                 for (let i: number = 0; i < res.data.length; i++) {
@@ -163,6 +177,29 @@ export class HomeComponent implements OnInit {
                             // @ts-ignore
                             if (res.data.orario_dimissioni === undefined || res.data.orario_dimissioni === null || this.formatDateDB(res.data.orario_dimissioni) > this.formatDateDB(new Date()))
                                 this.blocks[0].value = ++valC;
+                            else
+                                this.blocks[1].value = ++valD;
+                        },
+                        error => {
+                        }
+                    )
+                }
+            },
+            error => {
+            }
+        )
+        // Calcolo numero di operazioni programmate
+        let op = 0;
+        this._medicAssignment.findByIdMedic(localStorage.getItem('id')).subscribe(
+            res => {
+                for (let i: number = 0; i < res.data.length; i++) {
+                    // prendo il paziente
+                    this._operation.findByPatient(res.data[i].id_paziente).subscribe(
+                        res => {
+                            for (let k: number = 0; k < res.data.length; k++)
+                                // @ts-ignore
+                                if (this.formatDateDB(res.data[k].data_ora) > this.formatDateDB(new Date()))
+                                    this.blocks[2].value = ++op;
                         },
                         error => {
                         }
@@ -175,7 +212,7 @@ export class HomeComponent implements OnInit {
         )
         // Calolo farnaci somministrati
         this._administration.findByNurse(localStorage.getItem('id')).subscribe(
-            res => this.blocks[1].value = res.data.length,
+            res => this.blocks[3].value = res.data.length,
             error => {
             }
         )

@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="profilo-paziente/{{id}}">{{patient.nome}} {{patient.cognome}}</a></li>
+                        <li class="breadcrumb-item"><a href="profilo-paziente/{{idPatient}}">{{patient.nome}} {{patient.cognome}}</a></li>
                         <li class="breadcrumb-item active">Profilo paziente</li>
                     </ol>
                 </div>
@@ -24,8 +24,8 @@
                     <div class="card-body box-profile">
                         <h3 class="profile-username text-center">{{patient.nome}} {{patient.cognome}}</h3>
                         <p class="text-muted text-center">Live chat</p>
-                        <a href="profilo-paziente/{{id}}" class="btn btn-info btn-block"><b>Visualizza profilo</b></a>
-                        <a href="valori-vitali/{{id}}" class="btn btn-info btn-block"><b>Registrazioni valori vitali</b></a>
+                        <a href="profilo-paziente/{{idPatient}}" class="btn btn-info btn-block"><b>Visualizza profilo</b></a>
+                        <a href="valori-vitali/{{idPatient}}" class="btn btn-info btn-block"><b>Registrazioni valori vitali</b></a>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -35,39 +35,39 @@
                 <div class="card direct-chat direct-chat-primary">
                     <!-- Body -->
                     <div id="bodyId" class="card-body">
-                        <div class="direct-chat-messages" style="height: 100%">
+                        <div *ngFor="let item of messages" class="direct-chat-messages" style="height: 100%">
                             <!-- Messaggio inviato -->
-                            <div class="direct-chat-msg right">
+                            <div *ngIf="item.id_operatore === myId" class="direct-chat-msg right">
                                 <div class="direct-chat-infos clearfix">
-                                    <span class="direct-chat-name float-right">Dott. Mario Rossi</span>
-                                    <span class="direct-chat-timestamp float-left">10/05/2022 15:09</span>
+                                    <span class="direct-chat-name float-right">{{item.id_operatore}}</span>
+                                    <span class="direct-chat-timestamp float-left">{{formatDate(item.data_ora)}}</span>
                                 </div>
-                                <img class="direct-chat-img" src="../../dist/img/user2-160x160.jpg" alt="message user image">
                                 <div class="direct-chat-text">
-                                    Operazioni conclusa con successo.
+                                    {{item.testo}}
                                 </div>
                             </div>
                             <!-- Messaggio ricevuto -->
-                            <div class="direct-chat-msg">
+                            <div *ngIf="item.id_operatore !== myId" class="direct-chat-msg">
                                 <div class="direct-chat-infos clearfix">
-                                    <span class="direct-chat-name float-left">Dott.ssa Claudia Somma</span>
-                                    <span class="direct-chat-timestamp float-right">10/05/2022 18:54</span>
+                                    <span class="direct-chat-name float-left">{{item.id_operatore}}</span>
+                                    <span class="direct-chat-timestamp float-right">{{formatDate(item.data_ora)}}</span>
                                 </div>
-                                <img class="direct-chat-img" src="../../dist/img/user6-128x128.jpg" alt="message user image">
                                 <!-- /.direct-chat-img -->
                                 <div class="direct-chat-text">
-                                    Perfetto, continuiamo a controllare i valori vitali.
+                                    {{item.testo}}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Footer -->
                     <div class="card-footer">
-                        <form action="#" method="post">
+                        <form [formGroup]="messageForm">
                             <div class="input-group">
-                                <textarea name="testo" rows="1" placeholder="Scrivi un messaggio..." required="required" class="form-control"></textarea>
+                                <input type="hidden" formControlName="id_operatore"/>
+                                <input type="hidden" formControlName="id_paziente"/>
+                                <textarea name="testo" rows="1" placeholder="Scrivi un messaggio..." required="required" class="form-control" formControlName="testo"></textarea>
                                 <span class="input-group-append">
-                                <button type="submit" class="btn btn-primary">Invia</button>
+                                <button type="submit" (click)="sendMessage()" class="btn btn-primary">Invia</button>
                             </span>
                             </div>
                         </form>

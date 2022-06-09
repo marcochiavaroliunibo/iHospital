@@ -55,6 +55,7 @@ export class AreaRiservataComponent implements OnInit {
   }
 
   newPwd() {
+    console.log(this.user.password)
     if (!this.pwdForm.valid) {
       this.message = "Compilare correttamente tutti i campi";
       this.color = "danger";
@@ -69,7 +70,7 @@ export class AreaRiservataComponent implements OnInit {
     this._user.updatePassword(this.user._id,  JSON.stringify(this.pwdForm.value))
         .subscribe(
             res => { this.message = "Password aggiornata"; this.color = "success" },
-            error => {this.message = "Errore"; this.color = "danger"}
+            error => {this.message = error.message; this.color = "danger"}
         )
   }
 

@@ -243,52 +243,6 @@
                 </ng-template>
               </li>
               <li [ngbNavItem]="4">
-                <a ngbNavLink>Segalazioni</a>
-                <ng-template ngbNavContent>
-                  <div class="card direct-chat direct-chat-primary">
-                    <!-- Body -->
-                    <div id="bodyId" class="card-body">
-                      <div class="direct-chat-messages" style="height: 100%">
-                        <!-- Messaggio inviato -->
-                        <div class="direct-chat-msg right">
-                          <div class="direct-chat-infos clearfix">
-                            <span class="direct-chat-name float-right">Dott. Mario Rossi</span>
-                            <span class="direct-chat-timestamp float-left">10/05/2022 15:09</span>
-                          </div>
-                          <img class="direct-chat-img" src="../../dist/img/user2-160x160.jpg" alt="message user image">
-                          <div class="direct-chat-text">
-                            Operazioni conclusa con successo.
-                          </div>
-                        </div>
-                        <!-- Messaggio ricevuto -->
-                        <div class="direct-chat-msg">
-                          <div class="direct-chat-infos clearfix">
-                            <span class="direct-chat-name float-left">Dott.ssa Claudia Somma</span>
-                            <span class="direct-chat-timestamp float-right">10/05/2022 18:54</span>
-                          </div>
-                          <img class="direct-chat-img" src="../../dist/img/user6-128x128.jpg" alt="message user image">
-                          <!-- /.direct-chat-img -->
-                          <div class="direct-chat-text">
-                            Perfetto, continuiamo a controllare i valori vitali.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Footer -->
-                    <div class="card-footer">
-                      <form action="#" method="post">
-                        <div class="input-group">
-                          <textarea name="testo" rows="1" placeholder="Scrivi un messaggio..." required="required" class="form-control"></textarea>
-                          <span class="input-group-append">
-                                <button type="submit" class="btn btn-primary">Invia</button>
-                            </span>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </ng-template>
-              </li>
-              <li [ngbNavItem]="5">
                 <a ngbNavLink>Operatori di riferimento</a>
                 <ng-template ngbNavContent>
                   <table id="lista_medici" class="table table-bordered table-striped display nowrap">
@@ -321,7 +275,7 @@
                   <form [formGroup]="newMedicAssignmentForm" *ngIf="role === 'DIRETTORE'">
                   <div class="row">
                     <div class="col-6">
-                      <input id="email_nuovo_medico" name="email_nuovo_medico" type="email" formControlName="email_nuovo_medico" class="form-control" placeholder="Email del medico da asseganre"  required="required"/>
+                      <input id="email_nuovo_medico" name="email_nuovo_medico" type="email" formControlName="email_nuovo_medico" class="form-control" placeholder="Email dell'operatore da asseganre"  required="required"/>
                     </div>
                     <div class="col-6">
                     <button type="submit" class="btn btn-success float-right" (click)="newMedicAssignment()">Assegna un nuovo medico</button>
@@ -333,7 +287,6 @@
                   </ngb-alert>
                 </ng-template>
               </li>
-
             </ul>
             <div [ngbNavOutlet]="nav" class="mt-2"></div>
           </div>
