@@ -48,12 +48,11 @@ export class SegnalazioniComponent implements OnInit {
           err => { }
     );
     this._message.getNewMessage().subscribe((message:any) => {
-      this._user.findById(JSON.parse(message).id_operatore).subscribe(
-          res => {
-              if (JSON.parse(message).id_paziente === this.idPatient)
+        if (JSON.parse(message).id_paziente === this.idPatient)
+            this._user.findById(JSON.parse(message).id_operatore).subscribe(
+              res => {
                   this.messages.push({data: JSON.parse(message), username: res.data.nome + " " + res.data.cognome});
-          }
-      )
+              })
     })
   }
 

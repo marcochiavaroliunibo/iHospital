@@ -1,10 +1,8 @@
 const moment = require('moment');
-const {now} = require("moment");
-
 const valChart = [
-    { "hr": getRandom(55,110), "press_min": getRandom(70,90), "press_max": getRandom(110,135), "freq_resp": getRandom(3,18), date: (new Date()) },
+    { "hr": getRandom(55,110), "press_min": getRandom(70,90), "press_max": getRandom(110,135),
+        "freq_resp": getRandom(3,18), date: (new Date()) },
 ]
-
 let counter = 0;
 
 function updateValueChart() {

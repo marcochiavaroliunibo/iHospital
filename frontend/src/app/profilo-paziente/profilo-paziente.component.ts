@@ -236,8 +236,6 @@ export class ProfiloPazienteComponent {
       );
   }
 
-  resetUpdate() {this.setValueForm();}
-
   newPrescription() {
     if (!this.newPrescriptionForm.valid) {
       this.message = "Compilare correttamente tutti i campi";
@@ -264,6 +262,8 @@ export class ProfiloPazienteComponent {
         error => {this.message = error.error.message; this.color = "danger"}
       );
   }
+
+  resetUpdate() {this.setValueForm();}
 
   quitPatient() {
     this._patient.quitPatient(_id).subscribe(

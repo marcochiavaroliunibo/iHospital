@@ -4,7 +4,6 @@ import {ValueChart} from "../../value-chart";
 import io from 'socket.io-client';
 import {from, Subject} from "rxjs";
 
-
 @Injectable({
   providedIn: 'root'
 })

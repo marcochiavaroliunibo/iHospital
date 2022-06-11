@@ -2,8 +2,6 @@ import {Component, Type, OnInit} from '@angular/core';
 import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UserService} from "./service/user-service/user.service";
 import {Router} from "@angular/router";
-import {ValueChart} from "./value-chart";
-import {ValueStatusService} from "./service/chart-service/value-status.service";
 import {MessageService} from "./service/message-service/message.service";
 
 // Modale logout
@@ -39,18 +37,6 @@ export class AppComponent implements OnInit {
   constructor(private _modalService: NgbModal, private _user:UserService, private _router:Router, private _message:MessageService) {
     if (!!localStorage.getItem("role"))
       this.role = localStorage.getItem("role");
-
-    this._message.getNewMessage().subscribe((message:any) => {
-      this._user.findById(JSON.parse(message).id_operatore).subscribe(
-          res => {
-            // todo controlli da fare:
-            // 1. non sono il mittente
-            // 2. faccio parte di questa chat
-            if (!!localStorage.getItem("role"))
-              console.log(message)
-          }
-      )
-    })
 
   }
 

@@ -41,7 +41,8 @@ export class DettagliOperazioneComponent {
         this.valueChartStatusToPlot = this.valueChartStatus.slice(0, 20);
     }
 
-    constructor(private route: ActivatedRoute, private _patient: PatientService, private _operation: OperationService, private _valueStatus: ValueStatusService) {
+    constructor(private route: ActivatedRoute, private _patient: PatientService,
+                private _operation: OperationService, private _valueStatus: ValueStatusService) {
         this.idOperation = this.route.snapshot.paramMap.get('id');
         this._operation.findById(this.idOperation)
             .subscribe(
@@ -49,11 +50,7 @@ export class DettagliOperazioneComponent {
                     this.operation = res.data;
                     this._patient.findById(this.operation.id_paziente)
                         .subscribe(
-                            res => {
-                                this.patient = res.data
-                            },
-                            err => {
-                            }
+                            res => {this.patient = res.data},
                         );
                     this.setValueForm();
                 },
@@ -63,11 +60,11 @@ export class DettagliOperazioneComponent {
         this._valueStatus.getInitialValueStatus()
             .subscribe(prices => {
                 this.ValueStatus = prices;
-                let valueUpdateObservable =  this._valueStatus.getUpdates();  // 1
-                valueUpdateObservable.subscribe((latestStatus: ValueChart) => {  // 2
+                let valueUpdateObservable =  this._valueStatus.getUpdates();
+                valueUpdateObservable.subscribe((latestStatus: ValueChart) => {
                     // @ts-ignore
-                    this.ValueStatus = [latestStatus].concat(this.valueChartStatus);  // 3
-                });  // 4
+                    this.ValueStatus = [latestStatus].concat(this.valueChartStatus);
+                });
             });
     }
 

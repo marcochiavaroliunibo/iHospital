@@ -21,7 +21,7 @@ router.post('/new', async function (req, res) {
 
 router.get('/:id_paziente',  (req, res) => {
         const id_paziente = req.params.id_paziente;
-        Message.find({id_paziente: id_paziente}).exec()
+        Message.find({id_paziente: id_paziente}).sort({data_ora: 1}).exec()
             .then((result) => {
                 res.status(200).json({success: true, data: result});
             }).catch((err) => {
