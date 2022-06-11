@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var Messages = require('../models/message');
+var Message = require('../models/message');
 const {now} = require("moment");
 
 router.post('/new', async function (req, res) {
-    var message = new Messages({
+    var message = new Message({
         id_operatore: req.body.id_operatore,
         id_paziente: req.body.id_paziente,
         testo: req.body.testo,
@@ -21,7 +21,7 @@ router.post('/new', async function (req, res) {
 
 router.get('/:id_paziente',  (req, res) => {
         const id_paziente = req.params.id_paziente;
-        Messages.find({id_paziente: id_paziente}).exec()
+        Message.find({id_paziente: id_paziente}).exec()
             .then((result) => {
                 res.status(200).json({success: true, data: result});
             }).catch((err) => {

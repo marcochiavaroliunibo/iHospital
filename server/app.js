@@ -14,6 +14,7 @@ var prescription = require('./routes/prescriptions')
 var vitalValues = require('./routes/vital-values')
 var administrations = require('./routes/aministrations')
 var messages = require('./routes/messages')
+var contacts = require('./routes/contacts')
 
 var app = express();
 app.use(cookieParser());
@@ -66,7 +67,9 @@ app.use(passport.session());
 
 // socket
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+  cors: {origin : '*'}
+});
 const val = require('./valueChart');
 const port = 4000;
 
@@ -77,6 +80,15 @@ setInterval(function () {
 
 io.on('connection', function (socket) {
   console.log('a user connected');
+
+  socket.on('message', (message) => {
+    console.log(message);
+    io.emit('message', message);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('a user disconnected!');
+  });
 });
 
 http.listen(port, () => {
@@ -106,6 +118,7 @@ app.use('/prescriptions', prescription);
 app.use('/vital-values', vitalValues);
 app.use('/administrations', administrations);
 app.use('/messages', messages);
+app.use('/contacts', contacts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

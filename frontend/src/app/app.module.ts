@@ -5,7 +5,6 @@ import {AppComponent, NgbdModaLogout} from './app.component';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HomeComponent} from './home/home.component';
 import {PazientiInCuraComponent} from './pazienti-in-cura/pazienti-in-cura.component';
-import {FarmaciRegistratiComponent, NgbdModalDrug} from './farmaci-registrati/farmaci-registrati.component';
 import {AggiungiFarmacoComponent} from './aggiungi-farmaco/aggiungi-farmaco.component';
 import {AggiungiOperazioneComponent} from './aggiungi-operazione/aggiungi-operazione.component';
 import {CalendarioOperazioniComponent} from './calendario-operazioni/calendario-operazioni.component';
@@ -42,6 +41,10 @@ import {ChartValueComponent} from './chart-value/chart-value.component';
 import {FlatpickrModule} from 'angularx-flatpickr';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+import { ContattiComponent } from './contatti/contatti.component';
+import {FeedbackRicevutiComponent, NgbdModalFeedback} from './feedback-ricevuti/feedback-ricevuti.component';
+import {FarmaciRegistratiComponent, NgbdModalDrug} from "./farmaci-registrati/farmaci-registrati.component";
+import { PasswordDimenticataComponent } from './password-dimenticata/password-dimenticata.component';
 
 @NgModule({
     declarations: [
@@ -56,6 +59,8 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
         ProfiloPazienteComponent,
         LoginComponent,
         NgbdModaLogout,
+        NgbdModalDrug,
+        NgbdModalFeedback,
         RegistrazioneComponent,
         AggiungiPazienteComponent,
         ListaPazientiComponent,
@@ -63,7 +68,6 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
         ValoriVitaliComponent,
         NgbdModalNotePrescription,
         NgbdModalNoteAdministration,
-        NgbdModalDrug,
         DettagliOperazioneComponent,
         SegnalazioniComponent,
         AreaRiservataComponent,
@@ -72,6 +76,9 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
         ListaMediciComponent,
         ListaInfermieriComponent,
         ChartValueComponent,
+        ContattiComponent,
+        FeedbackRicevutiComponent,
+        PasswordDimenticataComponent,
     ],
     imports: [
         CommonModule,

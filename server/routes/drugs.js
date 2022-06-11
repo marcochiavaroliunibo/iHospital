@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Drug = require('../models/drug');
-const Operation = require("../models/operation");
-const Prescription = require("../models/prescription");
-const Patient = require("../models/patient");
 
 router.post('/new-drug', async function (req, res) {
     var drug = new Drug({

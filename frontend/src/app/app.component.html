@@ -45,6 +45,8 @@
           </li>
           <li class="nav-item" *ngIf="checkUser() === 'INFERMIERE'"><a routerLink="calendario-operazioni" class="nav-link">Calendario operazioni</a></li>
           <li class="nav-item" *ngIf="checkUser()"><a routerLink="FAQ" class="nav-link">FAQ</a></li>
+          <li class="nav-item" *ngIf="checkUser() === 'MEDICO' || checkUser() === 'INFERMIERE'"><a routerLink="contatti" class="nav-link">Contatta</a></li>
+          <li class="nav-item" *ngIf="checkUser() === 'DIRETTORE'"><a routerLink="feedback-ricevuti" class="nav-link">Feedback ricevuti</a></li>
         </ul>
       </div>
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto" *ngIf="checkUser()">
@@ -71,7 +73,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Marco Chiavaroli</b>
+      <b>Realizzato da Marco Chiavaroli</b>
     </div>
     <strong>Progetto di esame <a target="_blank" href="https://www.unibo.it/it/didattica/insegnamenti/insegnamento/2021/412604">ASW 2021-2022</a>.</strong>
   </footer>

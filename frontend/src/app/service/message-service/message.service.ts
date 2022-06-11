@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {io} from "socket.io-client";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
+
+  public message$: BehaviorSubject<string> = new BehaviorSubject('');
+  socket = io('http://localhost:4000');
 
   constructor(private _http:HttpClient) {}
 
@@ -18,6 +22,17 @@ export class MessageService {
 
   findByIdPatient(id_paziente: string | null): Observable<any> {
     return this._http.get('http://127.0.0.1:3000/messages/'+id_paziente);
+  }
+
+  sendMessage(message: any) {
+    this.socket.emit('message', message);
+  }
+
+  getNewMessage = () => {
+    this.socket.on('message', (message) => {
+      this.message$.next(message);
+    });
+    return this.message$.asObservable();
   }
 
 }

@@ -26,6 +26,9 @@ import {ListaDimessiComponent} from "./lista-dimessi/lista-dimessi.component";
 import {ListaMediciComponent} from "./lista-medici/lista-medici.component";
 import {ListaInfermieriComponent} from "./lista-infermieri/lista-infermieri.component";
 import {DirettoreOrMedicoGuard} from "./role-guard/DirettoreOrMedicoGuard";
+import {ContattiComponent} from "./contatti/contatti.component";
+import {FeedbackRicevutiComponent} from "./feedback-ricevuti/feedback-ricevuti.component";
+import {PasswordDimenticataComponent} from "./password-dimenticata/password-dimenticata.component";
 
 // canActive mi indica quale tipo di profilo può accedere ad ogni pagina,
 // svolge quindi il ruolo di GUARDIA per l'accesso alle varie pagine.
@@ -42,6 +45,7 @@ const routes: Routes = [
   { path: 'profilo-paziente/:id', component: ProfiloPazienteComponent, canActivate: [PazienteInCuraGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'registrati', component: RegistrazioneComponent},
+  { path: 'password-dimenticata', component: PasswordDimenticataComponent},
   { path: 'aggiungi-paziente', component: AggiungiPazienteComponent, canActivate: [DirettoreGuard]},
   { path: 'lista-pazienti', component: ListaPazientiComponent, canActivate: [DirettoreGuard]},
   { path: 'lista-dimessi', component: ListaDimessiComponent, canActivate: [DirettoreGuard]},
@@ -50,7 +54,9 @@ const routes: Routes = [
   { path: 'dettagli-operazione/:id', component: DettagliOperazioneComponent, canActivate: []},
   { path: 'segnalazioni/:id', component: SegnalazioniComponent, canActivate: [PazienteInCuraGuard]},
   { path: 'area-riservata', component: AreaRiservataComponent},
-  { path: 'somministrazione-farmaco/:id', component: SomministrazioneFarmacoComponent, canActivate: []}
+  { path: 'somministrazione-farmaco/:id', component: SomministrazioneFarmacoComponent, canActivate: []},
+  { path: 'contatti', component: ContattiComponent, canActivate: [MedicoOrInfermiereGuard]},
+  { path: 'feedback-ricevuti', component: FeedbackRicevutiComponent, canActivate: [DirettoreGuard]}
 ];
 
 @NgModule({

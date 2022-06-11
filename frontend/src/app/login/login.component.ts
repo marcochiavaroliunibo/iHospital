@@ -45,7 +45,7 @@ export class LoginComponent {
                   }, error => this._router.navigate(['/login'])
               )
           },
-        error => this.message = "Errore di sistema, riprova tra poco"
+        error => this.message = error.error.message
       );
 
   }

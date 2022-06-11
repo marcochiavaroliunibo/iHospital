@@ -4,6 +4,7 @@ import {UserService} from "./service/user-service/user.service";
 import {Router} from "@angular/router";
 import {ValueChart} from "./value-chart";
 import {ValueStatusService} from "./service/chart-service/value-status.service";
+import {MessageService} from "./service/message-service/message.service";
 
 // Modale logout
 @Component({
@@ -35,9 +36,22 @@ export class AppComponent implements OnInit {
   role: any;
   collapsed = true;
 
-  constructor(private _modalService: NgbModal, private _user:UserService, private _router:Router) {
+  constructor(private _modalService: NgbModal, private _user:UserService, private _router:Router, private _message:MessageService) {
     if (!!localStorage.getItem("role"))
       this.role = localStorage.getItem("role");
+
+    this._message.getNewMessage().subscribe((message:any) => {
+      this._user.findById(JSON.parse(message).id_operatore).subscribe(
+          res => {
+            // todo controlli da fare:
+            // 1. non sono il mittente
+            // 2. faccio parte di questa chat
+            if (!!localStorage.getItem("role"))
+              console.log(message)
+          }
+      )
+    })
+
   }
 
   ngOnInit(): void {
@@ -48,7 +62,8 @@ export class AppComponent implements OnInit {
             this.data = res.data;
           }
         }, error => {
-            if (this._router.url !== "/registrati") this._router.navigate(['/login'])
+            // @ts-ignore
+            if (this._router.url !== "/registrati" && this._router.url !== "/password-dimenticata") this._router.navigate(['/login'])
           }
       )
   }

@@ -1,10 +1,8 @@
 import {Component, OnInit, Type} from '@angular/core';
 import {Router} from "@angular/router";
 import {DrugService} from "../service/drug-service/drug.service";
-import {NgbdModalNoteAdministration} from "../somministrazione-farmaco/somministrazione-farmaco.component";
 import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup} from "@angular/forms";
-import {AdministrationService} from "../service/administration-service/administration.service";
 
 let idDrug: string | null;
 let nomeG: string | null;
@@ -41,7 +39,7 @@ export class FarmaciRegistratiComponent implements OnInit {
 }
 
 @Component({
-  selector: 'ngbd-modal-note-administration',
+  selector: 'ngbd-modal-note-drug',
   templateUrl: '../modals/modal-drug.html',
 })
 export class NgbdModalDrug {

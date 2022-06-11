@@ -1,0 +1,14 @@
+<div class="modal-header" style='background-color: #30d5ff'>
+  <h4 class="modal-title" id="modal-title" >Feedback</h4>
+  <button type="button" class="btn-close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12 form-group">
+      <p>{{testo}}</p>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cancel click')">Chiudi</button>
+</div>

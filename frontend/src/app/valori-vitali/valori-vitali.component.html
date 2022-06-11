@@ -46,10 +46,10 @@
                   </ngb-alert>
                   <div class="timeline" *ngFor="let item of vitalValues">
                     <div class="time-label">
-                      <span class="bg-blue">{{formatDate(item.data.orario_visita)}}</span>
+                      <span class="bg-red">{{formatDate(item.data.orario_visita)}}</span>
                     </div>
                     <div>
-                      <i class="fas fa-envelope bg-blue"></i>
+                      <i class="fas fa-heart bg-red"></i>
                       <div class="timeline-item">
                         <span class="time"><i class="fas fa-clock"></i> {{formatTime(item.data.orario_visita)}}</span>
                         <h3 class="timeline-header">Dati inseriti da {{item.oper.nome}} {{item.oper.cognome}}</h3>

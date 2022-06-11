@@ -83,14 +83,20 @@
                     </div>
                     <div class="row">
                       <div class="form-group col-lg-12">
+                        <label for="motivo_ricovero">Motivo ricovero</label>
+                        <input id="motivo_ricovero" name="motivo_ricovero" formControlName="motivo_ricovero" class="form-control" type="text" required="required"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-lg-12">
                         <label for="cartella_clinica">Cartella clinica</label>
-                        <textarea id="cartella_clinica" name="cartella_clinica" formControlName="cartella_clinica" class="form-control" form required="required"></textarea>
+                        <textarea id="cartella_clinica" name="cartella_clinica" formControlName="cartella_clinica" class="form-control" required="required"></textarea>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12" *ngIf="role !== 'INFERMIERE'">
+                        <button (click)="updatePatient()" class="btn btn-success float-right">Modifica anagrafica</button>
                         <button (click)="resetUpdate()" class="btn btn-danger">Annulla modifiche</button>
-                        <button type="submit" (click)="updatePatient()" class="btn btn-success float-right">Modifica anagrafica</button>
                       </div>
                     </div>
                   </form>
@@ -201,8 +207,8 @@
                     <thead>
                     <tr>
                       <th>DATA E ORA</th>
-                      <th>DURATA</th>
                       <th>TITOLO</th>
+                      <th>DURATA</th>
                       <th>STATO</th>
                       <th>LIVELLO ATTENZIONE</th>
                       <th>DETTAGLI</th>
@@ -211,8 +217,8 @@
                     <tbody>
                     <tr *ngFor="let item of operations | paginate: {itemsPerPage: 5, currentPage: p2}">
                       <td>{{formatDateTime(item.data_ora)}}</td>
-                      <td>{{item.durata}} ore</td>
                       <td>{{item.titolo}}</td>
+                      <td>{{item.durata}} ore</td>
                       <td>
                         <span *ngIf="!item.verbale || item.verbale === ''" class="badge badge-danger">NON VERBALIZZATO</span>
                         <span *ngIf="item.verbale && item.verbale !== ''" class="badge badge-success">VERBALIZZATO</span>
@@ -275,10 +281,10 @@
                   <form [formGroup]="newMedicAssignmentForm" *ngIf="role === 'DIRETTORE'">
                   <div class="row">
                     <div class="col-6">
-                      <input id="email_nuovo_medico" name="email_nuovo_medico" type="email" formControlName="email_nuovo_medico" class="form-control" placeholder="Email dell'operatore da asseganre"  required="required"/>
+                      <input id="email_nuovo_medico" name="email_nuovo_medico" type="email" formControlName="email_nuovo_medico" class="form-control" placeholder="Email dell'operatore da assegnare"  required="required"/>
                     </div>
                     <div class="col-6">
-                    <button type="submit" class="btn btn-success float-right" (click)="newMedicAssignment()">Assegna un nuovo medico</button>
+                    <button type="submit" class="btn btn-success float-right" (click)="newMedicAssignment()">Assegna un nuovo operatore</button>
                     </div>
                   </div>
                   </form>

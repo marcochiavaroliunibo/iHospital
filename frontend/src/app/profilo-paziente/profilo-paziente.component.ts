@@ -34,6 +34,7 @@ export class ProfiloPazienteComponent {
     reparto: new FormControl(null, Validators.required),
     orario_ricovero: new FormControl(null, Validators.required),
     orario_dimissioni: new FormControl(null),
+    motivo_ricovero: new FormControl(null, Validators.required),
     cartella_clinica: new FormControl(null, Validators.required),
   });
   newMedicAssignmentForm: FormGroup = new FormGroup({
@@ -66,9 +67,7 @@ export class ProfiloPazienteComponent {
           this.setValueForm();
           this.setDrugs();
           this.setOperations();
-          //if (localStorage.getItem("role") === "DIRETTORE") // todo: poi deve essere decommentato
-            this.setMedicAssignment();
-          this.setChat();
+          this.setMedicAssignment();
         },
         error => this._router.navigate(['/'])
       );
@@ -82,6 +81,7 @@ export class ProfiloPazienteComponent {
     this.profileForm.get('luogo_nascita')?.setValue(this.patient.luogo_nascita);
     this.profileForm.get('reparto')?.setValue(this.patient.reparto);
     this.profileForm.get('orario_ricovero')?.setValue(this.formatDateForm(this.patient.orario_ricovero));
+    this.profileForm.get('motivo_ricovero')?.setValue(this.patient.motivo_ricovero);
     this.profileForm.get('cartella_clinica')?.setValue(this.patient.cartella_clinica);
     if (this.patient.orario_dimissioni !== undefined) {
       this.profileForm.get('orario_dimissioni')?.setValue(this.formatDateForm(this.patient.orario_dimissioni));
@@ -95,6 +95,7 @@ export class ProfiloPazienteComponent {
       this.profileForm.get('reparto')?.disable();
       this.profileForm.get('orario_ricovero')?.disable();
       this.profileForm.get('cartella_clinica')?.disable();
+      this.profileForm.get('motivo_ricovero')?.disable();
       this.profileForm.get('orario_dimissioni')?.disable();
     }
     // setto ricovero o dimissione paziente
@@ -161,8 +162,6 @@ export class ProfiloPazienteComponent {
     )
   }
 
-  setChat() { }
-
   // Formattazione delle date
   formatDateTime(data_nascita: any) {
     const datepipe: DatePipe = new DatePipe('en-US');
@@ -201,6 +200,8 @@ export class ProfiloPazienteComponent {
                     .subscribe(
                       data => {
                         this.message = "Operatore aggiunto al paziente"; this.color = "success";
+                        this.newMedicAssignmentForm.get('email_nuovo_medico')?.setValue("");
+                        this.setMedicAssignment();
                         },
                       err => { this.message = "Si è verificato un errore generico del server"; this.color = "danger" }
                     );
@@ -217,7 +218,7 @@ export class ProfiloPazienteComponent {
 
   deleteAssignment(id_medico: any) {
     this._medicAssignment.delete(_id, id_medico).subscribe(
-      res => { window.location.reload(); },
+      res => { this.message = "Operatore eliminato correttamente"; this.color = "success"; this.setMedicAssignment(); },
       error => { console.log(error) }
     )
   }
@@ -243,10 +244,23 @@ export class ProfiloPazienteComponent {
       this.color = "danger";
       return;
     }
+    if (this.newPrescriptionForm.value.data_inizio > this.newPrescriptionForm.value.data_fine) {
+      this.message = "La data di inizio deve essere antecendete alla data di fine";
+      this.color = "danger";
+      return;
+    }
     this.newPrescriptionForm.get('id_paziente')?.setValue(_id);
     this._prescription.newPrescription(JSON.stringify(this.newPrescriptionForm.value))
       .subscribe(
-        data => {this.message = data.message; this.color = "success"},
+        data => {
+          this.message = data.message; this.color = "success";
+          this.newPrescriptionForm.get('farmaco')?.setValue("");
+          this.newPrescriptionForm.get('data_inizio')?.setValue("");
+          this.newPrescriptionForm.get('data_fine')?.setValue("");
+          this.newPrescriptionForm.get('dosi_giornaliere')?.setValue("");
+          this.newPrescriptionForm.get('note')?.setValue("");
+          this.setDrugs();
+          },
         error => {this.message = error.error.message; this.color = "danger"}
       );
   }
@@ -260,7 +274,7 @@ export class ProfiloPazienteComponent {
 
   deletePrescription(id_drug: string | null) {
     this._prescription.delete(_id, id_drug).subscribe(
-      res => { this.message = "Prescrizione eliminata con successo"; this.color = "success" },
+      res => { this.message = "Prescrizione eliminata con successo"; this.color = "success"; this.setDrugs() },
       err => { this.message = err; this.color = "danger" },
     )
   }

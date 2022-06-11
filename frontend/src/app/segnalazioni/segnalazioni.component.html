@@ -34,27 +34,28 @@
             <div class="col-md-9">
                 <div class="card direct-chat direct-chat-primary">
                     <!-- Body -->
-                    <div id="bodyId" class="card-body">
+                    <div id="bodyId" class="card-body" style="max-height:400px; overflow-y: scroll; ">
                         <div *ngFor="let item of messages" class="direct-chat-messages" style="height: 100%">
                             <!-- Messaggio inviato -->
-                            <div *ngIf="item.id_operatore === myId" class="direct-chat-msg right">
+                            <div *ngIf="item.data.id_operatore === myId" class="direct-chat-msg right">
                                 <div class="direct-chat-infos clearfix">
-                                    <span class="direct-chat-name float-right">{{item.id_operatore}}</span>
-                                    <span class="direct-chat-timestamp float-left">{{formatDate(item.data_ora)}}</span>
+                                    <span class="direct-chat-name float-right">{{item.username}}</span>
+                                    <span class="direct-chat-timestamp float-left">{{formatDate(item.data.data_ora)}}</span>
                                 </div>
+                                <img class="direct-chat-img" src="./assets/img/user1.jpeg" alt="message user image">
                                 <div class="direct-chat-text">
-                                    {{item.testo}}
+                                    {{item.data.testo}}
                                 </div>
                             </div>
                             <!-- Messaggio ricevuto -->
-                            <div *ngIf="item.id_operatore !== myId" class="direct-chat-msg">
+                            <div *ngIf="item.data.id_operatore !== myId" class="direct-chat-msg">
                                 <div class="direct-chat-infos clearfix">
-                                    <span class="direct-chat-name float-left">{{item.id_operatore}}</span>
-                                    <span class="direct-chat-timestamp float-right">{{formatDate(item.data_ora)}}</span>
+                                    <span class="direct-chat-name float-left">{{item.username}}</span>
+                                    <span class="direct-chat-timestamp float-right">{{formatDate(item.data.data_ora)}}</span>
                                 </div>
-                                <!-- /.direct-chat-img -->
+                                <img class="direct-chat-img" src="./assets/img/user2.jpeg" alt="message user image">
                                 <div class="direct-chat-text">
-                                    {{item.testo}}
+                                    {{item.data.testo}}
                                 </div>
                             </div>
                         </div>

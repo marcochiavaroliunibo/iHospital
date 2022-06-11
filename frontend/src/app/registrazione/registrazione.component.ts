@@ -16,16 +16,22 @@ export class RegistrazioneComponent implements OnInit {
     email: new FormControl(null, [Validators.email, Validators.required]),
     nascita: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
+    passwordConf: new FormControl(null, Validators.required),
     ruolo: new FormControl(null, Validators.required)
   });
 
-  constructor(private _router:Router, private _userService:UserService) { }
+  constructor(private _router:Router, private _user:UserService) {
+    if (localStorage.getItem("token") != undefined) {
+      this._router.navigate(['/']);
+    }
+  }
 
   ngOnInit(): void {
   }
 
   message: any = undefined;
   color: string = "success";
+
   registra() {
     if (!this.registerForm.valid) {
       this.message = "Compilare correttamente tutti i campi";
@@ -35,12 +41,15 @@ export class RegistrazioneComponent implements OnInit {
       this.message = "La password deve essere lunga almeno 6 caratteri";
       return;
     }
-    this._userService.registra(JSON.stringify(this.registerForm.value))
+    if (this.registerForm.value.password !== this.registerForm.value.passwordConf) {
+      this.message = "Le password non coincidono";
+      return;
+    }
+    this._user.registra(JSON.stringify(this.registerForm.value))
       .subscribe(
-        data => {this.message = data.message; this.color = "success"},
+        data => { this._router.navigate(["/login"]); },
         error => {this.message = error.error.message; this.color = "danger"}
       );
-
   }
 
 }
