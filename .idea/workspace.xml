@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2580a360-60e2-4c79-a6ff-f01c1544a8dc" name="Changes" comment="" />
+    <list default="true" id="2580a360-60e2-4c79-a6ff-f01c1544a8dc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/b72f72262fa4c62b6510d3e3145d001c35394945/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/b72f72262fa4c62b6510d3e3145d001c35394945/index.pack.old" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,7 +149,7 @@
       <workItem from="1655680418184" duration="1358000" />
       <workItem from="1655685246817" duration="712000" />
       <workItem from="1655717335020" duration="3262000" />
-      <workItem from="1655725160124" duration="2165000" />
+      <workItem from="1655725160124" duration="2900000" />
     </task>
     <servers />
   </component>

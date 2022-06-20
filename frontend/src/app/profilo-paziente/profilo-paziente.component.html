@@ -237,7 +237,7 @@
                         <div class="btn-group btn-group-sm">
                           <a type="button" href="dettagli-operazione/{{item._id}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
                         </div>
-                        <div class="btn-group btn-group-sm">
+                        <div class="btn-group btn-group-sm" *ngIf="role === 'MEDICO'">
                           <a type="button" (click)="deleteOperation(item._id)" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </div>
                       </td>
