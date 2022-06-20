@@ -8,7 +8,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './lista-pazienti.component.html',
   styleUrls: ['./lista-pazienti.component.css']
 })
-export class ListaPazientiComponent {
+export class ListaPazientiComponent implements OnInit {
 
   patients: any;
   all : any;
@@ -16,6 +16,10 @@ export class ListaPazientiComponent {
   p: number = 1;
 
   constructor(private _patient:PatientService, private _router:Router) {
+
+  }
+
+  ngOnInit() {
     this._patient.currentPatients().subscribe(
         res => { this.patients = res.data; this.all = this.patients },
         error => console.log(error)

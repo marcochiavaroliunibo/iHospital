@@ -21,12 +21,13 @@ export class RegistrazioneComponent implements OnInit {
   });
 
   constructor(private _router:Router, private _user:UserService) {
-    if (localStorage.getItem("token") != undefined) {
-      this._router.navigate(['/']);
-    }
+
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") != undefined) {
+      this._router.navigate(['/']);
+    }
   }
 
   message: any = undefined;

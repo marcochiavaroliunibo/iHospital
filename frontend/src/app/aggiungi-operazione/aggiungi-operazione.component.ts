@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {OperationService} from "../service/operation-service/operation.service";
 import {PatientService} from "../service/patient-service/patient.service";
@@ -11,7 +11,7 @@ import {MedicAssignmentService} from "../service/medic-assignment-service/medic-
   templateUrl: './aggiungi-operazione.component.html',
   styleUrls: ['./aggiungi-operazione.component.css']
 })
-export class AggiungiOperazioneComponent {
+export class AggiungiOperazioneComponent implements OnInit{
 
   operationForm: FormGroup = new FormGroup({
     id_paziente: new FormControl(null, Validators.required),
@@ -23,7 +23,9 @@ export class AggiungiOperazioneComponent {
   });
   patients: any;
 
-  constructor(private _router:Router, private _operation:OperationService, private _patient:PatientService, private _medicAssignment: MedicAssignmentService) {
+  constructor(private _router:Router, private _operation:OperationService, private _patient:PatientService, private _medicAssignment: MedicAssignmentService) { }
+
+  ngOnInit() {
     var patients: {
       data: any;
     }[] = [];

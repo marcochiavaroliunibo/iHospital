@@ -32,6 +32,10 @@ export class SomministrazioneFarmacoComponent implements OnInit {
 
     constructor(private route: ActivatedRoute, private _patient: PatientService, private _drug: DrugService, private _prescription: PrescriptionService,
                 private _administration: AdministrationService, private _user: UserService,  private _modalService:NgbModal) {
+
+    }
+
+    ngOnInit(): void {
         this._prescription.findById(this.route.snapshot.paramMap.get('id'))
             .subscribe(
                 res => {
@@ -68,10 +72,6 @@ export class SomministrazioneFarmacoComponent implements OnInit {
                 err => {
                 }
             );
-    }
-
-    ngOnInit(): void {
-
     }
 
     newAdministration() {

@@ -18,15 +18,16 @@ export class ListaMediciComponent implements OnInit {
     input: any;
 
     constructor(private route: Router, private _user: UserService, private _medicAssignment: MedicAssignmentService, private _patient: PatientService) {
+
+    }
+
+    ngOnInit() {
         this._user.findByRole("MEDICO")
             .subscribe(
                 res => { this.medics = res.data; this.all = this.medics },
                 err => {
                 }
             )
-    }
-
-    ngOnInit(): void {
     }
 
     formatDate(date: any) {

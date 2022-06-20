@@ -30,6 +30,15 @@ export class SegnalazioniComponent implements OnInit {
     });
 
     constructor(private route: ActivatedRoute, private _patient: PatientService, private _message: MessageService, private _user: UserService) {
+
+    }
+
+    formatDate(data: any) {
+        const datepipe: DatePipe = new DatePipe('en-US');
+        return datepipe.transform(data, 'dd/MM/yyy HH:mm');
+    }
+
+    ngOnInit() {
         this.idPatient = this.route.snapshot.paramMap.get('id');
         this.myId = localStorage.getItem('id');
         this._patient.findById(this.idPatient).subscribe(
@@ -66,14 +75,6 @@ export class SegnalazioniComponent implements OnInit {
                         });
                     })
         })
-    }
-
-    formatDate(data: any) {
-        const datepipe: DatePipe = new DatePipe('en-US');
-        return datepipe.transform(data, 'dd/MM/yyy HH:mm');
-    }
-
-    ngOnInit() {
     }
 
     sendMessage() {

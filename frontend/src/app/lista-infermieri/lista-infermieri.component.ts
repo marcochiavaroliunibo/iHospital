@@ -18,15 +18,16 @@ export class ListaInfermieriComponent implements OnInit {
   input: any;
 
   constructor(private route: Router, private _user: UserService, private _medicAssignment: MedicAssignmentService, private _patient: PatientService) {
+
+  }
+
+  ngOnInit() {
     this._user.findByRole("INFERMIERE")
         .subscribe(
             res => { this.nurses = res.data; this.all = this.nurses },
             err => {
             }
         )
-  }
-
-  ngOnInit(): void {
   }
 
   formatDate(date: any) {

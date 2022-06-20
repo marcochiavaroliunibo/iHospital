@@ -9,7 +9,8 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-            <li class="breadcrumb-item"><a routerLink="/pazienti-in-cura">Pazienti in cura</a></li>
+            <li class="breadcrumb-item" *ngIf="role === 'DIRETTORE'"><a routerLink="/lista-pazienti">Pazienti in cura</a></li>
+            <li class="breadcrumb-item" *ngIf="role !== 'DIRETTORE'"><a routerLink="/pazienti-in-cura">Pazienti in cura</a></li>
             <li class="breadcrumb-item active">Profilo paziente</li>
           </ol>
         </div>

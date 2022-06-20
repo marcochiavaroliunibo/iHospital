@@ -35,12 +35,11 @@ export class AppComponent implements OnInit {
   collapsed = true;
 
   constructor(private _modalService: NgbModal, private _user:UserService, private _router:Router, private _message:MessageService) {
-    if (!!localStorage.getItem("role"))
-      this.role = localStorage.getItem("role");
-
   }
 
   ngOnInit(): void {
+    if (!!localStorage.getItem("role"))
+      this.role = localStorage.getItem("role");
     this._user.userLogged()
       .subscribe(
         res => {

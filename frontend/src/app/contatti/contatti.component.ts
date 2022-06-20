@@ -17,9 +17,7 @@ export class ContattiComponent implements OnInit {
   message: any = undefined;
   color: string = "success";
 
-  constructor (private _contact:ContactService) {
-
-  }
+  constructor (private _contact:ContactService) { }
 
   ngOnInit(): void {
   }

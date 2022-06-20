@@ -44,7 +44,9 @@ export class HomeComponent implements OnInit {
         "Per qualsiasi dubbio, consultare la sezione FAQ.";
 
     constructor(private route: ActivatedRoute, private _medicAssignment: MedicAssignmentService, private _patient: PatientService,
-                private _operation: OperationService, private _user: UserService, private _administration: AdministrationService) {
+                private _operation: OperationService, private _user: UserService, private _administration: AdministrationService) { }
+
+    ngOnInit(): void {
         this._user.findById(localStorage.getItem('id'))
             .subscribe(
                 res => this.user = res.data,
@@ -63,9 +65,6 @@ export class HomeComponent implements OnInit {
                 this.setHomeInfermiere();
                 break;
         }
-    }
-
-    ngOnInit(): void {
     }
 
     private setHomeDirettore() {

@@ -11,11 +11,11 @@ import {PatientService} from "../service/patient-service/patient.service";
   templateUrl: './valori-vitali.component.html',
   styleUrls: ['./valori-vitali.component.css']
 })
-export class ValoriVitaliComponent {
+export class ValoriVitaliComponent implements OnInit {
 
-  idPatient: string | null;
+  idPatient: any;
   patient: any;
-  myId: string | null;
+  myId: any;
   vitalValues: any;
   active = 1;
   ricoverato: boolean = false;
@@ -29,15 +29,18 @@ export class ValoriVitaliComponent {
   });
 
   constructor(private route:ActivatedRoute,  private _vitalValue: VitalValueService, private _patient:PatientService, private _user:UserService) {
+  }
+
+  ngOnInit() {
     this.idPatient = this.route.snapshot.paramMap.get('id');
     this._patient.findById(this.idPatient)
-      .subscribe(
-        res => {
-          this.patient = res.data
-          this.setStatePatient()
-        },
-        err => {}
-      );
+        .subscribe(
+            res => {
+              this.patient = res.data
+              this.setStatePatient()
+            },
+            err => {}
+        );
     this.myId = localStorage.getItem("id");
     this.setVitalValue();
   }

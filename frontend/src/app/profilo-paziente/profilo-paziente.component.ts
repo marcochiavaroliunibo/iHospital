@@ -1,4 +1,4 @@
-import {Component, Type} from '@angular/core';
+import {Component, OnInit, Type} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {PatientService} from "../service/patient-service/patient.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -19,7 +19,7 @@ let _id : string | null;
   templateUrl: './profilo-paziente.component.html',
   styleUrls: ['./profilo-paziente.component.css']
 })
-export class ProfiloPazienteComponent {
+export class ProfiloPazienteComponent implements OnInit {
 
   patient: any; operations: any; medic_assignments: any; drugs: any; prescriptions: any;
   active = 1; id : any; role : any;
@@ -55,22 +55,25 @@ export class ProfiloPazienteComponent {
   constructor(public route: ActivatedRoute, private _user:UserService, private _patient:PatientService,
               private _operation:OperationService, private _medicAssignment:MedicAssignmentService, private _drug:DrugService,
               private _prescription:PrescriptionService, private _router:Router, private _modalService:NgbModal) {
+  }
+
+  ngOnInit() {
     _id = this.route.snapshot.paramMap.get('id');
     this.role = localStorage.getItem('role');
     this.id = _id;
     //this.route.queryParams.subscribe(params => {if (params['active'] === '2') this.active = 2});
     this._drug.allDrugs().subscribe(res => { this.drugs = res.data; },error => {});
     this._patient.findById(_id)
-      .subscribe(
-        res => {
-          this.patient = res.data;
-          this.setValueForm();
-          this.setDrugs();
-          this.setOperations();
-          this.setMedicAssignment();
-        },
-        error => this._router.navigate(['/'])
-      );
+        .subscribe(
+            res => {
+              this.patient = res.data;
+              this.setValueForm();
+              this.setDrugs();
+              this.setOperations();
+              this.setMedicAssignment();
+            },
+            error => this._router.navigate(['/'])
+        );
   }
 
   // Dati del paziente
@@ -122,7 +125,6 @@ export class ProfiloPazienteComponent {
           this._drug.findById(res.data[i].id_medicina).subscribe(
             res2 => {
               prescriptions.push({drug: res2.data, dataPrescription: res.data[i]});
-              console.log(prescriptions);
             },
             error => { }
           )
@@ -219,7 +221,6 @@ export class ProfiloPazienteComponent {
   deleteAssignment(id_medico: any) {
     this._medicAssignment.delete(_id, id_medico).subscribe(
       res => { this.message = "Operatore eliminato correttamente"; this.color = "success"; this.setMedicAssignment(); },
-      error => { console.log(error) }
     )
   }
 
@@ -278,7 +279,6 @@ export class ProfiloPazienteComponent {
   quitPatient() {
     this._patient.quitPatient(_id).subscribe(
       res => { window.location.reload(); },
-      error => { console.log(error) }
     )
   }
 

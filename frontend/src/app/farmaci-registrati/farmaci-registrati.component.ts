@@ -21,13 +21,14 @@ export class FarmaciRegistratiComponent implements OnInit {
   input: any;
 
   constructor(private _drug:DrugService, private _router:Router,  private _modalService:NgbModal) {
-    this._drug.allDrugs().subscribe(
-        res => { this.drugs = res.data; this.all = this.drugs },
-      error => console.log(error)
-    )
+
   }
 
   ngOnInit(): void {
+    this._drug.allDrugs().subscribe(
+        res => { this.drugs = res.data; this.all = this.drugs },
+        error => console.log(error)
+    )
   }
 
   private MODALS:  {[name: string]: Type<any>} = {modalDrug: NgbdModalDrug};

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {PatientService} from "../service/patient-service/patient.service";
 import {OperationService} from "../service/operation-service/operation.service";
@@ -13,9 +13,9 @@ import {ValueStatusService} from "../service/chart-service/value-status.service"
     templateUrl: './dettagli-operazione.component.html',
     styleUrls: ['./dettagli-operazione.component.css'],
 })
-export class DettagliOperazioneComponent {
+export class DettagliOperazioneComponent implements OnInit {
 
-    idOperation: string | null;
+    idOperation: any;
     patient: any;
     operation: any;
     stato: any;
@@ -42,7 +42,9 @@ export class DettagliOperazioneComponent {
     }
 
     constructor(private route: ActivatedRoute, private _patient: PatientService,
-                private _operation: OperationService, private _valueStatus: ValueStatusService) {
+                private _operation: OperationService, private _valueStatus: ValueStatusService) { }
+
+    ngOnInit () {
         this.idOperation = this.route.snapshot.paramMap.get('id');
         this._operation.findById(this.idOperation)
             .subscribe(

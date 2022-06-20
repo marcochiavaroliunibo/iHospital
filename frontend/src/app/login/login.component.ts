@@ -9,7 +9,7 @@ import {UserService} from "../service/user-service/user.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.email, Validators.required]),
@@ -19,12 +19,16 @@ export class LoginComponent {
   message: any = undefined;
 
   constructor(private _router:Router, private _user:UserService) {
-    if (localStorage.getItem("token") != undefined) {
-      this._router.navigate(['/']);
-    }
+
   }
 
-  login() {
+  ngOnInit() {
+      if (localStorage.getItem("token") != undefined) {
+          this._router.navigate(['/']);
+      }
+  }
+
+    login() {
     if (!this.loginForm.valid) {
       this.message = "I campi sono obbligatori";
       return;

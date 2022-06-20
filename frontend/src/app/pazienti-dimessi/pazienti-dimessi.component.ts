@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PatientService} from "../service/patient-service/patient.service";
 import {Router} from "@angular/router";
 import {MedicAssignmentService} from "../service/medic-assignment-service/medic-assignment.service";
@@ -9,14 +9,16 @@ import {DatePipe} from "@angular/common";
   templateUrl: './pazienti-dimessi.component.html',
   styleUrls: ['./pazienti-dimessi.component.css']
 })
-export class PazientiDimessiComponent {
+export class PazientiDimessiComponent implements OnInit {
 
   patients: any;
   p: number = 1;
   all : any;
   input: any;
 
-  constructor(private _patient:PatientService, private _medicAssignment:MedicAssignmentService, private _router:Router) {
+  constructor(private _patient:PatientService, private _medicAssignment:MedicAssignmentService, private _router:Router) { }
+
+  ngOnInit() {
     var patients: any[] =[];
     let id = localStorage.getItem('id');
 
@@ -38,7 +40,6 @@ export class PazientiDimessiComponent {
         },
         error => { }
     )
-
   }
 
   formatDate(data_nascita: any) {

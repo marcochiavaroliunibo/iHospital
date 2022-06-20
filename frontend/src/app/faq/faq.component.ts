@@ -10,11 +10,10 @@ export class FAQComponent implements OnInit {
   role: any;
 
   constructor() {
-    this.role = localStorage.getItem('role');
   }
 
   ngOnInit(): void {
-
+    this.role = localStorage.getItem('role');
   }
 
 }

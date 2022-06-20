@@ -14,7 +14,7 @@ let messaggio: string | null;
     templateUrl: './feedback-ricevuti.component.html',
     styleUrls: ['./feedback-ricevuti.component.css']
 })
-export class FeedbackRicevutiComponent {
+export class FeedbackRicevutiComponent implements OnInit{
 
     contacts: {
         data: any;
@@ -23,6 +23,10 @@ export class FeedbackRicevutiComponent {
     p: number = 1;
 
     constructor(private _user: UserService, private _contact: ContactService, private _router: Router, private _modalService: NgbModal) {
+
+    }
+
+    ngOnInit() {
         this.setFeedback();
     }
 

@@ -23,7 +23,8 @@ export class AggiungiFarmacoComponent {
 
   message : any = undefined;
   color: string = "success";
-  nuovoFarmaco() {
+
+  newDrug() {
     if (!this.drugForm.valid) {
       this.message = "Compila tutti i campi";
       this.color = "danger";
@@ -32,7 +33,14 @@ export class AggiungiFarmacoComponent {
 
     this._drug.newDrug(JSON.stringify(this.drugForm.value))
       .subscribe(
-        data => { this.message = data.message; this.color = "success"},
+        data => {
+          this.message = data.message; this.color = "success";
+          this.drugForm.get('nominativo')?.setValue("");
+          this.drugForm.get('tipologia')?.setValue("");
+          this.drugForm.get('codice')?.setValue("");
+          this.drugForm.get('somministrazione')?.setValue("");
+          this.drugForm.get('libretto')?.setValue("");
+        },
         error => {this.message = error.error.message; this.color = "danger"}
       );
   }

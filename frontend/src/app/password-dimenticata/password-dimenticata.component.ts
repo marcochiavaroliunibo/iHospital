@@ -8,7 +8,7 @@ import {UserService} from "../service/user-service/user.service";
   templateUrl: './password-dimenticata.component.html',
   styleUrls: ['./password-dimenticata.component.css']
 })
-export class PasswordDimenticataComponent {
+export class PasswordDimenticataComponent implements OnInit {
 
   recoveryForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.email, Validators.required]),
@@ -16,7 +16,9 @@ export class PasswordDimenticataComponent {
 
   message: any = undefined;
 
-  constructor(private _router:Router, private _user:UserService) {
+  constructor(private _router:Router, private _user:UserService) { }
+
+  ngOnInit() {
     if (localStorage.getItem("token") != undefined) {
       this._router.navigate(['/']);
     }

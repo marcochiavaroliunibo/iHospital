@@ -25,18 +25,20 @@ export class AreaRiservataComponent implements OnInit {
   user: any;
 
   constructor(private _user: UserService) {
+
+  }
+
+  ngOnInit() {
     let myId = localStorage.getItem("id")
     this._user.findById(myId)
         .subscribe(
-          res => {
-            this.user = res.data
-            this.setValueForm();
+            res => {
+              this.user = res.data
+              this.setValueForm();
             },
-          err => { }
+            err => { }
         );
   }
-
-  ngOnInit(): void { }
 
   private setValueForm() {
     this.dataForm.get('nome')?.setValue(this.user.nome);
