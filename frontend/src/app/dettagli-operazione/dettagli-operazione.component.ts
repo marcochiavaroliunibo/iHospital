@@ -107,7 +107,7 @@ export class DettagliOperazioneComponent {
         } else {
             // @ts-ignore
             if (this.formatDateForm(this.operation.data_ora) === this.formatDateForm(new Date())) {
-                this.stato = "OGGI"       // todo bisogna calcolare l'intervallo per aprire il real-time
+                this.stato = "OGGI"
                 this.realTime = true;
             } else {
                 this.stato = "COMPLETATA";

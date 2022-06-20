@@ -3,6 +3,7 @@ var router = express.Router();
 var Operation = require('../models/operation');
 const {now} = require("mongoose");
 const Patient = require("../models/patient");
+const Vitalvalue = require("../models/vital-value");
 
 router.post('/new-operation', async function (req, res) {
     if (req.body.data_ora > now())
@@ -70,5 +71,17 @@ router.put('/update/:id', (req, res) => {
             else return res.status(200).json({success: true, message: "Aggiornamento dati completato"})
         })
 });
+
+
+router.delete('/delete/:id',  (req, res) => {
+        const id = req.params.id;
+        Operation.deleteOne({_id: id}).exec()
+            .then((result) => {
+                res.status(200).json({success: true});
+            }).catch((err) => {
+            return res.status(404).json({success: false, message: "E' stato riscontrato un errore di servizio"});
+        });
+    }
+);
 
 module.exports = router;

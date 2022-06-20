@@ -12,17 +12,21 @@ export class ListaDimessiComponent implements OnInit {
 
   patients: any;
   p: number = 1;
+  all : any;
+  input: any;
+
   constructor(private _patient:PatientService, private _router:Router) {
+
+  }
+
+  ngOnInit(): void {
     this._patient.dismissPatients().subscribe(
-        res => this.patients = res.data,
+        res => { this.patients = res.data; this.all = this.patients },
         error => console.log(error)
     )
   }
 
-  ngOnInit(): void { }
-
   openProfile(_id: any) {
-    // todo vedere per _id
     this._router.navigate(['profilo-paziente/' + _id]);
   }
 
@@ -32,7 +36,17 @@ export class ListaDimessiComponent implements OnInit {
   }
   formatDateTime(data: any) {
     const datepipe: DatePipe = new DatePipe('en-US');
-    return datepipe.transform(data, 'dd/MM/YYYY hh:mm');
+    return datepipe.transform(data, 'dd/MM/YYYY');
+  }
+
+  search() {
+    if (this.input == "") {
+      this.patients = this.all;
+    }else{
+      this.patients = this.all.filter((res: { cognome: string; }) => {
+        return res.cognome.toLocaleLowerCase().match(this.input.toLocaleLowerCase());
+      })
+    }
   }
 
 }

@@ -225,9 +225,7 @@ export class ProfiloPazienteComponent {
 
   updatePatient() {
     if (!this.profileForm.valid) {
-      this.message = "Compilare correttamente tutti i campi";
-      this.color = "danger";
-      return;
+      this.message = "Compilare correttamente tutti i campi"; this.color = "danger"; return;
     }
     this._patient.updatePatient(_id, JSON.stringify(this.profileForm.value))
       .subscribe(
@@ -238,13 +236,11 @@ export class ProfiloPazienteComponent {
 
   newPrescription() {
     if (!this.newPrescriptionForm.valid) {
-      this.message = "Compilare correttamente tutti i campi";
-      this.color = "danger";
+      this.message = "Compilare correttamente tutti i campi"; this.color = "danger";
       return;
     }
     if (this.newPrescriptionForm.value.data_inizio > this.newPrescriptionForm.value.data_fine) {
-      this.message = "La data di inizio deve essere antecendete alla data di fine";
-      this.color = "danger";
+      this.message = "La data di inizio deve essere antecendete alla data di fine"; this.color = "danger";
       return;
     }
     this.newPrescriptionForm.get('id_paziente')?.setValue(_id);
@@ -263,19 +259,26 @@ export class ProfiloPazienteComponent {
       );
   }
 
+  deletePrescription(id_drug: string | null) {
+    this._prescription.delete(_id, id_drug).subscribe(
+        res => { this.message = "Prescrizione eliminata con successo"; this.color = "success"; this.setDrugs() },
+        err => { this.message = err; this.color = "danger" },
+    )
+  }
+
+  deleteOperation(id_operation: string | null) {
+    this._operation.delete(id_operation).subscribe(
+        res => { this.message = "Operazione annullata con successo"; this.color = "success"; this.setOperations() },
+        err => { this.message = err; this.color = "danger" },
+    )
+  }
+
   resetUpdate() {this.setValueForm();}
 
   quitPatient() {
     this._patient.quitPatient(_id).subscribe(
       res => { window.location.reload(); },
       error => { console.log(error) }
-    )
-  }
-
-  deletePrescription(id_drug: string | null) {
-    this._prescription.delete(_id, id_drug).subscribe(
-      res => { this.message = "Prescrizione eliminata con successo"; this.color = "success"; this.setDrugs() },
-      err => { this.message = err; this.color = "danger" },
     )
   }
 

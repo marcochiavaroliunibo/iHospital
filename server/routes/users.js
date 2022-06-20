@@ -12,17 +12,14 @@ router.post('/login', function (req, res, next) {
             const user = result[0];
             bcrypt.compare(req.body.password, user.password, (err, ret) => {
                 if (ret) {
-                    const payload = {
-                        userId: user._id
-                    }
+                    const payload = {userId: user._id}
                     const token = jwt.sign(payload, "webBatch");
                     return res.status(200).json({success: true, user: user, token: token, message: "Login ok"})
                 }
                 return res.status(401).json({success: false, message: "Password errata, riprova"});
             })
-        }).catch(err => {
-            return res.status(500).json({success: false, message: "E' stato riscontrato un errore di servizio"});
-    })
+        }).catch(err => {return res.status(500).json({success: false, message: "E' stato riscontrato un errore di servizio"});}
+    )
 });
 
 router.post('/registrati',  function (req, res) {
@@ -47,9 +44,8 @@ router.get('/user-logged', checkAuth, (req,res) => {
     User.findById(userId).exec()
         .then((result) => {
             return res.status(200).json({success: true, data: result})
-        }).catch(err => {
-            res.status(500).json({success: false, message: "Server error"});
-    })
+        }).catch(err => { res.status(500).json({success: false, message: "Server error"});}
+    )
 });
 
 router.get('/find-email/:email',  (req, res) => {

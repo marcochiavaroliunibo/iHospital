@@ -14,13 +14,13 @@
               <a ngbDropdownItem routerLink="lista-infermieri">Infermieri in struttura</a>
             </div>
           </li>
-          <li class="nav-item" *ngIf="checkUser() === 'DIRETTORE'"><a routerLink="aggiungi-paziente" class="nav-link">Nuovo paziente</a></li>
           <li class="nav-item" ngbDropdown *ngIf="checkUser() === 'DIRETTORE'">
             <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button">Lista pazienti</a>
             <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
+              <a ngbDropdownItem routerLink="aggiungi-paziente">Nuovo paziente</a>
               <a ngbDropdownItem routerLink="lista-pazienti" >Profili ricoverati</a>
               <a ngbDropdownItem routerLink="lista-dimessi">Profili dimessi</a>
-            </div>
+      </div>
           </li>
           <li class="nav-item" ngbDropdown *ngIf="checkUser() === 'MEDICO' || checkUser() === 'INFERMIERE'">
             <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button">Pazienti assegnati</a>
@@ -32,8 +32,8 @@
           <li class="nav-item" ngbDropdown *ngIf="checkUser() === 'MEDICO' || checkUser() === 'DIRETTORE'">
             <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">Farmacia</a>
             <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
-              <a ngbDropdownItem routerLink="farmaci-registrati" >Farmaci registrati</a>
               <a ngbDropdownItem routerLink="aggiungi-farmaco">Aggiungi farmaco</a>
+              <a ngbDropdownItem routerLink="farmaci-registrati" >Farmaci registrati</a>
             </div>
           </li>
           <li class="nav-item" ngbDropdown *ngIf="checkUser() === 'MEDICO'">

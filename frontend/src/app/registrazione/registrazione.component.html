@@ -7,7 +7,7 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body register-card-body">
-                            <p class="login-box-msg">Registrati come <b>medico</b> o <b>infermiere</b></p>
+                            <p class="login-box-msg">Registrati come <b>direttore</b>, <b>medico</b> o <b>infermiere</b></p>
                             <ngb-alert class="alert-default-{{color}}" [dismissible]="false"
                                        *ngIf="message !== undefined">
                                 {{message}}
@@ -71,6 +71,7 @@
                                     <select class="form-select" aria-label="Default select example"
                                             formControlName="ruolo" required="required">
                                         <option value="" disabled selected>Seleziona paziente</option>
+                                        <option value="DIRETTORE">Sono un direttore ospedaliero</option>
                                         <option value="MEDICO">Sono un medico</option>
                                         <option value="INFERMIERE">Sono un infermiere</option>
                                     </select>

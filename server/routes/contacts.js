@@ -38,4 +38,13 @@ router.get('/', (req, res) => {
     })
 });
 
+router.delete('/delete/:id', (req, res) => {
+    Contact.deleteOne({_id: req.params.id}).exec()
+        .then((result) => {
+            res.status(200).json({success: true, data: result});
+        }).catch((err) => {
+        return res.status(404).json({success: false, message: "E' stato riscontrato un errore di servizio"});
+    })
+});
+
 module.exports = router;

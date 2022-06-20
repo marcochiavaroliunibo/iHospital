@@ -38,4 +38,8 @@ export class OperationService {
     return this._http.get('http://127.0.0.1:3000/operations/'+id);
   }
 
+  delete(_id: any): Observable<any> {
+    return this._http.delete('http://127.0.0.1:3000/operations/delete/'+_id);
+  }
+
 }

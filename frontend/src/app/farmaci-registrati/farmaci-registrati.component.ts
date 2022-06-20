@@ -17,10 +17,12 @@ export class FarmaciRegistratiComponent implements OnInit {
 
   drugs: any;
   p: number = 1;
+  all : any;
+  input: any;
 
   constructor(private _drug:DrugService, private _router:Router,  private _modalService:NgbModal) {
     this._drug.allDrugs().subscribe(
-      res => this.drugs = res.data,
+        res => { this.drugs = res.data; this.all = this.drugs },
       error => console.log(error)
     )
   }
@@ -34,6 +36,16 @@ export class FarmaciRegistratiComponent implements OnInit {
     libretto = lib;
     nomeG = n;
     this._modalService.open((this.MODALS[modal]));
+  }
+
+  search() {
+    if (this.input == "") {
+      this.drugs = this.all;
+    }else{
+      this.drugs = this.all.filter((res: { nominativo: string; }) => {
+        return res.nominativo.toLocaleLowerCase().match(this.input.toLocaleLowerCase());
+      })
+    }
   }
 
 }

@@ -13,6 +13,8 @@ export class PazientiInCuraComponent {
 
   patients: any;
   p: number = 1;
+  all : any;
+  input: any;
 
   constructor(private _patient:PatientService, private _medicAssignment:MedicAssignmentService, private _router:Router) {
     var patients: any[] =[];
@@ -33,6 +35,7 @@ export class PazientiInCuraComponent {
           )
         }
         this.patients = patients;
+        this.all = this.patients;
       },
       error => { }
     )
@@ -49,7 +52,17 @@ export class PazientiInCuraComponent {
   }
   formatDateTime(orario_ricovero: any) {
     const datepipe: DatePipe = new DatePipe('en-US');
-    return datepipe.transform(orario_ricovero, 'dd/MM/YYYY hh:mm');
+    return datepipe.transform(orario_ricovero, 'dd/MM/YYYY');
+  }
+
+  search() {
+    if (this.input == "") {
+      this.patients = this.all;
+    }else{
+      this.patients = this.all.filter((res: { cognome: string; }) => {
+        return res.cognome.toLocaleLowerCase().match(this.input.toLocaleLowerCase());
+      })
+    }
   }
 
 }

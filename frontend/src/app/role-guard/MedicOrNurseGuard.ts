@@ -5,7 +5,7 @@ import {UserService} from "../service/user-service/user.service";
 @Injectable({
   providedIn: 'root'
 })
-export class DirettoreOrMedicoGuard implements CanActivate {
+export class MedicOrNurseGuard implements CanActivate {
 
   constructor(private _auth: UserService, private _router: Router) {
 
@@ -13,7 +13,7 @@ export class DirettoreOrMedicoGuard implements CanActivate {
 
   canActivate() {
     let role = localStorage.getItem("role");
-    if (role === "MEDICO" || role == "DIRETTORE") {
+    if (role === "MEDICO" || role == "INFERMIERE") {
       return true;
     }else{
       this._router.navigate(["/"]);

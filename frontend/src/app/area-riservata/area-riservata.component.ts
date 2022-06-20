@@ -66,7 +66,6 @@ export class AreaRiservataComponent implements OnInit {
       this.color = "danger";
       return;
     }
-    // todo non funziona il controllo della password attuale (per ora non controllo e modifico direttamente)
     this._user.updatePassword(this.user._id,  JSON.stringify(this.pwdForm.value))
         .subscribe(
             res => { this.message = "Password aggiornata"; this.color = "success" },

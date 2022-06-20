@@ -22,6 +22,9 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
+              <nav class="navbar">
+                <input class="form-control" type="text" name="input" [(ngModel)]="input" (ngModelChange)="search()" placeholder="Cerca paziente per cognome" />
+              </nav>
               <table id="table" class="table table-bordered table-striped display nowrap">
                 <thead>
                 <tr>

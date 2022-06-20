@@ -6,11 +6,10 @@ import {MedicAssignmentService} from "../service/medic-assignment-service/medic-
 @Injectable({
   providedIn: 'root'
 })
-export class PazienteInCuraGuard implements CanActivate {
+export class MyPatientGuard implements CanActivate {
 
-  constructor(private _auth: UserService, private route: ActivatedRoute, private _router: Router, private _assignment: MedicAssignmentService) {
-
-  }
+  constructor(private _auth: UserService, private route: ActivatedRoute,
+              private _router: Router, private _assignment: MedicAssignmentService) { }
 
   // @ts-ignore
   canActivate(par: ActivatedRouteSnapshot) {
@@ -20,7 +19,6 @@ export class PazienteInCuraGuard implements CanActivate {
     }else{
       let id = localStorage.getItem('id');
       let patient =  par.paramMap.get('id');
-      // todo non funziona
         this._assignment.findById(patient, id)
           .subscribe(
               res => {

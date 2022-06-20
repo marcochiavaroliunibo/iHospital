@@ -66,6 +66,7 @@
                             <div class="input-group">
                                 <input type="hidden" formControlName="id_operatore"/>
                                 <input type="hidden" formControlName="id_paziente"/>
+                                <input type="hidden" formControlName="data_ora"/>
                                 <textarea name="testo" rows="1" placeholder="Scrivi un messaggio..." required="required" class="form-control" formControlName="testo"></textarea>
                                 <span class="input-group-append">
                                 <button type="submit" (click)="sendMessage()" class="btn btn-primary">Invia</button>

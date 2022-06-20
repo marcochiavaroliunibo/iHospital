@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
         link: string;
     }[] = [];
     user: any;
+    role: any;
 
     // Queste costanti sono i testi da mostrare in home page, a seconda del tipo di utente che effettua l'accesso
     TEXT_DIR = "Questo account ha un ruolo di privilegio, è infatti possibile visualizzare la lista di tutti i medici e infermieri registrati nel sistema," +
@@ -50,7 +51,8 @@ export class HomeComponent implements OnInit {
                 err => {
                 }
             )
-        switch (localStorage.getItem('role')) {
+        this.role = localStorage.getItem('role');
+        switch (this.role) {
             case "DIRETTORE":
                 this.setHomeDirettore();
                 break;
@@ -106,7 +108,6 @@ export class HomeComponent implements OnInit {
         this.text = this.TEXT_DIR;
     }
 
-    // todo 1/4
     private setHomeMedico() {
         this.blocks.push({title: "Pazienti in cura", value: 0, link: "pazienti-in-cura"});
         this.blocks.push({title: "Pazienti dimessi", value: 0, link: "pazienti-dimessi"});

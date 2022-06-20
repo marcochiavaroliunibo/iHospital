@@ -236,6 +236,9 @@
                         <div class="btn-group btn-group-sm">
                           <a type="button" href="dettagli-operazione/{{item._id}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
                         </div>
+                        <div class="btn-group btn-group-sm">
+                          <a type="button" (click)="deleteOperation(item._id)" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        </div>
                       </td>
                     </tr>
                     </tbody>
@@ -243,13 +246,13 @@
                   </table>
                   <div class="row" *ngIf="role === 'MEDICO'">
                     <div class="col-12">
-                      <button href="aggiungi-operazione" class="btn btn-success float-right">Registra nuova operazione</button>
+                      <a href="aggiungi-operazione" class="btn btn-success float-right">Registra nuova operazione</a>
                     </div>
                   </div>
                 </ng-template>
               </li>
               <li [ngbNavItem]="4">
-                <a ngbNavLink>Operatori di riferimento</a>
+                <a ngbNavLink>Equipe</a>
                 <ng-template ngbNavContent>
                   <table id="lista_medici" class="table table-bordered table-striped display nowrap">
                     <thead>

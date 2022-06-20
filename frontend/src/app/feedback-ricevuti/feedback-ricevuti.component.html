@@ -43,6 +43,9 @@
                                         <div class="btn-group btn-group-sm">
                                             <a type="button" (click)="open('modalFeedback', item.data.messaggio)" class="btn btn-info"><i class="fas fa-pen"></i></a>
                                         </div>
+                                        <div class="btn-group btn-group-sm">
+                                            <a type="button" (click)="delete(item.data._id)" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        </div>
                                     </td>
                                 </tr>
                                 </tbody>

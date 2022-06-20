@@ -10,53 +10,68 @@ import {DrugService} from "../service/drug-service/drug.service";
 let messaggio: string | null;
 
 @Component({
-  selector: 'app-feedback-ricevuti',
-  templateUrl: './feedback-ricevuti.component.html',
-  styleUrls: ['./feedback-ricevuti.component.css']
+    selector: 'app-feedback-ricevuti',
+    templateUrl: './feedback-ricevuti.component.html',
+    styleUrls: ['./feedback-ricevuti.component.css']
 })
 export class FeedbackRicevutiComponent {
 
-  contacts: {
-    data: any;
-    sender: any;
-  }[] = [];
-  p: number = 1;
+    contacts: {
+        data: any;
+        sender: any;
+    }[] = [];
+    p: number = 1;
 
-  constructor(private _user:UserService, private _contact:ContactService, private _router:Router,  private _modalService:NgbModal) {
-    this._contact.allContacts().subscribe(
-        res => {
-          for (let i=0;i<res.data.length;i++) {
-            this._user.findById(res.data[i].id_operatore).subscribe(
-                res2 => this.contacts.push({data: res.data[i], sender: res2.data}),
-                err => { }
-            )
-          }
-        },
-        err => { }
-    )
-  }
+    constructor(private _user: UserService, private _contact: ContactService, private _router: Router, private _modalService: NgbModal) {
+        this.setFeedback();
+    }
 
-  formatDateTime(orario_ricovero: any) {
-    const datepipe: DatePipe = new DatePipe('en-US');
-    return datepipe.transform(orario_ricovero, 'dd/MM/YYYY HH:mm');
-  }
+    setFeedback() {
+        while (this.contacts.length > 0) this.contacts.pop();
+        this._contact.allContacts().subscribe(
+            res => {
+                for (let i = 0; i < res.data.length; i++) {
+                    this._user.findById(res.data[i].id_operatore).subscribe(
+                        res2 => this.contacts.push({data: res.data[i], sender: res2.data}),
+                        err => {
+                        }
+                    )
+                }
+            },
+            err => {
+            }
+        )
+    }
 
-  private MODALS:  {[name: string]: Type<any>} = {modalFeedback: NgbdModalFeedback};
-  open(modal: string, mess: string) {
-    messaggio = mess
-    this._modalService.open((this.MODALS[modal]));
-  }
+    formatDateTime(orario_ricovero: any) {
+        const datepipe: DatePipe = new DatePipe('en-US');
+        return datepipe.transform(orario_ricovero, 'dd/MM/YYYY HH:mm');
+    }
+
+    private MODALS: { [name: string]: Type<any> } = {modalFeedback: NgbdModalFeedback};
+
+    open(modal: string, mess: string) {
+        messaggio = mess
+        this._modalService.open((this.MODALS[modal]));
+    }
+
+    delete(_id: any) {
+        this._contact.delete(_id).subscribe(
+            res => this.setFeedback()
+        )
+    }
 
 }
 
 @Component({
-  selector: 'ngbd-modal-feedback',
-  templateUrl: '../modals/modal-feedback.html',
+    selector: 'ngbd-modal-feedback',
+    templateUrl: '../modals/modal-feedback.html',
 })
 export class NgbdModalFeedback {
 
-  testo = messaggio;
+    testo = messaggio;
 
-  constructor(public modal: NgbActiveModal) { }
+    constructor(public modal: NgbActiveModal) {
+    }
 
 }

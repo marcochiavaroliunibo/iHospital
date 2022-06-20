@@ -11,52 +11,54 @@ import {LoginComponent} from "./login/login.component";
 import {RegistrazioneComponent} from "./registrazione/registrazione.component";
 import {AggiungiPazienteComponent} from "./aggiungi-paziente/aggiungi-paziente.component";
 import {ListaPazientiComponent} from "./lista-pazienti/lista-pazienti.component";
-import {MedicoGuard} from "./role-guard/MedicoGuard";
-import {DirettoreGuard} from "./role-guard/DirettoreGuard";
+import {MedicGuard} from "./role-guard/MedicGuard";
+import {DirectorGuard} from "./role-guard/DirectorGuard";
 import {FAQComponent} from "./faq/faq.component";
 import {ValoriVitaliComponent} from "./valori-vitali/valori-vitali.component";
 import {DettagliOperazioneComponent} from "./dettagli-operazione/dettagli-operazione.component";
 import {SegnalazioniComponent} from "./segnalazioni/segnalazioni.component";
 import {AreaRiservataComponent} from "./area-riservata/area-riservata.component";
-import {PazienteInCuraGuard} from "./role-guard/PazienteInCuraGuard";
-import {MedicoOrInfermiereGuard} from "./role-guard/MedicoOrInfermiereGuard";
+import {MyPatientGuard} from "./role-guard/MyPatientGuard";
+import {MedicOrNurseGuard} from "./role-guard/MedicOrNurseGuard";
 import {SomministrazioneFarmacoComponent} from "./somministrazione-farmaco/somministrazione-farmaco.component";
 import {PazientiDimessiComponent} from "./pazienti-dimessi/pazienti-dimessi.component";
 import {ListaDimessiComponent} from "./lista-dimessi/lista-dimessi.component";
 import {ListaMediciComponent} from "./lista-medici/lista-medici.component";
 import {ListaInfermieriComponent} from "./lista-infermieri/lista-infermieri.component";
-import {DirettoreOrMedicoGuard} from "./role-guard/DirettoreOrMedicoGuard";
+import {DirectorOrMedicGuard} from "./role-guard/DirectorOrMedicGuard";
 import {ContattiComponent} from "./contatti/contatti.component";
 import {FeedbackRicevutiComponent} from "./feedback-ricevuti/feedback-ricevuti.component";
 import {PasswordDimenticataComponent} from "./password-dimenticata/password-dimenticata.component";
+import {MyOperationGuard} from "./role-guard/MyOperationGuard";
+import {MyPrescriptionGuard} from "./role-guard/MyPrescriptionGuard";
 
 // canActive mi indica quale tipo di profilo può accedere ad ogni pagina,
 // svolge quindi il ruolo di GUARDIA per l'accesso alle varie pagine.
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'aggiungi-farmaco', component: AggiungiFarmacoComponent, canActivate: [DirettoreOrMedicoGuard]},
-  { path: 'aggiungi-operazione', component: AggiungiOperazioneComponent, canActivate: [MedicoGuard] },
-  { path: 'calendario-operazioni', component: CalendarioOperazioniComponent, canActivate: [MedicoOrInfermiereGuard] },
-  { path: 'farmaci-registrati', component: FarmaciRegistratiComponent, canActivate: [DirettoreOrMedicoGuard] },
-  { path: 'lista-medici', component: ListaMediciComponent, canActivate: [DirettoreGuard]},
-  { path: 'lista-infermieri', component: ListaInfermieriComponent, canActivate: [DirettoreGuard]},
-  { path: 'pazienti-in-cura', component: PazientiInCuraComponent, canActivate: [MedicoOrInfermiereGuard] },
-  { path: 'pazienti-dimessi', component: PazientiDimessiComponent, canActivate: [MedicoOrInfermiereGuard] },
-  { path: 'profilo-paziente/:id', component: ProfiloPazienteComponent, canActivate: [PazienteInCuraGuard] },
+  { path: 'aggiungi-farmaco', component: AggiungiFarmacoComponent, canActivate: [DirectorOrMedicGuard]},
+  { path: 'aggiungi-operazione', component: AggiungiOperazioneComponent, canActivate: [MedicGuard] },
+  { path: 'calendario-operazioni', component: CalendarioOperazioniComponent, canActivate: [MedicOrNurseGuard] },
+  { path: 'farmaci-registrati', component: FarmaciRegistratiComponent, canActivate: [DirectorOrMedicGuard] },
+  { path: 'lista-medici', component: ListaMediciComponent, canActivate: [DirectorGuard]},
+  { path: 'lista-infermieri', component: ListaInfermieriComponent, canActivate: [DirectorGuard]},
+  { path: 'pazienti-in-cura', component: PazientiInCuraComponent, canActivate: [MedicOrNurseGuard] },
+  { path: 'pazienti-dimessi', component: PazientiDimessiComponent, canActivate: [MedicOrNurseGuard] },
+  { path: 'profilo-paziente/:id', component: ProfiloPazienteComponent, canActivate: [MyPatientGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'registrati', component: RegistrazioneComponent},
   { path: 'password-dimenticata', component: PasswordDimenticataComponent},
-  { path: 'aggiungi-paziente', component: AggiungiPazienteComponent, canActivate: [DirettoreGuard]},
-  { path: 'lista-pazienti', component: ListaPazientiComponent, canActivate: [DirettoreGuard]},
-  { path: 'lista-dimessi', component: ListaDimessiComponent, canActivate: [DirettoreGuard]},
+  { path: 'aggiungi-paziente', component: AggiungiPazienteComponent, canActivate: [DirectorGuard]},
+  { path: 'lista-pazienti', component: ListaPazientiComponent, canActivate: [DirectorGuard]},
+  { path: 'lista-dimessi', component: ListaDimessiComponent, canActivate: [DirectorGuard]},
   { path: 'FAQ', component: FAQComponent},
-  { path: 'valori-vitali/:id', component: ValoriVitaliComponent, canActivate: [PazienteInCuraGuard]},
-  { path: 'dettagli-operazione/:id', component: DettagliOperazioneComponent, canActivate: []},
-  { path: 'segnalazioni/:id', component: SegnalazioniComponent, canActivate: [PazienteInCuraGuard]},
+  { path: 'valori-vitali/:id', component: ValoriVitaliComponent, canActivate: [MyPatientGuard]},
+  { path: 'dettagli-operazione/:id', component: DettagliOperazioneComponent, canActivate: [MyOperationGuard]},
+  { path: 'segnalazioni/:id', component: SegnalazioniComponent, canActivate: [MyPatientGuard]},
   { path: 'area-riservata', component: AreaRiservataComponent},
-  { path: 'somministrazione-farmaco/:id', component: SomministrazioneFarmacoComponent, canActivate: []},
-  { path: 'contatti', component: ContattiComponent, canActivate: [MedicoOrInfermiereGuard]},
-  { path: 'feedback-ricevuti', component: FeedbackRicevutiComponent, canActivate: [DirettoreGuard]}
+  { path: 'somministrazione-farmaco/:id', component: SomministrazioneFarmacoComponent, canActivate: [MyPrescriptionGuard]},
+  { path: 'contatti', component: ContattiComponent, canActivate: [MedicOrNurseGuard]},
+  { path: 'feedback-ricevuti', component: FeedbackRicevutiComponent, canActivate: [DirectorGuard]}
 ];
 
 @NgModule({

@@ -4,13 +4,43 @@
     <list default="true" id="2580a360-60e2-4c79-a6ff-f01c1544a8dc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/1dc65b1754967c777e1352e18a16c6780ed61284/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.angular/cache/13.3.5/angular-webpack/1dc65b1754967c777e1352e18a16c6780ed61284/index.pack.old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/aggiungi-paziente/aggiungi-paziente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/aggiungi-paziente/aggiungi-paziente.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/aggiungi-paziente/aggiungi-paziente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/aggiungi-paziente/aggiungi-paziente.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/area-riservata/area-riservata.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/area-riservata/area-riservata.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/dettagli-operazione/dettagli-operazione.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/dettagli-operazione/dettagli-operazione.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/farmaci-registrati/farmaci-registrati.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/farmaci-registrati/farmaci-registrati.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/farmaci-registrati/farmaci-registrati.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/farmaci-registrati/farmaci-registrati.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/feedback-ricevuti/feedback-ricevuti.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/feedback-ricevuti/feedback-ricevuti.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/feedback-ricevuti/feedback-ricevuti.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/feedback-ricevuti/feedback-ricevuti.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/lista-dimessi/lista-dimessi.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/lista-dimessi/lista-dimessi.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/lista-dimessi/lista-dimessi.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/lista-dimessi/lista-dimessi.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/lista-pazienti/lista-pazienti.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/lista-pazienti/lista-pazienti.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/lista-pazienti/lista-pazienti.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/lista-pazienti/lista-pazienti.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/pazienti-dimessi/pazienti-dimessi.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/pazienti-dimessi/pazienti-dimessi.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/pazienti-dimessi/pazienti-dimessi.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/pazienti-dimessi/pazienti-dimessi.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/pazienti-in-cura/pazienti-in-cura.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/pazienti-in-cura/pazienti-in-cura.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/pazienti-in-cura/pazienti-in-cura.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/pazienti-in-cura/pazienti-in-cura.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilo-paziente/profilo-paziente.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/registrazione/registrazione.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/registrazione/registrazione.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/role-guard/DirettoreGuard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/role-guard/DirectorGuard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/role-guard/DirettoreOrMedicoGuard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/role-guard/DirectorOrMedicGuard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/role-guard/InfermiereGuard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/role-guard/NurseGuard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/role-guard/MedicoGuard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/role-guard/MedicGuard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/role-guard/MedicoOrInfermiereGuard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/role-guard/MedicOrNurseGuard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/role-guard/PazienteInCuraGuard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/role-guard/MyPatientGuard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/segnalazioni/segnalazioni.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/segnalazioni/segnalazioni.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/segnalazioni/segnalazioni.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/segnalazioni/segnalazioni.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/chart-service/value-status.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/chart-service/value-status.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/valueChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/valueChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/contact-service/contact.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/contact-service/contact.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/operation-service/operation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/operation-service/operation.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/contacts.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/contacts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/operations.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/operations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +81,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src/app/modals" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src/app/role-guard" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/node_modules/typescript/lib" />
@@ -59,11 +89,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/app/role-guard" />
       <recent name="$PROJECT_DIR$/frontend/src/app/modals" />
       <recent name="$PROJECT_DIR$/server/routes" />
       <recent name="$PROJECT_DIR$/server/models" />
       <recent name="$PROJECT_DIR$/frontend/src/assets/img" />
-      <recent name="$PROJECT_DIR$/frontend/src/app/role-guard" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/src/app/service/contact-service" />
@@ -145,7 +175,17 @@
       <workItem from="1654791377473" duration="8393000" />
       <workItem from="1654939365857" duration="4430000" />
       <workItem from="1654966098765" duration="7335000" />
-      <workItem from="1654986151709" duration="3768000" />
+      <workItem from="1654986151709" duration="4471000" />
+      <workItem from="1654991531448" duration="50000" />
+      <workItem from="1655045036008" duration="1587000" />
+      <workItem from="1655068934282" duration="356000" />
+      <workItem from="1655070734731" duration="10000" />
+      <workItem from="1655486876556" duration="2315000" />
+      <workItem from="1655564514475" duration="2248000" />
+      <workItem from="1655673266684" duration="598000" />
+      <workItem from="1655680418184" duration="1358000" />
+      <workItem from="1655685246817" duration="712000" />
+      <workItem from="1655717335020" duration="2510000" />
     </task>
     <servers />
   </component>
