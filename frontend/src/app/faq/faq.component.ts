@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FAQComponent implements OnInit {
 
-  constructor() { }
+  role: any;
+
+  constructor() {
+    this.role = localStorage.getItem('role');
+  }
 
   ngOnInit(): void {
+
   }
 
 }

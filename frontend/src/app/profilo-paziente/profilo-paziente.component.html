@@ -33,7 +33,7 @@
               <p class="text-muted text-center" *ngIf="!ricoverato">Dimesso il {{formatDate(patient.orario_dimissioni)}}</p>
               <a href="valori-vitali/{{id}}" class="btn btn-info btn-block"><b>Registrazioni valori vitali</b></a>
               <a href="segnalazioni/{{id}}" class="btn btn-info btn-block"><b>Area segnalazioni</b></a>
-              <a *ngIf="ricoverato && role==='MEDICO'" (click)="quitPatient()" class="btn btn-danger btn-block"><b>Dimetti paziente</b></a>
+              <a *ngIf="ricoverato && role!=='INFERMIERE'" (click)="quitPatient()" class="btn btn-danger btn-block"><b>Dimetti paziente</b></a>
             </div>
             <!-- /.card-body -->
           </div>

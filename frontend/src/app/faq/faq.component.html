@@ -63,8 +63,11 @@
     </div>
     <div class="row">
       <div class="col-12 mt-3 text-center">
-        <p class="lead">
-          Sei un medico o infermiere? Contatta il centro di supporto per eventuali problematiche<br>
+        <p class="lead" *ngIf="role !== 'DIRETTORE'">
+          Sei un medico o infermiere? <a href="contatti">Contatta</a> il centro di supporto per eventuali problematiche<br>
+        </p>
+        <p class="lead" *ngIf="role === 'DIRETTORE'">
+          <a href="feedback-ricevuti">Visualizza</a> i feedback inviati da medici ed infermieri.<br>
         </p>
       </div>
     </div>
